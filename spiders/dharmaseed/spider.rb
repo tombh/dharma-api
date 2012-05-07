@@ -35,7 +35,7 @@ end
 
 # Loop over all of dharmaseed's pages
 parsed_speakers = []
-page = 27
+page = 0
 begin
 	page += 1
 	full_link = url + page.to_s
@@ -128,7 +128,7 @@ begin
 				:permalink => permalink,
 				:duration => one.tolerant_css('i'),
 				:date => one ? one.text.split[0] : nil,
-				:description => two ? two.text : nil,
+				:description => three.text, # assigns venue & event when no description
 				:venue => three.tolerant_css('a'),
 				:event => three.tolerant_css('a + a')
 			}
