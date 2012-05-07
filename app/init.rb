@@ -22,3 +22,28 @@ LogBuddy.init(:logger => logger)
 MongoMapper.connection = Mongo::Connection.new(@settings['db_host'], @settings['db_port'], :logger => logger)
 MongoMapper.database = @settings['db_name']
 MongoMapper.connection.connect
+
+
+# Strip strings before they're placed in the db
+module MongoMapper
+	module Plugins
+		module Stripper
+			extend ActiveSupport::Concern
+
+			included do
+				before_validation :strip_attributes
+			end
+		  
+			def strip_attributes
+				attributes.each do |key, value|
+					if value.is_a?(String)
+						value = value.strip
+						value = nil if value.blank?
+						self[key] = value
+					end
+				end
+			end
+		end
+	end
+end
+MongoMapper::Document.plugin(MongoMapper::Plugins::Stripper)
