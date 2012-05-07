@@ -23,4 +23,10 @@ class Talk
 
   belongs_to :speaker
   key :speaker_id, ObjectId
+
+  def to_hash
+    hash = {}
+    instance_variables.each {|var| hash[var.to_s.delete("@")] = instance_variable_get(var) }
+  end
+  
 end

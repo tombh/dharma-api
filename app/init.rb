@@ -14,12 +14,13 @@ require_relative 'models'
 @environment = ENV['RACK_ENV'] || 'development'
 @settings = @config[@environment]
 
-logger = Logger.new('.log')
+mongo_logger = Logger.new('./logs/mongomapper.log')
+app_logger = Logger.new('./logs/app.log')
+LogBuddy.init(:logger => app_logger)
 
 
 # Database setup
-LogBuddy.init(:logger => logger)
-MongoMapper.connection = Mongo::Connection.new(@settings['db_host'], @settings['db_port'], :logger => logger)
+MongoMapper.connection = Mongo::Connection.new(@settings['db_host'], @settings['db_port'], :logger => mongo_logger)
 MongoMapper.database = @settings['db_name']
 MongoMapper.connection.connect
 
