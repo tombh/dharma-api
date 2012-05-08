@@ -1,12 +1,12 @@
 class Speaker
-	include MongoMapper::Document
+  include MongoMapper::Document
 
-	key :name, String, :required => true
-	key :bio, String
-	key :website, String
-	key :picture, String
+  key :name, String, :required => true
+  key :bio, String
+  key :website, String
+  key :picture, String
 
-	many :talks
+  many :talks
 
 end
 

@@ -8,17 +8,17 @@
 # attribute if you want the 'href', 'src', etc
 class Nokogiri::XML::Node
 
-	def tolerant_css(selector, attribute = nil)
-		node = css(selector).first
-		if node
-			if attribute
-				return node.attr(attribute) 
-			else
-				return node.text
-			end
-		else
-			return nil
-		end
-	end
+  def tolerant_css(selector, attribute = nil)
+    node = css(selector).first
+    if node
+      if attribute
+        return node.attr(attribute) 
+      else
+        return node.text
+      end
+    else
+      return nil
+    end
+  end
 
 end
