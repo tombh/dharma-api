@@ -87,6 +87,7 @@ begin
 		if not parsed_speakers.include? speaker_name
 
 			if not speaker_scraped = parse_speaker(two.tolerant_css('i a', 'href'))
+				Speaker.logger.error "Couldn't parse the speaker target page"
 				next
 			end
 
