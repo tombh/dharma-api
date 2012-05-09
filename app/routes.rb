@@ -18,7 +18,7 @@ class Dharma < Sinatra::Base
   get '/speakers' do
     content_type :json
     @docs = Speaker.all()    
-    @docs.to_json
+    @docs.to_json    
   end
 
   # list all talks

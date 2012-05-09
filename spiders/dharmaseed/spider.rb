@@ -1,148 +1,193 @@
 # DHARMASEED.ORG
-# OProably the biggest resoure of dharma talks on the net. 
+# Probably the biggest resource of dharma talks on the net.
 # We make use of the fact that Dharmaseed paginates all its talks on a consistent URL.
-# Dharmaseed also has a rich archive of teachers, with bios, pics and website links, these
-# pages are kept on sepearte pages which we can easily parse
+# Dharmaseed also has a rich archive of teachers; with bios, pics and website links, these
+# pages are kept on seperate pages which we can easily parse
 
-# Nokgiri's at_css method is the same as css() (and jQuery's $), except it pops off the first element
-# Also note tolerant_css that is more forgiving and also _and_ returns the matched element's contents
+# Nokgiri's at_css method is the same as css() (and jQuery's $), except it pops off the first element.
+# Also note tolerant_css() that is more forgiving _and_ returns the matched element's contents
 # by default.
 
 # May all beings be from suffering
 
+class Dharmaseed
 
-url = 'http://www.dharmaseed.org/talks/?page='
-
-
-# Parse a speaker's page for relevant info
-def parse_speaker(url)
-  doc = Nokogiri::HTML(open('http://dharmaseed.org' + url))
-  table = doc.at_css('.talklist table')
-
-  if not table
-    Nokogiri.logger.error "DOM elements for speaker not found"
-    return nil
-  end
-
-  {
-    :name => table.tolerant_css('.talkteacher b'),
-    :bio => table.tolerant_css('tr + tr td > i'),
-    :website => table.tolerant_css('tr td table tr td.talkbutton a', 'href'),
-    :picture => table.tolerant_css('tr td table tr td a.talkteacher img', 'src')
-  }
-end
-
-
-# Loop over all of dharmaseed's pages
-parsed_speakers = []
-page = 0
-begin
-  page += 1
-  full_link = url + page.to_s
-  if not doc = open(full_link)
-    finished = true
-  end
+  BASE_DOMAIN = 'http://dharmaseed.org'
+  BASE_URL = BASE_DOMAIN + '/talks/?page='
   
-  d "Link to current page :: " + full_link + "\n"
+  def initialize
+    @parsed_speakers = [] # Keep track of parsed speakers, so we don't duplicate efforts
+    @finished = false
+    @page = 92 # page to start on
+  end
 
-  # The .talklist tables contain the ore
-  talk_scraped, speaker_name = nil # defining outside of loop allows vars to persist across iterations
-  doc = Nokogiri::HTML(doc)
-  doc.css('.talklist table').each do |table|
-    
-    begin
-      # Relevant table rows in the DOM
-      one = table.at_css('tr td')
-      two = table.at_css('tr + tr td')
-      three = table.at_css('tr + tr + tr td') 
-    rescue Exception => e
-      # Might not be a show stopper, but something's up
-      Nokogiri.logger.warning "Some or all of the DOM elements needed to parse the talk are missing (#{e.message})"
-    end
-    
+  def log message
+    Talk.logger.info(message)
+    d message
+  end
 
-    # SPEAKER
-    # Speaker name is required
-    
-    # Handle edge case where multiple talks are included in one
-    # eg; http://www.dharmaseed.org/teacher/175/talk/15391/
-    if table.tolerant_css('.talkbutton a + a') == 'Show Tracks' # This is the parent 'talk'
-      parent_of_multiple_talks = true
+  # Wrapper for fetching the remote html of an individual speaker so we can override it in tests
+  def open_speaker_doc(url)
+    open(url)
+  end
+
+  # Parse a speaker's page for relevant info
+  def scrape_speaker(doc, speaker_name)
+    table = doc.at_css('.talklist table')
+
+    if not table
+      log "DOM elements for speaker not found"
+      return false
     end
 
-    id = table.parent.attr('id')
+    {
+      :name => speaker_name, # Use the name from the original talk page in case there's nothing else
+      :bio => table.tolerant_css('tr + tr td > i'),
+      :website => table.tolerant_css('tr td table tr td.talkbutton a', 'href'),
+      :picture => table.tolerant_css('tr td table tr td a.talkteacher img', 'src')
+    }
+  end
+
+  # There's an edge case where a talk will contain multiple files or parts
+  def check_multitalk_edge_case
+    @multiple_talk = false
+    @parent_of_multiple_talks = false
+
+    # Firstly check whether this is the parent 'talk'. It won't actually contain the
+    # mp3 but will contain a lots of the other details that will be common to all the
+    # tracks that make up this talk.
+    # The best signature is to look out for is a button that shows/hides the tracks
+    if @talk_fragment.tolerant_css('.talkbutton a + a') == 'Show Tracks'
+      d "This 'talk' is a parent of multiple talks"
+      @parent_of_multiple_talks = true
+    end
+
+    # This identifies the fragment containing the links to the actual mp3s
+    id = @talk_fragment.parent.attr('id')
     if id && id.starts_with?('tracklist')
-      multiple_talks = true
-      d "This talk is part of the 'multiple_talks' edge case"
-      # just keep speaker_name from the previous loop :)
-    else
-      multiple_talks = false
-      if not speaker_name = two.tolerant_css('i a')
-        Speaker.logger.error "Couldn't find the speaker"
-        next
-      end
+      d "This talk is part of the 'multitalks' edge case"
+      @multiple_talk = true
     end
-    
+  end
+
+  # Find the speaker for the current talk.
+  # The full speaker details are kept on a seperate page which we need to fetch.
+  # But we keep a track of which speakers we've already fetched on this crawl so we only
+  # scrape them once.
+  def parse_speaker
+
+    @multiple_talk && return
+
+    # No need to continue if we can't even find a speaker name
+    if not speaker_name = @two.tolerant_css('i a')
+      log "Couldn't find the speaker in :: " + @two
+      return false
+    end
+
     # Only parse this speaker if we haven't done so on this crawl already
-    if not parsed_speakers.include? speaker_name
-
-      if not speaker_scraped = parse_speaker(two.tolerant_css('i a', 'href'))
-        Speaker.logger.error "Couldn't parse the speaker target page"
-        next
-      end
-
-      # See if there's a record of the speaker and create one if there isn't
-      speaker = Speaker.find_by_name(speaker_name) || Speaker.new
-      speaker.update_attributes!(speaker_scraped)     
-      parsed_speakers << speaker_name
-
-      d "Speaker :: " + speaker.name
-    
-    else
-    
-      speaker = Speaker.find_by_name(speaker_name)
-    
+    if @parsed_speakers.include? speaker_name
+      log "Speaker already parsed (#{speaker_name})"
+      @speaker = Speaker.find_by_name(speaker_name)
+      return
     end
 
-    # TALK
-    
-    # There has to be a permalink to a talk     
-    if not permalink = table.tolerant_css('.talkbutton a', 'href')
-      Talk.logger.error "Couldn't get talk's permalink"
-      next
+    log "Unparsed speaker :: " + speaker_name
+    href = @two.tolerant_css('i a', 'href')
+    doc = Nokogiri::HTML(open_speaker_doc(BASE_DOMAIN + href))
+    if not speaker_scraped = scrape_speaker(doc, speaker_name)
+      log "Couldn't parse the speaker target page :: " + href
+      return false
+    end
+
+    # See if there's a record of the speaker in the db and create one if there isn't
+    @speaker = Speaker.find_by_name(speaker_name) || Speaker.new
+    @speaker.update_attributes!(speaker_scraped)
+    @parsed_speakers << speaker_name # Make a note of this so we don't do it again on this crawl
+
+  end
+
+  # Given the 3 <tr> rows (@one, @two, @three) of a talk fragment enter it in the db
+  def parse_talk
+    # There has to be a permalink to a talk
+    if not permalink = @talk_fragment.tolerant_css('.talkbutton a', 'href')
+      log "Couldn't get talk's permalink"
+      return false
+    end
+
+    # Some talks are full links to Vimeo videos.
+    # But most of them are relative links to dharmaseed.org
+    unless permalink.include? 'http://'
+      permalink = BASE_DOMAIN + permalink
     end
 
     # See if this talk exists and update or create
     talk = Talk.find_by_permalink(permalink) || Talk.new
 
-    if multiple_talks
+    if @multiple_talk
       # use talk object from prevous loop as base and merge in new values
-      talk_scraped = talk_scraped.merge({
-        :title => one.tolerant_css('a'),
+      @talk_scraped = @talk_scraped.merge({
+        :title => @one.tolerant_css('a'),
         :permalink => permalink,
-        :duration => one.tolerant_css('i')        
+        :duration => @one.tolerant_css('i')
       })
     else
-      talk_scraped = {
-        :title => one.tolerant_css('a'),
-        :speaker_id => speaker._id,
+      @talk_scraped = {
+        :title => @one.tolerant_css('a'),
+        :speaker_id => @speaker._id,
         :permalink => permalink,
-        :duration => one.tolerant_css('i'),
-        :date => one ? one.text.split[0] : nil,
-        :description => three.text, # assigns venue & event when no description
-        :venue => three.tolerant_css('a'),
-        :event => three.tolerant_css('a + a')
+        :duration => @one.tolerant_css('i'),
+        :date => @one ? @one.text.split[0] : nil,
+        :description => @three.text, # assigns venue & event when no description
+        :venue => @three.tolerant_css('a'),
+        :event => @three.tolerant_css('a + a')
       }
     end
-    
+
     # The parent of a set of multiple talks contains all the information for the child talks,
     # but it does not itself have a link to an mp3. Therefore we do everything but persist this
-    # talk as talk_scraped will be merged with successive child talks
-    if not parent_of_multiple_talks
-      talk.update_attributes!(talk_scraped)
-      d "Talk :: " + talk.title
+    # talk as talk_scraped will be merged with successive child talks.
+    if not @parent_of_multiple_talks
+      talk.update_attributes!(@talk_scraped)
+      log "Talk :: " + talk.title
     end
+  end
 
-  end   
-  
-end until finished
+  # Take a dharmaseed page and extract data from it
+  def scrape_page(doc)
+    # A page typically contains 10 or so talks
+    Nokogiri::HTML(doc).css('.talklist table').each do |talk_fragment|
+
+      log "---------------------------------------"
+
+      @talk_fragment = talk_fragment
+
+      # First check for edge case where multiple talks are included in one
+      # eg; http://www.dharmaseed.org/teacher/175/talk/15391/
+      check_multitalk_edge_case()
+
+      # Isolate relevant table rows
+      @one = talk_fragment.at_css('tr td')
+      @two = talk_fragment.at_css('tr + tr td')
+      @three = talk_fragment.at_css('tr + tr + tr td')
+
+      parse_speaker()
+      parse_talk()
+    end
+  end
+
+  # Loop over all of dharmaseed's pages
+  def run
+    begin
+      @page += 1
+      full_link = BASE_URL + @page.to_s
+      log "\n#######################################"
+      log "Link to current page :: " + full_link
+      if not doc = open(full_link)
+        @finished = true
+        next
+      end
+      scrape_page(doc)
+    end until @finished
+  end
+
+end

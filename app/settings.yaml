@@ -1,9 +1,18 @@
+all: 
+  db: &db_defaults 
+    host: localhost
+    port: 27017
+    name: dharma_api
+
+test:
+  db:
+    <<: *db_defaults
+    name: test
+
 development:
-  db_host: localhost
-  db_port: 27017
-  db_name: dharma_api 
-    
+  db:
+    <<: *db_defaults 
+
 production:
-  db_host: localhost
-  db_port: 27017
-  db_name: dharma_api
+  db:
+    <<: *db_defaults

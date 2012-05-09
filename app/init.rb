@@ -9,19 +9,24 @@ require_relative 'models'
 
 
 # read the local configuration
-@config = YAML.load_file("./app/settings.yaml")
+config = YAML.load_file("./app/settings.yaml")
   
-@environment = ENV['RACK_ENV'] || 'development'
-@settings = @config[@environment]
+environment = ENV['RACK_ENV'] || 'development'
+settings = config[environment]
 
 mongo_logger = Logger.new('./logs/mongomapper.log')
 app_logger = Logger.new('./logs/app.log')
 LogBuddy.init(:logger => app_logger)
 
+d "Using '#{settings['db']['name']}' database"
 
 # Database setup
-MongoMapper.connection = Mongo::Connection.new(@settings['db_host'], @settings['db_port'], :logger => mongo_logger)
-MongoMapper.database = @settings['db_name']
+MongoMapper.connection = Mongo::Connection.new(
+  settings['db']['host'], 
+  settings['db']['port'], 
+  :logger => mongo_logger
+)
+MongoMapper.database = settings['db']['name']
 MongoMapper.connection.connect
 
 

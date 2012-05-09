@@ -9,4 +9,5 @@ group :development do
   gem "guard"
   gem "guard-bundler"
   gem "guard-rack"
+  gem "rspec"
 end
