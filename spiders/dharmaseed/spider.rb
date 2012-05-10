@@ -10,21 +10,16 @@
 
 # May all beings be from suffering
 
-class Dharmaseed
+class Dharmaseed < Spider
 
   BASE_DOMAIN = 'http://dharmaseed.org'
   BASE_URL = BASE_DOMAIN + '/talks/?page='
   
-  def initialize
+  def initialize(start_page = 1)
     @parsed_speakers = [] # Keep track of parsed speakers, so we don't duplicate efforts
     @finished = false
-    @page = 92 # page to start on
-  end
-
-  def log message
-    Talk.logger.info(message)
-    d message
-  end
+    @page = start_page.to_i
+  end  
 
   # Wrapper for fetching the remote html of an individual speaker so we can override it in tests
   def open_speaker_doc(url)
@@ -36,7 +31,7 @@ class Dharmaseed
     table = doc.at_css('.talklist table')
 
     if not table
-      log "DOM elements for speaker not found"
+      log.warning "DOM elements for speaker not found"
       return false
     end
 
@@ -80,22 +75,22 @@ class Dharmaseed
 
     # No need to continue if we can't even find a speaker name
     if not speaker_name = @two.tolerant_css('i a')
-      log "Couldn't find the speaker in :: " + @two
+      log.warning "Couldn't find the speaker in :: " + @two
       return false
     end
 
     # Only parse this speaker if we haven't done so on this crawl already
     if @parsed_speakers.include? speaker_name
-      log "Speaker already parsed (#{speaker_name})"
+      d "Speaker already parsed (#{speaker_name})"
       @speaker = Speaker.find_by_name(speaker_name)
       return
     end
 
-    log "Unparsed speaker :: " + speaker_name
+    d "Unparsed speaker :: " + speaker_name
     href = @two.tolerant_css('i a', 'href')
     doc = Nokogiri::HTML(open_speaker_doc(BASE_DOMAIN + href))
     if not speaker_scraped = scrape_speaker(doc, speaker_name)
-      log "Couldn't parse the speaker target page :: " + href
+      log.warning "Couldn't parse the speaker target page :: " + href
       return false
     end
 
@@ -110,7 +105,7 @@ class Dharmaseed
   def parse_talk
     # There has to be a permalink to a talk
     if not permalink = @talk_fragment.tolerant_css('.talkbutton a', 'href')
-      log "Couldn't get talk's permalink"
+      log.warning "Couldn't get talk's permalink"
       return false
     end
 
@@ -148,7 +143,7 @@ class Dharmaseed
     # talk as talk_scraped will be merged with successive child talks.
     if not @parent_of_multiple_talks
       talk.update_attributes!(@talk_scraped)
-      log "Talk :: " + talk.title
+      d "Talk :: " + talk.title
     end
   end
 
@@ -157,7 +152,7 @@ class Dharmaseed
     # A page typically contains 10 or so talks
     Nokogiri::HTML(doc).css('.talklist table').each do |talk_fragment|
 
-      log "---------------------------------------"
+      d "---------------------------------------"
 
       @talk_fragment = talk_fragment
 
@@ -177,11 +172,14 @@ class Dharmaseed
 
   # Loop over all of dharmaseed's pages
   def run
+    d "Crawling DHARMASEED, starting on page #{@page}"
+    log.info "Crawl initiated on " + Time.now.inspect    
+    @page -= 1
     begin
       @page += 1
       full_link = BASE_URL + @page.to_s
-      log "\n#######################################"
-      log "Link to current page :: " + full_link
+      d "\n#######################################"
+      d "Link to current page :: " + full_link
       if not doc = open(full_link)
         @finished = true
         next

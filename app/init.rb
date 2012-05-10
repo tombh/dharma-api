@@ -3,10 +3,14 @@ require "bundler/setup"
 
 require 'sinatra/base'
 require 'mongo_mapper'
-require 'log_buddy'
 
-require_relative 'models'
+PROJECT_ROOT = File.expand_path("../../", __FILE__)
 
+$:.unshift PROJECT_ROOT # Add PROJECT_ROOT to Ruby's include path
+
+require 'lib/logging'
+
+require 'app/models'
 
 # read the local configuration
 config = YAML.load_file("./app/settings.yaml")
@@ -14,17 +18,15 @@ config = YAML.load_file("./app/settings.yaml")
 environment = ENV['RACK_ENV'] || 'development'
 settings = config[environment]
 
-mongo_logger = Logger.new('./logs/mongomapper.log')
-app_logger = Logger.new('./logs/app.log')
-LogBuddy.init(:logger => app_logger)
-
-d "Using '#{settings['db']['name']}' database"
+if environment != 'production'
+  p "Using '#{settings['db']['name']}' database"
+end
 
 # Database setup
 MongoMapper.connection = Mongo::Connection.new(
   settings['db']['host'], 
   settings['db']['port'], 
-  :logger => mongo_logger
+  :logger => MONGO_LOGGER
 )
 MongoMapper.database = settings['db']['name']
 MongoMapper.connection.connect
