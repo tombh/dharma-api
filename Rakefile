@@ -10,15 +10,27 @@ task :crawl do
   OptionParser.new do |opts|
     opts.banner = "Crawl usage: crawl [options]"
 
-    opts.on("-s", "--spider [SPIDER]", "Choose which spider to run") do |s|
+    opts.on(
+      "-s", 
+      "--spider [SPIDER]", 
+      "Choose which spider to run"
+    ) do |s|
       options[:spider] = s
     end
 
-    opts.on("-p", "--start_page NUM", "Specify the page to start on (For those spiders that iterate over paginators)") do |p|
+    opts.on(
+      "-p", 
+      "--start_page NUM", 
+      "Specify the page to start on (For those spiders that iterate over paginators)"
+    ) do |p|
       options[:start_page] = p
     end
 
-    opts.on("-r", "--recrawl", "Re-crawl and update everything, rather than just adding new stuff") do |r|
+    opts.on(
+      "-r", 
+      "--recrawl", 
+      "Re-crawl and update everything, rather than just adding new stuff"
+    ) do |r|
       options[:recrawl] = r
     end
   end.parse!

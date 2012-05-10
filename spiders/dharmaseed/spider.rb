@@ -14,6 +14,8 @@ class Dharmaseed < Spider
 
   BASE_DOMAIN = 'http://dharmaseed.org'
   BASE_URL = BASE_DOMAIN + '/talks/?page='
+
+  attr_accessor :talk_fragment, :speaker
   
   def initialize(start_page = 1)
     @parsed_speakers = [] # Keep track of parsed speakers, so we don't duplicate efforts
@@ -37,7 +39,7 @@ class Dharmaseed < Spider
 
     {
       :name => speaker_name, # Use the name from the original talk page in case there's nothing else
-      :bio => table.tolerant_css('tr + tr td > i'),
+      :bio => table.tolerant_css('tr + tr td > i').gsub(/\s+/, ' '),
       :website => table.tolerant_css('tr td table tr td.talkbutton a', 'href'),
       :picture => table.tolerant_css('tr td table tr td a.talkteacher img', 'src')
     }
@@ -99,6 +101,7 @@ class Dharmaseed < Spider
     @speaker.update_attributes!(speaker_scraped)
     @parsed_speakers << speaker_name # Make a note of this so we don't do it again on this crawl
 
+    @speaker
   end
 
   # Given the 3 <tr> rows (@one, @two, @three) of a talk fragment enter it in the db
@@ -132,7 +135,7 @@ class Dharmaseed < Spider
         :permalink => permalink,
         :duration => @one.tolerant_css('i'),
         :date => @one ? @one.text.split[0] : nil,
-        :description => @three.text, # assigns venue & event when no description
+        :description => @three.text.gsub(/\s+/, ' '), # assigns venue & event when there's no description
         :venue => @three.tolerant_css('a'),
         :event => @three.tolerant_css('a + a')
       }
@@ -145,25 +148,33 @@ class Dharmaseed < Spider
       talk.update_attributes!(@talk_scraped)
       d "Talk :: " + talk.title
     end
+
+    talk
+  end
+
+  def isolate_table_rows()
+    @one = @talk_fragment.at_css('tr td')
+    @two = @talk_fragment.at_css('tr + tr td')
+    @three = @talk_fragment.at_css('tr + tr + tr td')
+  end
+
+  def talklist_tables(doc)
+    Nokogiri::HTML(doc).css('.talklist table')
   end
 
   # Take a dharmaseed page and extract data from it
   def scrape_page(doc)
     # A page typically contains 10 or so talks
-    Nokogiri::HTML(doc).css('.talklist table').each do |talk_fragment|
+    talklist_tables(doc).each do |talk_fragment|
 
       d "---------------------------------------"
 
       @talk_fragment = talk_fragment
+      isolate_table_rows()
 
       # First check for edge case where multiple talks are included in one
       # eg; http://www.dharmaseed.org/teacher/175/talk/15391/
       check_multitalk_edge_case()
-
-      # Isolate relevant table rows
-      @one = talk_fragment.at_css('tr td')
-      @two = talk_fragment.at_css('tr + tr td')
-      @three = talk_fragment.at_css('tr + tr + tr td')
 
       parse_speaker()
       parse_talk()
