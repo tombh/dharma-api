@@ -1,5 +1,5 @@
-# The Dharma API # [![Build Status](https://secure.travis-ci.org/tombh/dharma-api.png)](http://travis-ci.org/tombh/dharma-api)
-
+The Dharma API [![Build Status](https://secure.travis-ci.org/tombh/dharma-api.png)](http://travis-ci.org/tombh/dharma-api)
+================
 What if there was a single canonical source of all the dharma talks and teachers on the web?
 
 This code attempts to scrape dharma talk info from various sites and provide a RESTful interface to them so
