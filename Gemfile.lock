@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/andrewtimberlake/mongomapper_plugins.git
+  revision: 7121f21d616b3473d537d480e20e2e74d033e4a0
+  specs:
+    mongomapper_plugins (0.0.8)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -34,7 +40,7 @@ GEM
       activemodel (~> 3.0)
       activesupport (~> 3.0)
       plucky (~> 0.4.0)
-    multi_json (1.3.4)
+    multi_json (1.3.5)
     nokogiri (1.5.2)
     plucky (0.4.4)
       mongo (~> 1.5)
@@ -68,6 +74,7 @@ DEPENDENCIES
   guard-rack
   log_buddy
   mongo_mapper
+  mongomapper_plugins!
   nokogiri
   rspec
   sinatra

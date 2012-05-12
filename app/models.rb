@@ -8,6 +8,9 @@ class Speaker
 
   many :talks
 
+  # Depends on mongmapper_plugins gem
+  auto_increment_id
+
 end
 
 class Talk
@@ -23,5 +26,8 @@ class Talk
 
   belongs_to :speaker
   key :speaker_id, ObjectId
+
+  # Depends on mongmapper_plugins gem
+  auto_increment_id
 
 end

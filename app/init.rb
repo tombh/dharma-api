@@ -3,6 +3,7 @@ require "bundler/setup"
 
 require 'sinatra/base'
 require 'mongo_mapper'
+require 'mongo_mapper/plugins/auto_increment_id'
 
 PROJECT_ROOT = File.expand_path("../../", __FILE__)
 
