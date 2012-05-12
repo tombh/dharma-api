@@ -12,7 +12,7 @@ task :crawl do
 
     opts.on(
       "-s", 
-      "--spider [SPIDER]", 
+      "--spider=[SPIDER]", 
       "Choose which spider to run"
     ) do |s|
       options[:spider] = s
@@ -20,7 +20,7 @@ task :crawl do
 
     opts.on(
       "-p", 
-      "--start_page NUM", 
+      "--start_page=NUM", 
       "Specify the page to start on (For those spiders that iterate over paginators)"
     ) do |p|
       options[:start_page] = p

@@ -28,18 +28,35 @@ class Dharmaseed < Spider
     open(url)
   end
 
+  # Convert a time like 1:34:21 to 5661 (seconds)
+  # @time String
+  # @return Int
+  def colon_time_to_seconds(duration)
+    pieces = duration.split(':').reverse
+    for i in 0..2
+      pieces[i] = 0 if pieces[i] == nil
+      pieces[i] = pieces[i].to_i
+    end
+    pieces[0] + (pieces[1] * 60) + (pieces[2] * 60 * 60)
+  end
+
+  # Tidy up large bits of texts like descriptions and bios
+  def clean_long_text(text)
+    text.gsub(/\s+/, ' ') if text
+  end  
+
   # Parse a speaker's page for relevant info
   def scrape_speaker(doc, speaker_name)
     table = doc.at_css('.talklist table')
 
     if not table
-      log.warning "DOM elements for speaker not found"
+      log.warn "DOM elements for speaker not found"
       return false
     end
 
     {
       :name => speaker_name, # Use the name from the original talk page in case there's nothing else
-      :bio => table.tolerant_css('tr + tr td > i').gsub(/\s+/, ' '),
+      :bio => clean_long_text(table.tolerant_css('tr + tr td > i')),
       :website => table.tolerant_css('tr td table tr td.talkbutton a', 'href'),
       :picture => table.tolerant_css('tr td table tr td a.talkteacher img', 'src')
     }
@@ -73,11 +90,11 @@ class Dharmaseed < Spider
   # scrape them once.
   def parse_speaker
 
-    @multiple_talk && return
+    @multiple_talk and return true
 
     # No need to continue if we can't even find a speaker name
     if not speaker_name = @two.tolerant_css('i a')
-      log.warning "Couldn't find the speaker in :: " + @two
+      log.warn "Couldn't find the speaker in :: " + @two
       return false
     end
 
@@ -85,14 +102,14 @@ class Dharmaseed < Spider
     if @parsed_speakers.include? speaker_name
       d "Speaker already parsed (#{speaker_name})"
       @speaker = Speaker.find_by_name(speaker_name)
-      return
+      return @speaker
     end
 
     d "Unparsed speaker :: " + speaker_name
     href = @two.tolerant_css('i a', 'href')
     doc = Nokogiri::HTML(open_speaker_doc(BASE_DOMAIN + href))
     if not speaker_scraped = scrape_speaker(doc, speaker_name)
-      log.warning "Couldn't parse the speaker target page :: " + href
+      log.warn "Couldn't parse the speaker target page :: " + href
       return false
     end
 
@@ -108,7 +125,7 @@ class Dharmaseed < Spider
   def parse_talk
     # There has to be a permalink to a talk
     if not permalink = @talk_fragment.tolerant_css('.talkbutton a', 'href')
-      log.warning "Couldn't get talk's permalink"
+      log.warn "Couldn't get talk's permalink"
       return false
     end
 
@@ -133,9 +150,9 @@ class Dharmaseed < Spider
         :title => @one.tolerant_css('a'),
         :speaker_id => @speaker._id,
         :permalink => permalink,
-        :duration => @one.tolerant_css('i'),
+        :duration => colon_time_to_seconds(@one.tolerant_css('i')),
         :date => @one ? @one.text.split[0] : nil,
-        :description => @three.text.gsub(/\s+/, ' '), # assigns venue & event when there's no description
+        :description => clean_long_text(@three.text), # assigns venue & event when there's no description
         :venue => @three.tolerant_css('a'),
         :event => @three.tolerant_css('a + a')
       }
@@ -176,8 +193,8 @@ class Dharmaseed < Spider
       # eg; http://www.dharmaseed.org/teacher/175/talk/15391/
       check_multitalk_edge_case()
 
-      parse_speaker()
-      parse_talk()
+
+      parse_talk() if parse_speaker()
     end
   end
 
@@ -186,17 +203,15 @@ class Dharmaseed < Spider
     d "Crawling DHARMASEED, starting on page #{@page}"
     log.info "Crawl initiated on " + Time.now.inspect    
     @page -= 1
-    begin
+    while
       @page += 1
       full_link = BASE_URL + @page.to_s
       d "\n#######################################"
       d "Link to current page :: " + full_link
-      if not doc = open(full_link)
-        @finished = true
-        next
-      end
+      doc = open(full_link).read
+      doc =~ /No matching talks are available/ and break
       scrape_page(doc)
-    end until @finished
+    end
   end
 
 end
