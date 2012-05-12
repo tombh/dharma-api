@@ -1,5 +1,7 @@
 require 'log_buddy'
 
+Dir.mkdir(PROJECT_ROOT + '/logs') if !File.exists?(PROJECT_ROOT + '/logs')
+
 MONGO_LOGGER = Logger.new(PROJECT_ROOT + '/logs/mongomapper.log')
 
 LogBuddy.init(
