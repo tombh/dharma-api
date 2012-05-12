@@ -1,4 +1,4 @@
-# The Dharma API #
+# The Dharma API # [![Build Status](https://secure.travis-ci.org/tombh/dharma-api.png)](http://travis-ci.org/tombh/dharma-api)
 
 What if there was a single canonical source of all the dharma talks and teachers on the web?
 

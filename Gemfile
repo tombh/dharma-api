@@ -12,3 +12,7 @@ group :development do
   gem "guard-rack"
   gem "rspec"
 end
+
+group :test do
+  gem "rake"
+end
