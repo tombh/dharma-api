@@ -20,7 +20,7 @@ environment = ENV['RACK_ENV'] || 'development'
 settings = config[environment]
 
 if environment != 'production'
-  p "Using '#{settings['db']['name']}' database"
+  puts "Using '#{settings['db']['name']}' database."
 end
 
 # Database setup

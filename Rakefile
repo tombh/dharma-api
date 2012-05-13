@@ -11,7 +11,6 @@ task :crawl do
     opts.banner = "Crawl usage: crawl [options]"
 
     opts.on(
-      "-s", 
       "--spider=[SPIDER]", 
       "Choose which spider to run"
     ) do |s|
@@ -19,7 +18,6 @@ task :crawl do
     end
 
     opts.on(
-      "-p", 
       "--start_page=NUM", 
       "Specify the page to start on (For those spiders that iterate over paginators)"
     ) do |p|
@@ -27,7 +25,6 @@ task :crawl do
     end
 
     opts.on(
-      "-r", 
       "--recrawl", 
       "Re-crawl and update everything, rather than just adding new stuff"
     ) do |r|
@@ -58,4 +55,17 @@ task :crawl do
     spider.capitalize::constantize.new(start_page = page).run
   end
 
+end
+
+task :empty_db do
+  puts "Are you sure you wanna drop all the data in the db? "
+  answer = STDIN.gets.chomp.downcase
+  if answer == 'y' or answer == 'yes'
+    puts "Dropping..."
+    Talk.destroy_all()
+    Speaker.destroy_all()
+    puts "And dropped."
+  else
+    puts "Aborting"
+  end
 end
