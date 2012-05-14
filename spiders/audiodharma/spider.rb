@@ -1,4 +1,4 @@
-# AUDIODHARMA.Org
+# AUDIODHARMA.ORG
 # A very large collection of dharma talks, given at the Insight Meditation Center in California.
 # We make use of the fact that Audidharma paginates all its talks on a consistent URL.
 # Audidharma also has a rich archive of teachers; with bios, pics and website links, these
@@ -10,6 +10,10 @@ class Audiodharma < Spider
 
   BASE_DOMAIN = 'http://audiodharma.org'
   BASE_URL = BASE_DOMAIN + '/talks/?page='
+
+  def open_multitalk_doc(url)
+    open(url)
+  end
 
   # Parse a speaker's page for relevant info
   def scrape_speaker(doc, speaker_name)
@@ -23,7 +27,7 @@ class Audiodharma < Spider
     {
       :name => speaker_name, # Use the name from the original talk page in case there's nothing else
       :bio => clean_long_text(table.tolerant_css('.teacher_bio')),
-      :website => table.parent.tolerant_css('div + div a' , 'href'),
+      :website => table.parent.tolerant_css('div + table + div a', 'href'),
       :picture => table.tolerant_css('.teacher_photo img', 'src')
     }
   end
@@ -46,7 +50,7 @@ class Audiodharma < Spider
   # scrape them once.
   def parse_speaker
     # No need to continue if we can't even find a speaker name
-    speaker_name = @talk_fragment.tolerant_css('.talk_teacher')
+    speaker_name = @talk_fragment.tolerant_css('.talk_teacher') || ""
     if speaker_name.empty?
       log.warn "Couldn't find the speaker in :: " + @talk_fragment
       return false
@@ -96,7 +100,7 @@ class Audiodharma < Spider
       :permalink => permalink,
       :duration => colon_time_to_seconds(@talk_fragment.tolerant_css('.talk_length')),
       :date => @talk_fragment.tolerant_css('.talk_date'),
-      :description => clean_long_text(@talk_fragment.tolerant_css('.the_talk_description')),
+      :description => clean_long_text(@talk_fragment.tolerant_css('.the_talk_description', 'title')),
       :venue => "Insight Meditation Centre, Redwood, California",
       :event => nil # TODO Detect when a talk is part of a series
     }
@@ -109,7 +113,7 @@ class Audiodharma < Spider
 
   def talks(doc)
     talks = Nokogiri::HTML(doc).css('.talklist tr')
-    # Remove first element, cos it's just the table header
+    # Remove the first row if it's just table headers
     if talks.first.tolerant_css('th')
       talks.shift
     end 
@@ -128,7 +132,7 @@ class Audiodharma < Spider
       # First check if this is just a link to a series of talks
       if series_url = check_multitalk_edge_case()
         d "Entering Series page"
-        scrape_page(open(BASE_DOMAIN + series_url))
+        scrape_page(open_multitalk_doc(BASE_DOMAIN + series_url))
         d "Exiting Series page"
         next
       end

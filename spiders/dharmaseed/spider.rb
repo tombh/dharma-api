@@ -163,7 +163,6 @@ class Dharmaseed < Spider
       # eg; http://www.dharmaseed.org/teacher/175/talk/15391/
       check_multitalk_edge_case()
 
-
       parse_talk() if parse_speaker()
     end
   end

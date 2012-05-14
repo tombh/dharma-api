@@ -6,6 +6,9 @@ require_relative './../spider'
 # rather than running off to the open web where things can change wthout warning :(
 class Audiodharma
   def open_speaker_doc(url)
-    open( File.dirname(__FILE__) + '/fixtures/speaker_sample.html')
+    open( File.dirname(__FILE__) + '/fixtures/sample_teacher.html')
+  end
+  def open_multitalk_doc(url)
+    open( File.dirname(__FILE__) + '/fixtures/sample_multitalk.html')
   end
 end
