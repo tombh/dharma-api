@@ -32,10 +32,10 @@ class Audiodharma < Spider
   def check_multitalk_edge_case
     @multiple_talk = false
     # This identifies the fragment containing the links to the actual mp3s
-    fifth_td = @talk_fragment.css('td')[4]
+    fifth_td = @talk_fragment.css('td')[4].css('a').first
     if fifth_td.text == "View Series"
-      d "This 'talk' is a reference to a series of talks"
       @multiple_talk = fifth_td.attr('href')
+      d "This 'talk' is a reference to a series of talks (#{@multiple_talk})" 
     end
     @multiple_talk
   end
@@ -109,7 +109,10 @@ class Audiodharma < Spider
 
   def talks(doc)
     talks = Nokogiri::HTML(doc).css('.talklist tr')
-    talks.shift # Remove first element, cos it's just the table header
+    # Remove first element, cos it's just the table header
+    if talks.first.tolerant_css('th')
+      talks.shift
+    end 
     talks
   end
 
@@ -124,7 +127,9 @@ class Audiodharma < Spider
 
       # First check if this is just a link to a series of talks
       if series_url = check_multitalk_edge_case()
-        scrape_page(open(doc))
+        d "Entering Series page"
+        scrape_page(open(BASE_DOMAIN + series_url))
+        d "Exiting Series page"
         next
       end
 

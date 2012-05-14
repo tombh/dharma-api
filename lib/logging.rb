@@ -10,6 +10,20 @@ LogBuddy.init(
   :use_awesome_print => true
 )
 
+class MultiIO
+  def initialize(*targets)
+     @targets = targets
+  end
+
+  def write(*args)
+    @targets.each {|t| t.write(*args)}
+  end
+
+  def close
+    @targets.each(&:close)
+  end
+end
+
 # Auto per-class logging for the various spiders
 module SpiderLogging
   def log
@@ -25,7 +39,8 @@ module SpiderLogging
     end
 
     def configure_logger_for(classname)
-      Logger.new(PROJECT_ROOT + "/logs/#{classname}.log")
+      file = File.open(PROJECT_ROOT + "/logs/#{classname}.log", "a")
+      Logger.new MultiIO.new(STDOUT, file)
     end
   end
 end
