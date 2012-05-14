@@ -32,7 +32,7 @@ describe Audiodharma do
       @spider.talk_fragment = Nokogiri::HTML(@doc).css('.talklist tr')[1]
       @spider.speaker = Speaker.create({:name => 'test'})
       talk = @spider.parse_talk()
-      talk.date.to_s.should eq '2012-05-12 23:00:00 UTC'
+      talk.date.to_s.should eq '2012-05-13'
       talk.duration.should eq 2260
       talk.permalink.should eq "http://audiodharma.org/teacher/1/talk/3042/venue/IMC/20120513-Gil_Fronsdal-IMC-contexts_of_mindfulness_practice.mp3"
       talk.title.should eq 'Contexts of Mindfulness Practice'

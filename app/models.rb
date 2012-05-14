@@ -19,7 +19,7 @@ class Talk
   key :title, String, :required => true
   key :permalink, String, :required => true
   key :duration, Integer # in seconds
-  key :date, Time 
+  key :date, Date
   key :description, String
   key :venue, String
   key :event, String

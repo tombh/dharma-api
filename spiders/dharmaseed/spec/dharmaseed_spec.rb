@@ -34,7 +34,7 @@ describe Dharmaseed do
       @spider.isolate_table_rows()
       @spider.speaker = Speaker.create({:name => 'test'})
       talk = @spider.parse_talk()
-      talk.date.should eq '2012-01-26T00:00:00Z'
+      talk.date.to_s.should eq '2012-01-26'
       talk.duration.should eq 3446
       talk.permalink.should eq "http://dharmaseed.org/teacher/222/talk/15378/20120126-Anushka_Fernandopulle-SR-love_ethics_and_leadership.mp3"
       talk.title.should eq 'Love, Ethics and Leadership'
