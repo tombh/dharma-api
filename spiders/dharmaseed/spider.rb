@@ -105,8 +105,15 @@ class Dharmaseed < Spider
       permalink = BASE_DOMAIN + permalink
     end
 
-    # See if this talk exists and update or create
-    talk = Talk.find_by_permalink(permalink) || Talk.new
+    # If the talk exists and we're not doing a recrawl then we end it here.
+    talk = Talk.find_by_permalink(permalink) 
+    if talk && !@recrawl
+      @finished = true
+      d "Found existing talk, ending crawl."
+      return false
+    else
+      talk = Talk.new
+    end
 
     if @multiple_talk
       # use talk object from prevous loop as base and merge in new values
@@ -164,6 +171,7 @@ class Dharmaseed < Spider
       check_multitalk_edge_case()
 
       parse_talk() if parse_speaker()
+      break if @finished
     end
   end
 
@@ -180,6 +188,7 @@ class Dharmaseed < Spider
       doc = open(full_link).read
       doc =~ /No matching talks are available/ and break
       scrape_page(doc)
+      break if @finished
     end
   end
 

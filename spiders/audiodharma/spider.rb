@@ -36,7 +36,7 @@ class Audiodharma < Spider
   def check_multitalk_edge_case
     @multiple_talk = false
     # This identifies the fragment containing the links to the actual mp3s
-    fifth_td = @talk_fragment.css('td')[4].css('a').first
+    fifth_td = @talk_fragment.css('td + td + td + td a').first
     !fifth_td and return false
     if fifth_td.text == "View Series"
       @multiple_talk = fifth_td.attr('href')
@@ -92,8 +92,15 @@ class Audiodharma < Spider
       permalink = BASE_DOMAIN + permalink
     end
 
-    # See if this talk exists and update or create
-    talk = Talk.find_by_permalink(permalink) || Talk.new
+    # If the talk exists and we're not doing a recrawl then we end it here.
+    talk = Talk.find_by_permalink(permalink) 
+    if talk && !@recrawl
+      @finished = true
+      d "Found existing talk, ending crawl."
+      return false
+    else
+      talk = Talk.new
+    end
     
     @talk_scraped = {
       :title => @talk_fragment.tolerant_css('.talk_title'),
@@ -139,6 +146,7 @@ class Audiodharma < Spider
       end
 
       parse_talk() if parse_speaker()
+      break if @finished
     end
   end
 
@@ -155,8 +163,8 @@ class Audiodharma < Spider
       doc = open(full_link).read
       doc =~ /No matching talks are available/ and break # Fin
       scrape_page(doc)
+      break if @finished
     end
-    d "Fin"
   end
 
 end
