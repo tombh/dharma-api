@@ -4,11 +4,11 @@ describe Audiodharma do
   describe '.scrape_page' do
     before :all do
       doc = open( File.dirname(__FILE__) + '/fixtures/page_sample_with_multitalk.html')
-      Audiodharma.new.scrape_page(doc)      
+      Audiodharma.new(recrawl: true).scrape_page(doc)      
     end
 
-    it "should find and store the 101 talks in the sample" do
-      Talk.all().count.should == 101
+    it "should find and store the 149 talks in the sample" do
+      Talk.all().count.should == 149
     end
 
     # Even though there are more speakers in the sample the above Dharmaseed.open_speaker_doc()
@@ -25,7 +25,7 @@ describe Audiodharma do
   describe '.parse_talk' do
     before :all do
       @doc = open( File.dirname(__FILE__) + '/fixtures/page_sample_with_multitalk.html')
-      @spider = Audiodharma.new
+      @spider = Audiodharma.new(recrawl: true)
     end
 
     it "should find and store a talk from a given talklist table" do
@@ -46,7 +46,7 @@ describe Audiodharma do
   describe '.parse_speaker' do
     before :all do
       @doc = open( File.dirname(__FILE__) + '/fixtures/page_sample_with_multitalk.html')
-      @spider = Audiodharma.new
+      @spider = Audiodharma.new(recrawl: true)
     end
 
     it "should find and store the speaker from the speaker sample" do

@@ -4,11 +4,11 @@ class Spider
 
   attr_accessor :talk_fragment, :speaker, :doc, :recrawl
   
-  def initialize(start_page = 1, recrawl = false)
+  def initialize(options = {})
+    @page = options[:start_page] || 1
+    @recrawl = options[:recrawl] || false
     @parsed_speakers = [] # Keep track of parsed speakers, so we don't duplicate efforts
     @finished = false
-    @page = start_page.to_i
-    @recrawl = recrawl
   end
 
   # Wrapper for fetching the remote html of an individual speaker so we can override it in tests

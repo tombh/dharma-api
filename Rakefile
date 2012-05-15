@@ -47,7 +47,7 @@ task :crawl do
       # Capitalize first letter of spider, eg; dharmaseed to Dharmaseed
       # Then turn that string into a true language constant representing a class name
       # Then call the .run() method on the object
-      spider.capitalize::constantize.new(recrawl = recrawl).run
+      spider.capitalize::constantize.new(recrawl: recrawl).run
     end
 
   else
@@ -55,8 +55,8 @@ task :crawl do
     page = options[:start_page] ? options[:start_page] : 1
     require 'spiders/' + spider + '/spider'      
     spider.capitalize::constantize.new(
-      start_page = page,
-      recrawl = recrawl
+      start_page: page,
+      recrawl: recrawl
     ).run
   end
 
