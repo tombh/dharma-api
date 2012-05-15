@@ -14,6 +14,8 @@ class Dharma < Sinatra::Base
     content_type :json
   end
 
+  # You can order by a field, by putting a '-' at the beginning for desc
+  # and leaving it normal for asc
   def create_order(default = '-date', valid_fields = {})
     @direction = 'asc'
     @order = params.fetch('order', default)
@@ -31,6 +33,25 @@ class Dharma < Sinatra::Base
     }
   end
 
+  # I know it searches fields that aren't necessarily in the current model,
+  # but mongo's pretty forgiving.
+  def search_helper
+    query = params['search']
+    if query
+      where = {
+        '$or' => [
+          {:name => /#{query}/i},
+          {:bio => /#{query}/i},
+          {:title => /#{query}/i},
+          {:description => /#{query}/i}
+        ]
+      }
+    else
+      where = {}
+    end
+    return where
+  end
+
   def respond value
     value.empty? ? 404 : value.to_json
   end
@@ -40,34 +61,38 @@ class Dharma < Sinatra::Base
   end
   
   # list all speakers
-  get '/speakers' do
+  get '/speakers' do    
     create_order default = 'id'
-    respond Speaker.paginate(pagination)
+    respond Speaker.where(search_helper).paginate(pagination)
   end
 
   # list all talks
   get '/talks' do
     create_order
-    respond Talk.paginate(pagination)
+    respond Talk.where(search_helper).paginate(pagination)
   end
 
-  # list indivdual talk
+  # list individual talk with its arent speaker
   get '/talk/:id' do
     talk = Talk.where(:id => params[:id].to_i).first
     !talk and return 404
-    talk = talk.serializable_hash
-    talk['speaker'] = Speaker.find_by_id(talk['speaker_id'])
-    talk.delete('speaker_id')
-    respond talk
+    talk_hash = talk.serializable_hash
+    talk_hash['speaker'] = talk.speaker
+    talk_hash.delete('speaker_id')
+    respond talk_hash
   end
 
-  # list indivdual speaker
+  # list individual speaker with all their talks
   get '/speaker/:id' do
-    respond Speaker.where(:id => params[:id].to_i)
+    speaker = Speaker.where(:id => params[:id].to_i).first
+    !speaker and return 404
+    speaker_hash = speaker.serializable_hash
+    speaker_hash['talks'] = speaker.talks
+    respond speaker_hash
   end
 
   error do
-    "Ouch".to_json
+    "Ouch: dukkha".to_json
   end
 
   not_found do

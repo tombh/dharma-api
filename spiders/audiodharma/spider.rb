@@ -37,6 +37,7 @@ class Audiodharma < Spider
     @multiple_talk = false
     # This identifies the fragment containing the links to the actual mp3s
     fifth_td = @talk_fragment.css('td')[4].css('a').first
+    !fifth_td and return false
     if fifth_td.text == "View Series"
       @multiple_talk = fifth_td.attr('href')
       d "This 'talk' is a reference to a series of talks (#{@multiple_talk})" 
