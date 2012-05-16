@@ -32,15 +32,12 @@ MongoMapper.connection = Mongo::Connection.new(
   :logger => MONGO_LOGGER
 )
 if settings['db']['password']
-  MongoMapper.connection.authenticate(
-    settings['db']['user'], 
+  MongoMapper.database.authenticate(
+    settings['db']['user'],
     ENV['MONGOLAB_PASSWORD']
   )
 end
 MongoMapper.connection.connect
-
-puts settings
-p ENV['MONGOLAB_PASSWORD']
 
 # Strip strings before they're placed in the db
 module MongoMapper
