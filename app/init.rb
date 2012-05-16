@@ -25,14 +25,14 @@ if environment != 'production'
 end
 
 # Database setup
+MongoMapper.database = settings['db']['name']
 MongoMapper.connection = Mongo::Connection.new(
   settings['db']['host'], 
   settings['db']['port'], 
   :logger => MONGO_LOGGER
 )
-MongoMapper.database = settings['db']['name']
 if settings['db']['password']
-  MongoMapper.database.authenticate(
+  MongoMapper.connection.authenticate(
     settings['db']['user'], 
     ENV['MONGOLAB_PASSWORD']
   )

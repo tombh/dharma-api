@@ -12,12 +12,10 @@ test:
 development:
   db:
     <<: *db_defaults
-    test: <%= ENV['PATH'] %> 
 
 production:
   db:
-    name: heroku_app4680507
-    port: 33477
     host: ds033477.mongolab.com
+    port: 33477
+    name: heroku_app4680507
     user: heroku_app4680507
-    #password: ENV['MONGOLAB_PASSWORD']
