@@ -4,8 +4,9 @@ GIT
   specs:
     mongomapper_plugins (0.0.8)
 
-PATH
-  remote: /home/tombh/Software/guard-rack
+GIT
+  remote: https://github.com/tombh/guard-rack
+  revision: 09f7df7db407d1b9ebdaa167f0694bed87d23535
   specs:
     guard-rack (1.0)
       guard

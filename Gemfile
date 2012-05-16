@@ -11,14 +11,10 @@ gem "mail"
 group :development do
   gem "guard"
   gem "guard-bundler"
-  if ENV['USER'] == 'tombh'
-    # I've forked my own version that sends a different kill signal to rack.
-    # This gives me much faster restart times.
-    # See https://github.com/dblock/guard-rack/issues/2
-    gem "guard-rack", :path => "/home/tombh/Software/guard-rack"
-  else
-    gem "guard-rack"
- end
+  # I've forked my own version that sends a different kill signal to rack.
+  # This gives me much faster restart times.
+  # See https://github.com/dblock/guard-rack/issues/2
+  gem "guard-rack", :git => "https://github.com/tombh/guard-rack"
   gem "rspec"
 end
 
