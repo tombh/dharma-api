@@ -30,6 +30,12 @@ MongoMapper.connection = Mongo::Connection.new(
   settings['db']['port'], 
   :logger => MONGO_LOGGER
 )
+if settings['db']['password']
+  MongoMapper.database.authenticate(
+    settings['db']['user'], 
+    settings['db']['password']
+  )
+end
 MongoMapper.database = settings['db']['name']
 MongoMapper.connection.connect
 

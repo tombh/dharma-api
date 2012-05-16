@@ -15,4 +15,8 @@ development:
 
 production:
   db:
-    <<: *db_defaults
+    name: heroku_app4680507
+    port: 33477
+    host: ds033477.mongolab.com
+    user: heroku_app4680507
+    password: <%= ['MONGOLAB_PASSWORD'] %>
