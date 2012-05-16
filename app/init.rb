@@ -33,6 +33,31 @@ MongoMapper.connection = Mongo::Connection.new(
 MongoMapper.database = settings['db']['name']
 MongoMapper.connection.connect
 
+# Strip strings before they're placed in the db
+module MongoMapper
+  module Plugins
+    module Stripper
+      extend ActiveSupport::Concern
+
+      included do
+        before_validation :strip_attributes
+      end
+      
+      def strip_attributes
+        attributes.each do |key, value|
+          if value.is_a?(String)
+            value = value.strip
+            value = nil if value.blank?
+            self[key] = value
+          end
+        end
+      end
+    end
+  end
+end
+MongoMapper::Document.plugin(MongoMapper::Plugins::Stripper)
+
+
 # Mail.defaults do
 #   delivery_method :sendmail, 
 #   :address    => "pop.gmail.com",

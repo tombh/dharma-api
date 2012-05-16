@@ -27,12 +27,14 @@ describe "Dharma API" do
     it "should return a talk with its speaker" do
     	get '/talk/1' + @auth
     	json = JSON.parse(last_response.body)['results'][0]
-    	json['title'].should eq 'Advise For Taking Awareness Home'
-    	json['description'].start_with?('Insight Meditation Society').should eq true
-    	json['duration'].should eq 1433
-    	json['event'].should eq "Dhamma Everywhere: Awareness with Wisdom Retreat"
-    	json['speaker']['name'].should eq "Sayadaw U Tejaniya"
-    	json['speaker']['picture'].should eq 'http://media.dharmaseed.org/uploads/photos/thumb_tejaniya.jpg'
+    	json['title'].should eq 'How Does the Heart Let Go?'
+    	json['description'].start_with?('Being with things as they are and letting').should eq true
+    	json['duration'].should eq 3032
+    	json['event'].should eq nil
+    	json['speaker']['name'].should eq "Mary Grace Orr"
+    	json['speaker']['picture'].should eq 'http://media.dharmaseed.org/uploads/photos/thumb_13589%20C%20Mary.jpg'
+      json['source'].should eq 'http://dharmaseed.org'
+      json['license'].should eq 'http://creativecommons.org/licenses/by-nc-nd/3.0/'
     end
   end
 
@@ -40,9 +42,9 @@ describe "Dharma API" do
     it "should return a speaker with talks" do
     	get '/speaker/2' + @auth
     	json = JSON.parse(last_response.body)['results'][0]
-    	json['name'].should eq "Thanissara" 
-    	json['bio'].start_with?('Thanissara, a practitioner since 1975, was a T').should eq true
-    	json['picture'].should eq 'http://media.dharmaseed.org/uploads/photos/thumb_Thanissara_ok.jpg'
+    	json['name'].should eq "Jack Kornfield"
+    	json['bio'].start_with?("Over the years of teaching, I've found a growing need").should eq true
+    	json['picture'].should eq 'http://media.dharmaseed.org/uploads/photos/thumb_jack_kornfield.jpg'
     	json['talks'].count eq 1
     end
   end
@@ -52,9 +54,9 @@ describe "Dharma API" do
       get '/talks' + @auth
       json = JSON.parse(last_response.body)
       metta = json['metta']
-      metta['total'].should eq 5
+      metta['total'].should eq 29
       results = json['results']
-      results.count.should eq 5
+      results.count.should eq 25
     end
 
     it "should find the talk with 'mountain' in it" do
@@ -69,9 +71,9 @@ describe "Dharma API" do
       get '/speakers' + @auth
       json = JSON.parse(last_response.body)
       metta = json['metta']
-      metta['total'].should eq 3
+      metta['total'].should eq 11
       results = json['results']
-      results.count.should eq 3
+      results.count.should eq 11
     end
     it "should find the speaker with 'Burma' in their bio" do
       get "/speakers#{@auth}&search=Burma"
