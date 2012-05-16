@@ -2,7 +2,30 @@ require_relative './spec_helper'
 
 describe "Dharma API" do
 
+  # Ideally this would go in the spec_helper but that's shared by the spiders too
   before :all do
+    Mail.defaults do
+      delivery_method :test # in practice you'd do this in spec_helper.rb
+    end
+    
+    talks = JSON.parse(open(File.dirname(__FILE__) + '/fixtures/talks.json').read)
+    # load talks.json
+    talks.each do |talk|
+      Talk.create(talk)
+    end
+
+    # load speakers.json
+    speakers = JSON.parse(open(File.dirname(__FILE__) + '/fixtures/speakers.json').read)
+    speakers.each do |speaker|
+      Speaker.create(speaker)
+    end
+
+    Key.create({
+      :api_key => '123',
+      :email => 'mrbuddha@548bc.com',
+      :status => 'active'
+    })
+    
     @auth = '?api_key=123'
   end
 

@@ -8,13 +8,13 @@ describe Audiodharma do
     end
 
     it "should find and store the 149 talks in the sample" do
-      Talk.all().count.should == 154
+      Talk.all().count.should == 149
     end
 
     # Even though there are more speakers in the sample the above Dharmaseed.open_speaker_doc()
     # patch always returns the same speaker sample
     it "should find and store the 17 speakers from the samples" do
-      Speaker.all().count.should == 20
+      Speaker.all().count.should == 17
     end
     after :all do
       Talk.destroy_all()
