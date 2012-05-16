@@ -1,8 +1,9 @@
+# encoding: utf-8
+
 class Dharma < Sinatra::Base
-  # directory path settings relative to app file
 
   set :app_path, '/'
-  set :root, File.join(File.dirname(__FILE__), '.')
+  set :root, File.join(File.dirname(__FILE__), '..')
   set :public_folder, Proc.new { File.join(root, 'public') }
   set :method_override, true
   
@@ -14,21 +15,22 @@ class Dharma < Sinatra::Base
     content_type :json
   end
 
-  # You can order by a field, by putting a '-' at the beginning for desc
-  # and leaving it normal for asc
-  def create_order(default = '-date', valid_fields = {})
+  def order_helper(default = '-date')
+    # You can order by a field, by putting a '-' at the beginning for desc
+    # and leaving it normal for asc
     @direction = 'asc'
     @order = params.fetch('order', default)
     if @order[0] == '-'
       @order.gsub!('-', '')
       @direction = 'desc'
     end
+    { @order.to_sym => @direction }
   end
 
-  def pagination
+  def pagination_helper()
+    @rpp = params['rpp'] ? params['rpp'].to_i : 25    
     {
-      :order    => @order.to_sym.send(@direction.to_sym),
-      :per_page => 25, 
+      :per_page => @rpp, 
       :page     => params['page'],
     }
   end
@@ -43,36 +45,59 @@ class Dharma < Sinatra::Base
           {:name => /#{query}/i},
           {:bio => /#{query}/i},
           {:title => /#{query}/i},
-          {:description => /#{query}/i}
+          {:description => /#{query}/i},
+          {:permalink => /#{query}/i}
         ]
       }
     else
       where = {}
     end
-    return where
+    where
   end
 
-  def respond value
-    value.empty? ? 404 : value.to_json
+  def respond body
+    return 404 if !body || body.empty?
+    answer = {}
+    if body.kind_of? Array
+      answer['metta'] = {}
+      answer['metta']['total'] = @total
+      answer['metta']['results_per_page'] = @rpp
+      answer['metta']['ordered_by'] = @order + " " + @direction
+      answer['metta']['loving_kindness'] = true
+    else
+      body = [body]
+    end
+    answer['results'] = body
+    answer = answer.to_json
+    if params['callback']
+      answer = "#{params['callback']}(#{answer})"
+    end
+    answer
   end
 
   get '/' do
-    "Le Dharma API".to_json
+    respond "Le Dharma API"
   end
   
-  # list all speakers
-  get '/speakers' do    
-    create_order default = 'id'
-    respond Speaker.where(search_helper).paginate(pagination)
+  # query all speakers
+  get '/speakers' do
+    speakers = Speaker.where(search_helper)
+    @total = speakers.count 
+    respond speakers
+      .order(order_helper default = 'id')
+      .paginate(pagination_helper)
   end
 
-  # list all talks
+  # query all talks
   get '/talks' do
-    create_order
-    respond Talk.where(search_helper).paginate(pagination)
+    talks = Talk.where(search_helper)
+    @total = talks.count
+    respond talks
+      .order(order_helper)
+      .paginate(pagination_helper)
   end
 
-  # list individual talk with its arent speaker
+  # list individual talk with its parent speaker
   get '/talk/:id' do
     talk = Talk.where(:id => params[:id].to_i).first
     !talk and return 404
@@ -92,11 +117,11 @@ class Dharma < Sinatra::Base
   end
 
   error do
-    "Ouch: dukkha".to_json
+    respond "Ouch: duḥkha"
   end
 
   not_found do
-    "404: sunyata".to_json
+    respond "404: śūnyatā"
   end
   
 end
