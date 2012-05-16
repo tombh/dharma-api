@@ -6,6 +6,7 @@ gem "mongo_mapper"
 gem "sinatra"
 gem "thin"
 gem "mongomapper_plugins", :git => "https://github.com/andrewtimberlake/mongomapper_plugins.git"
+gem "mail"
 
 group :development do
   gem "guard"

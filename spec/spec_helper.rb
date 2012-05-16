@@ -18,6 +18,10 @@ RSpec.configure do |config|
   # Use the specified formatter
   config.formatter = :documentation # :progress, :html, :textmate
 
+  Mail.defaults do
+    delivery_method :test # in practice you'd do this in spec_helper.rb
+  end
+
   config.before(:all) do
     talks = JSON.parse(open(File.dirname(__FILE__) + '/fixtures/talks.json').read)
     # load talks.json
@@ -30,11 +34,18 @@ RSpec.configure do |config|
     speakers.each do |speaker|
       Speaker.create(speaker)
     end
+
+    Key.create({
+      :api_key => '123',
+      :email => 'mrbuddha@548bc.com',
+      :status => 'active'
+    })
   end
 
   config.after(:all) do
     Talk.destroy_all()
     Speaker.destroy_all()
+    Key.destroy_all()
   end
 end
 

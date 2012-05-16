@@ -4,6 +4,7 @@ require "bundler/setup"
 require 'sinatra/base'
 require 'mongo_mapper'
 require 'mongo_mapper/plugins/auto_increment_id'
+require 'mail'
 
 PROJECT_ROOT = File.expand_path("../../", __FILE__)
 
@@ -32,27 +33,10 @@ MongoMapper.connection = Mongo::Connection.new(
 MongoMapper.database = settings['db']['name']
 MongoMapper.connection.connect
 
-
-# Strip strings before they're placed in the db
-module MongoMapper
-  module Plugins
-    module Stripper
-      extend ActiveSupport::Concern
-
-      included do
-        before_validation :strip_attributes
-      end
-      
-      def strip_attributes
-        attributes.each do |key, value|
-          if value.is_a?(String)
-            value = value.strip
-            value = nil if value.blank?
-            self[key] = value
-          end
-        end
-      end
-    end
-  end
-end
-MongoMapper::Document.plugin(MongoMapper::Plugins::Stripper)
+# Mail.defaults do
+#   delivery_method :sendmail, 
+#   :address    => "pop.gmail.com",
+#   :port       => 995,
+#   :user_name  => '<username>',
+#   :password   => '<password>'
+# end

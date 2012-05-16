@@ -6,13 +6,22 @@ class Dharma < Sinatra::Base
   set :root, File.join(File.dirname(__FILE__), '..')
   set :public_folder, Proc.new { File.join(root, 'public') }
   set :method_override, true
-  
+
   def initialize
     super
   end
 
   before do
     content_type :json
+  end
+
+  def auth
+    api_key = Key.find_by_api_key(params['api_key'])
+    status = api_key ? api_key.status : 'not found'
+    if status != 'active'
+      status 401
+      halt
+    end
   end
 
   def order_helper(default = '-date')
@@ -55,7 +64,7 @@ class Dharma < Sinatra::Base
     where
   end
 
-  def respond body
+  def respond body, status = 200
     return 404 if !body || body.empty?
     answer = {}
     if body.kind_of? Array
@@ -81,24 +90,27 @@ class Dharma < Sinatra::Base
   
   # query all speakers
   get '/speakers' do
+    auth
     speakers = Speaker.where(search_helper)
     @total = speakers.count 
-    respond speakers
-      .order(order_helper default = 'id')
-      .paginate(pagination_helper)
+    respond speakers.
+      order(order_helper default = 'id').
+      paginate(pagination_helper)
   end
 
   # query all talks
   get '/talks' do
+    auth
     talks = Talk.where(search_helper)
     @total = talks.count
-    respond talks
-      .order(order_helper)
-      .paginate(pagination_helper)
+    respond talks.
+      order(order_helper).
+      paginate(pagination_helper)
   end
 
   # list individual talk with its parent speaker
   get '/talk/:id' do
+    auth
     talk = Talk.where(:id => params[:id].to_i).first
     !talk and return 404
     talk_hash = talk.serializable_hash
@@ -109,11 +121,33 @@ class Dharma < Sinatra::Base
 
   # list individual speaker with all their talks
   get '/speaker/:id' do
+    auth
     speaker = Speaker.where(:id => params[:id].to_i).first
     !speaker and return 404
     speaker_hash = speaker.serializable_hash
     speaker_hash['talks'] = speaker.talks
     respond speaker_hash
+  end
+
+  get '/request_api_key' do
+    if !params['email']
+      respond "Please provide an email address"
+    else      
+      if Key.email_token(params['email'])
+        respond "Verification mail sent"
+      else
+        status 500
+        respond "Couldn't send email"
+      end
+    end
+  end
+
+  error 401 do
+    if !params['api_key']
+      respond "You didn't give me your API key"
+    else      
+      respond "Invalid API key. \n You shall not pass! http://www.youtube.com/watch?v=V4UfAL9f74I"
+    end
   end
 
   error do

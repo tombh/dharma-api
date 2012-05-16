@@ -1,3 +1,5 @@
+require 'digest'
+
 class Speaker
   include MongoMapper::Document
 
@@ -10,7 +12,6 @@ class Speaker
 
   # Depends on mongmapper_plugins gem
   auto_increment_id
-
 end
 
 class Talk
@@ -27,7 +28,36 @@ class Talk
   belongs_to :speaker
   key :speaker_id, ObjectId
 
-  # Depends on mongmapper_plugins gem
   auto_increment_id
+end
 
+class Key
+  include MongoMapper::Document
+
+  key :api_key, String
+  key :email, String
+  key :status, String
+
+  def self.email_token email
+    key = self.find_by_email(email)
+    if !key 
+      api_key = Digest::MD5.hexdigest(Time.now.to_s)
+      self.create({
+        :api_key => api_key,
+        :email => email,
+        :status => 'active'
+      })
+      subject = "Dharma API key"
+    else
+      api_key = key.api_key
+      subject = "Dharma API key reminder"
+    end
+    mail = Mail.new do
+      to email
+      from "Dharma API <admin@tombh.co.uk>"
+      subject subject
+      body api_key
+    end
+    mail.deliver!
+  end
 end
