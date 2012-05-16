@@ -66,4 +66,28 @@ describe Dharmaseed do
 
   end
 
+  # You can skip out these slower remote test with `rspec --tag ~@depends_on_remote [specs]'
+  # Test to see whether the live site has changed to the extent that we're no longer getting any talks or speakers on a crawl
+  describe 'Scrapability of current live site', :depends_on_remote => true do
+    
+    before :all do
+      Speaker.destroy_all()
+      Talk.destroy_all()
+      doc = open( Dharmaseed::BASE_URL + "1" )
+      @spider = Dharmaseed.new(recrawl: true)
+      #TODO Maybe loop over the first few, it's fair enough if the occasioanl talk doesn't parse
+      @spider.talk_fragment = @spider.talklist_tables(doc).first
+      @spider.isolate_table_rows()
+      @spider.parse_talk() if @spider.parse_speaker()      
+    end
+
+    it 'should find at least 1 talk from the first crawled page' do
+      Talk.all().count.should > 0
+    end
+
+    it 'should find at least 1 speaker from the first crawled page' do
+      Speaker.all().count.should > 0
+    end
+  end
+
 end

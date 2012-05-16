@@ -29,7 +29,7 @@ describe Audiodharma do
     end
 
     it "should find and store a talk from a given talklist table" do
-      @spider.talk_fragment = Nokogiri::HTML(@doc).css('.talklist tr')[1]
+      @spider.talk_fragment = @spider.talks(@doc).first
       @spider.speaker = Speaker.create({:name => 'test'})
       talk = @spider.parse_talk()
       talk.date.to_s.should eq '2012-05-13'
@@ -52,7 +52,7 @@ describe Audiodharma do
     it "should find and store the speaker from the speaker sample" do
       # Just take the first talk
       @spider.talk_fragment = Nokogiri::HTML(@doc)
-      speaker = @spider.parse_speaker
+      speaker = @spider.parse_speaker()
       # This is the name from the the main page, as the spider uses that name rather then the name from the speaker page.
       # And as we've hardcoded the Thanisarro's page as the remote speaker page the name and bio don't match here.
       speaker.name.should eq 'Gil Fronsdal' 
@@ -61,6 +61,29 @@ describe Audiodharma do
       speaker.picture.should eq 'http://media.audiodharma.org/uploads/photos/thumb_s108902769133839_1858.jpg'
     end
 
+  end
+
+  # You can skip out these slower remote test with `rspec --tag ~@depends_on_remote [specs]'  
+  # Test to see whether the live site has changed to the extent that we're no longer getting any talks or speakers on a crawl
+  describe 'Scrapability of current live site', :depends_on_remote => true do
+    
+    before :all do
+      Speaker.destroy_all()
+      Talk.destroy_all()
+      doc = open( Audiodharma::BASE_URL + "1" )
+      @spider = Audiodharma.new(recrawl: true)
+      @spider.talk_fragment = @spider.talks(doc).first
+      @spider.parse_speaker()
+      @spider.parse_talk()
+    end
+
+    it 'should find at least 1 talk from the first crawled page' do
+      Talk.all().count.should > 0
+    end
+
+    it 'should find at least 1 speaker from the first crawled page' do
+      Speaker.all().count.should > 0
+    end
   end
 
 end
