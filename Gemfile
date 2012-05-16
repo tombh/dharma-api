@@ -7,6 +7,7 @@ gem "sinatra"
 gem "thin"
 gem "mongomapper_plugins", :git => "https://github.com/andrewtimberlake/mongomapper_plugins.git"
 gem "mail"
+gem "rake"
 
 group :development do
   gem "guard"
@@ -19,6 +20,5 @@ group :development do
 end
 
 group :test do
-  gem "rake"
   gem "rack-test"
 end
