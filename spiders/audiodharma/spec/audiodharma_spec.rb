@@ -4,17 +4,17 @@ describe Audiodharma do
   describe '.scrape_page' do
     before :all do
       doc = open( File.dirname(__FILE__) + '/fixtures/page_sample_with_multitalk.html')
-      Audiodharma.new(recrawl: true).scrape_page(doc)      
+      Audiodharma.new(:recrawl => true).scrape_page(doc)
     end
 
     it "should find and store the 149 talks in the sample" do
-      Talk.all().count.should == 149
+      Talk.all().count.should == 154
     end
 
     # Even though there are more speakers in the sample the above Dharmaseed.open_speaker_doc()
     # patch always returns the same speaker sample
     it "should find and store the 17 speakers from the samples" do
-      Speaker.all().count.should == 17
+      Speaker.all().count.should == 20
     end
     after :all do
       Talk.destroy_all()
@@ -25,7 +25,7 @@ describe Audiodharma do
   describe '.parse_talk' do
     before :all do
       @doc = open( File.dirname(__FILE__) + '/fixtures/page_sample_with_multitalk.html')
-      @spider = Audiodharma.new(recrawl: true)
+      @spider = Audiodharma.new(:recrawl => true)
     end
 
     it "should find and store a talk from a given talklist table" do
@@ -46,7 +46,7 @@ describe Audiodharma do
   describe '.parse_speaker' do
     before :all do
       @doc = open( File.dirname(__FILE__) + '/fixtures/page_sample_with_multitalk.html')
-      @spider = Audiodharma.new(recrawl: true)
+      @spider = Audiodharma.new(:recrawl => true)
     end
 
     it "should find and store the speaker from the speaker sample" do
@@ -71,7 +71,7 @@ describe Audiodharma do
       Speaker.destroy_all()
       Talk.destroy_all()
       doc = open( Audiodharma::BASE_URL + "1" )
-      @spider = Audiodharma.new(recrawl: true)
+      @spider = Audiodharma.new(:recrawl => true)
       @spider.talk_fragment = @spider.talks(doc).first
       @spider.parse_speaker()
       @spider.parse_talk()

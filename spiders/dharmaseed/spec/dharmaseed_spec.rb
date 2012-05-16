@@ -8,13 +8,13 @@ describe Dharmaseed do
     end
 
     it "should find and store the 11 talks in the sample" do
-      Talk.all().count.should == 11
+      Talk.all().count.should == 16
     end
 
     # Even though there are more speakers in the sample the above Dharmaseed.open_speaker_doc()
     # patch always returns the same speaker sample
     it "should find and store the 8 speakers from the samples" do
-      Speaker.all().count.should == 8
+      Speaker.all().count.should == 10
     end
 
     after :all do
@@ -74,7 +74,7 @@ describe Dharmaseed do
       Speaker.destroy_all()
       Talk.destroy_all()
       doc = open( Dharmaseed::BASE_URL + "1" )
-      @spider = Dharmaseed.new(recrawl: true)
+      @spider = Dharmaseed.new(:recrawl => true)
       #TODO Maybe loop over the first few, it's fair enough if the occasioanl talk doesn't parse
       @spider.talk_fragment = @spider.talklist_tables(doc).first
       @spider.isolate_table_rows()
