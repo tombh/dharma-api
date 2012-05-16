@@ -39,7 +39,7 @@ if settings['db']['password']
 end
 MongoMapper.connection.connect
 
-puts settings
+puts ENV
 
 # Strip strings before they're placed in the db
 module MongoMapper
