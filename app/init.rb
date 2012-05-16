@@ -63,11 +63,16 @@ module MongoMapper
 end
 MongoMapper::Document.plugin(MongoMapper::Plugins::Stripper)
 
-
-# Mail.defaults do
-#   delivery_method :sendmail, 
-#   :address    => "pop.gmail.com",
-#   :port       => 995,
-#   :user_name  => '<username>',
-#   :password   => '<password>'
-# end
+if environment == 'production'
+  Mail.defaults do
+    delivery_method :smtp, {
+      :address => 'smtp.sendgrid.net',
+      :port => '587',
+      :domain => 'dharma-api.com',
+      :user_name => ENV['SENDGRID_USERNAME'],
+      :password => ENV['SENDGRID_PASSWORD'],
+      :authentication => :plain,
+      :enable_starttls_auto => true
+    }
+  end
+end

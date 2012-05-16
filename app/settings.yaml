@@ -12,10 +12,6 @@ test:
 development:
   db:
     <<: *db_defaults
-    host: ds033477.mongolab.com
-    port: 33477
-    name: heroku_app4680507
-    user: heroku_app4680507
 
 production:
   db:
