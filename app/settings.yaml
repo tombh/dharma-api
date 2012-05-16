@@ -11,7 +11,8 @@ test:
 
 development:
   db:
-    <<: *db_defaults 
+    <<: *db_defaults
+    test: <%= ENV['PATH'] %> 
 
 production:
   db:
@@ -19,4 +20,4 @@ production:
     port: 33477
     host: ds033477.mongolab.com
     user: heroku_app4680507
-    password: <%= ENV['MONGOLAB_PASSWORD'] %>
+    #password: ENV['MONGOLAB_PASSWORD']

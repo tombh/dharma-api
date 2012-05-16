@@ -34,7 +34,7 @@ MongoMapper.database = settings['db']['name']
 if settings['db']['password']
   MongoMapper.database.authenticate(
     settings['db']['user'], 
-    settings['db']['password']
+    ENV['MONGOLAB_PASSWORD']
   )
 end
 MongoMapper.connection.connect
