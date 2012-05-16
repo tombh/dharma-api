@@ -23,4 +23,5 @@ end
 
 group :test do
   gem "rake"
+  gem "rack-test"
 end
