@@ -31,7 +31,7 @@ MongoMapper.connection = Mongo::Connection.new(
   settings['db']['port'], 
   :logger => MONGO_LOGGER
 )
-if settings['db']['password']
+if environment == 'production'
   MongoMapper.database.authenticate(
     settings['db']['user'],
     ENV['MONGOLAB_PASSWORD']
