@@ -10,6 +10,8 @@ class Audiodharma < Spider
 
   BASE_DOMAIN = 'http://audiodharma.org'
   BASE_URL = BASE_DOMAIN + '/talks/?page='
+  LICENSE = 'http://creativecommons.org/licenses/by-nc-nd/3.0/'
+
 
   def open_multitalk_doc(url)
     open(url)
@@ -110,7 +112,9 @@ class Audiodharma < Spider
       :date => @talk_fragment.tolerant_css('.talk_date'),
       :description => clean_long_text(@talk_fragment.tolerant_css('.the_talk_description', 'title')),
       :venue => "Insight Meditation Centre, Redwood, California",
-      :event => nil # TODO Detect when a talk is part of a series
+      :event => nil, # TODO Detect when a talk is part of a series
+      :source => BASE_DOMAIN,
+      :license => LICENSE
     }
     
     talk.update_attributes!(@talk_scraped)

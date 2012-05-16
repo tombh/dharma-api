@@ -14,6 +14,7 @@ class Dharmaseed < Spider
 
   BASE_DOMAIN = 'http://dharmaseed.org'
   BASE_URL = BASE_DOMAIN + '/talks/?page='
+  LICENSE = 'http://creativecommons.org/licenses/by-nc-nd/3.0/'
 
   # Parse a speaker's page for relevant info
   def scrape_speaker(doc, speaker_name)
@@ -131,7 +132,9 @@ class Dharmaseed < Spider
         :date => @one ? @one.text.split[0] : nil,
         :description => clean_long_text(@three.text), # assigns venue & event when there's no description
         :venue => @three.tolerant_css('a'),
-        :event => @three.tolerant_css('a + a')
+        :event => @three.tolerant_css('a + a'),
+        :source => BASE_DOMAIN,
+        :license => LICENSE
       }
     end
 

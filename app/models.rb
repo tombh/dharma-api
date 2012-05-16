@@ -24,6 +24,8 @@ class Talk
   key :description, String
   key :venue, String
   key :event, String
+  key :source, String
+  key :license, String
 
   belongs_to :speaker
   key :speaker_id, ObjectId
@@ -52,11 +54,12 @@ class Key
       api_key = key.api_key
       subject = "Dharma API key reminder"
     end
+    email_text = open(PROJECT_ROOT + '/app/api_request_email.txt').read
     mail = Mail.new do
       to email
       from "Dharma API <admin@tombh.co.uk>"
       subject subject
-      body api_key
+      body email_text.gsub('#{api_key}', api_key)
     end
     mail.deliver!
   end

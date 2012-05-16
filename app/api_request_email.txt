@@ -1,0 +1,17 @@
+Hello!
+
+So just a few words before you get stuck into the Dharma API. All of the talks
+that you'll find through the API are archived by other organisations such as
+dharmaseed.org and audiodharma.org and are done so with specific licences 
+such as this Creative Commons License;
+
+http://creativecommons.org/licenses/by-nc-nd/3.0/
+
+The API asserts the relevant license for each talk. If you're building an app
+on top of the API please respect the relevent licenses and also the spirit of 
+dana (generosity) that these talks were given with.
+
+Here's your API key: #{api_key}
+
+Sincerely,
+The Happy Dharma API robot x
