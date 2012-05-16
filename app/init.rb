@@ -30,13 +30,13 @@ MongoMapper.connection = Mongo::Connection.new(
   settings['db']['port'], 
   :logger => MONGO_LOGGER
 )
+MongoMapper.database = settings['db']['name']
 if settings['db']['password']
   MongoMapper.database.authenticate(
     settings['db']['user'], 
     settings['db']['password']
   )
 end
-MongoMapper.database = settings['db']['name']
 MongoMapper.connection.connect
 
 # Strip strings before they're placed in the db
