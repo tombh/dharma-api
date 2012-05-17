@@ -85,7 +85,7 @@ class Dharma < Sinatra::Base
   end
 
   get '/' do
-    respond "Le Dharma API"
+    respond "Le Dharma API \n Find out more at https://github.com/tombh/dharma-api"
   end
   
   # query all speakers
