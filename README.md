@@ -22,7 +22,7 @@ availability of the dharma. Dig deep followers of the way!
 ## Requesting an API key ##
 
 You can request an key from;
-	[dharma-api.com/request_api_key?email=](http://dharma-api.com/request_api_key?email=]
+	[dharma-api.com/request_api_key?email=](http://dharma-api.com/request_api_key?email=)
 followed by your email address. You will be emailed a valid key straight away.
 
 ## Using the API ##
@@ -151,7 +151,7 @@ Searches all the text fields of including permalinks for the given string.
 
 Attempts to order the results by the given field. To use reverse order, place a `-` at the beginning of the field, eg;
 
-	`/talks?order=-duration`
+	/talks?order=-duration
 
 `page=`, 
 
