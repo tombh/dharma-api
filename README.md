@@ -155,7 +155,7 @@ Attempts to order the results by the given field. To use reverse order, place a 
 
 `page=`, 
 
-	When there are more than 25 (or the value specified by rpp) results per page you can paginate through by passing integers.
+When there are more than 25 (or the value specified by rpp) results per page you can paginate through by passing integers.
 
 `rpp=`
 
