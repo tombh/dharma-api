@@ -1,0 +1,26 @@
+body {
+	font-family: "alwyn-new-web";
+	font-size: 1.2em;
+}
+
+a {
+	color: #01BA02;
+	text-decoration: none;
+}
+
+h1, h2, h3, h4, strong {
+	text-shadow: 2px 2px 5px #ccc; 
+}
+
+pre {
+	overflow-x: auto;
+}
+
+.content {
+	min-width: 100px;
+	max-width: 800px;
+	padding: 1em;
+	margin: auto;
+	text-align: justify;
+	line-height: 1.5em;
+}

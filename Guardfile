@@ -4,5 +4,5 @@ end
  
 guard 'rack' do
   watch('Gemfile.lock')
-  watch(%r{^(app)/.*})
+  watch(%r{^(app)/.*rb})
 end

@@ -5,6 +5,7 @@ require 'sinatra/base'
 require 'mongo_mapper'
 require 'mongo_mapper/plugins/auto_increment_id'
 require 'mail'
+require 'rdiscount'
 
 PROJECT_ROOT = File.expand_path("../../", __FILE__)
 

@@ -1,12 +1,15 @@
 The Dharma API [![Build Status](https://secure.travis-ci.org/tombh/dharma-api.png)](http://travis-ci.org/tombh/dharma-api)
 ==============
 
-What if there was a single canonical source of all the dharma talks and teachers on the web?
+The Dharma API aims to be a single canonical source of all the dharma talks and teachers on the web.
 
-This code attempts to scrape dharma talk info from various sites and provide a RESTful interface, against which
-you can make all kinds of powerful queries.
+It does this by scraping dharma talk information from various sites and providing a RESTful interface, against which
+you can make all kinds of powerful queries. It's endpoint is [dharma-api.com](http://dharma-api.com)
 
-It is hosted at http://dharma-api.com
+It currently archives all the talks from;
+
+- [dharmaseed.org](http://dharmaseed.org)
+- [audiodharma.org](http://audiodharma.org)
 
 ## Dana ##
 
@@ -21,8 +24,10 @@ availability of the dharma. Dig deep followers of the way!
 
 ## Requesting an API key ##
 
-You can request an key from;
-	[dharma-api.com/request_api_key?email=](http://dharma-api.com/request_api_key?email=)
+You can request a key from;
+
+[dharma-api.com/request_api_key?email=](http://dharma-api.com/request_api_key?email=)
+
 followed by your email address. You will be emailed a valid key straight away.
 
 ## Using the API ##
@@ -41,6 +46,7 @@ All responses are in JSON and you can get JSONp responses by using a callback pa
 There are 4 main methods
 
 **/talks**
+
 
 	metta: {
 		total: 3550,
@@ -62,6 +68,8 @@ There are 4 main methods
 	} 
 
 	...(lots more talks here)...
+
+
 
 Note the metta data that lists information about the result. Pagination is discussed below.
 
@@ -143,21 +151,21 @@ This method gives all the details for a speaker _including_ all their talks.
 
 The `/talks` and `/speakers` methods each take the following useful params;
 
-`search=`, 
+**`search=`**
 
 Searches all the text fields of including permalinks for the given string.
 
-`order=`,  
+**`order=`**  
 
 Attempts to order the results by the given field. To use reverse order, place a `-` at the beginning of the field, eg;
 
 	/talks?order=-duration
 
-`page=`, 
+**`page=`**
 
 When there are more than 25 (or the value specified by rpp) results per page you can paginate through by passing integers.
 
-`rpp=`
+**`rpp=`**
 
 The number of results to show per page.
 
@@ -169,7 +177,7 @@ request](https://github.com/tombh/dharma-api/issues). Or even better fork the co
 It would add to the stability of the API if you can provide concise tests for your spider, tests that both cover the code and the
 applicability to the ever changing HTML of the live site from which the talks are scraped.
 
-You can get a good idea of what is needed to create a working spider by looking at the existing ones under /spiders
+You can get a good idea of what is needed to create a working spider by looking at the existing ones under the /spiders folder.
 
 ## License ##
 

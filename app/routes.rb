@@ -3,7 +3,7 @@
 class Dharma < Sinatra::Base
 
   set :app_path, '/'
-  set :root, File.join(File.dirname(__FILE__), '..')
+  set :root, File.join(File.dirname(__FILE__), '.')
   set :public_folder, Proc.new { File.join(root, 'public') }
   set :method_override, true
 
@@ -81,11 +81,12 @@ class Dharma < Sinatra::Base
     if params['callback']
       answer = "#{params['callback']}(#{answer})"
     end
-    answer
+    answer    
   end
 
   get '/' do
-    respond "Le Dharma API \n Find out more at https://github.com/tombh/dharma-api"
+    content_type :html
+    erb markdown(File.open(PROJECT_ROOT + '/README.md').read)
   end
   
   # query all speakers

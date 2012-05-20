@@ -8,6 +8,7 @@ gem "thin"
 gem "mongomapper_plugins", :git => "https://github.com/andrewtimberlake/mongomapper_plugins.git"
 gem "mail"
 gem "rake"
+gem "rdiscount"
 
 group :development do
   gem "guard"
@@ -15,7 +16,7 @@ group :development do
   # I've forked my own version that sends a different kill signal to rack.
   # This gives me much faster restart times.
   # See https://github.com/dblock/guard-rack/issues/2
-  gem "guard-rack", :git => "https://github.com/tombh/guard-rack"
+  gem "guard-rack", :git => "http://github.com/tombh/guard-rack", :branch => "change_kill_signal"
   gem "rspec"
 end
 
