@@ -153,7 +153,7 @@ The `/talks` and `/speakers` methods each take the following useful params;
 
 **`search=`**
 
-Searches all the text fields of including permalinks for the given string.
+Searches all the text fields including permalinks for the given string.
 
 **`order=`**  
 

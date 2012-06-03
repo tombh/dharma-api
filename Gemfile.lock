@@ -11,17 +11,17 @@ GIT
 
 GIT
   remote: https://github.com/andrewtimberlake/mongomapper_plugins.git
-  revision: 7121f21d616b3473d537d480e20e2e74d033e4a0
+  revision: 06dcfb5e369ea4434d92c7dea772bbed32619aca
   specs:
-    mongomapper_plugins (0.0.8)
+    mongomapper_plugins (1.0.0)
 
 GEM
   remote: http://rubygems.org/
   specs:
-    activemodel (3.2.3)
-      activesupport (= 3.2.3)
+    activemodel (3.2.5)
+      activesupport (= 3.2.5)
       builder (~> 3.0.0)
-    activesupport (3.2.3)
+    activesupport (3.2.5)
       i18n (~> 0.6)
       multi_json (~> 1.0)
     bson (1.6.2)
@@ -32,8 +32,8 @@ GEM
     diff-lcs (1.1.3)
     eventmachine (0.12.10)
     ffi (1.0.11)
-    guard (1.0.3)
-      ffi (>= 0.5.0)
+    guard (1.1.1)
+      listen (>= 0.4.2)
       thor (>= 0.14.6)
     guard-bundler (0.1.3)
       bundler (>= 1.0.0)
@@ -41,6 +41,10 @@ GEM
     i18n (0.6.0)
     libnotify (0.1.4)
       ffi (>= 0.6.2)
+    listen (0.4.2)
+      rb-fchange (~> 0.0.5)
+      rb-fsevent (~> 0.9.1)
+      rb-inotify (~> 0.8.8)
     log_buddy (0.7.0)
     mail (2.4.4)
       i18n (>= 0.4.0)
@@ -53,8 +57,8 @@ GEM
       activemodel (~> 3.0)
       activesupport (~> 3.0)
       plucky (~> 0.4.0)
-    multi_json (1.3.5)
-    nokogiri (1.5.2)
+    multi_json (1.3.6)
+    nokogiri (1.5.3)
     plucky (0.4.4)
       mongo (~> 1.5)
     polyglot (0.3.3)
@@ -64,6 +68,9 @@ GEM
     rack-test (0.6.1)
       rack (>= 1.0)
     rake (0.9.2.2)
+    rb-fchange (0.0.5)
+      ffi
+    rb-fsevent (0.9.1)
     rb-inotify (0.8.8)
       ffi (>= 0.5.0)
     rdiscount (1.6.8)
@@ -71,7 +78,7 @@ GEM
       rspec-core (~> 2.10.0)
       rspec-expectations (~> 2.10.0)
       rspec-mocks (~> 2.10.0)
-    rspec-core (2.10.0)
+    rspec-core (2.10.1)
     rspec-expectations (2.10.0)
       diff-lcs (~> 1.1.3)
     rspec-mocks (2.10.1)

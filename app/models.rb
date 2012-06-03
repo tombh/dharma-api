@@ -41,6 +41,7 @@ class Key
   key :status, String
 
   def self.email_token email
+    return false unless !email.nil?
     key = self.find_by_email(email)
     if !key 
       api_key = Digest::MD5.hexdigest(Time.now.to_s)

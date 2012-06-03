@@ -5,7 +5,7 @@ class Spider
   attr_accessor :talk_fragment, :speaker, :doc, :recrawl
   
   def initialize(options = {})
-    @page = options[:start_page] || 1
+    @page = options[:start_page].to_i || 1
     @recrawl = options[:recrawl] || false
     @parsed_speakers = [] # Keep track of parsed speakers, so we don't duplicate efforts
     @finished = false
