@@ -1,4 +1,6 @@
-body {
+body,
+input,
+button {
 	font-family: "alwyn-new-web";
 	font-size: 1.2em;
 }
@@ -23,4 +25,9 @@ pre {
 	margin: auto;
 	text-align: justify;
 	line-height: 1.5em;
+}
+
+input,
+button {
+	padding: 10px;
 }

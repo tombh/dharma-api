@@ -11,6 +11,7 @@ gem "rake"
 gem "rdiscount"
 
 group :development do
+  gem "libnotify"
   gem "guard"
   gem "guard-bundler"
   # I've forked my own version that sends a different kill signal to rack.

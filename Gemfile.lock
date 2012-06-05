@@ -104,6 +104,7 @@ DEPENDENCIES
   guard
   guard-bundler
   guard-rack!
+  libnotify
   log_buddy
   mail
   mongo_mapper

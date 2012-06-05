@@ -1,5 +1,10 @@
 # forestsanghapublications.org
 
+# Talks given by Theravadin monastics in the Thai forest tradition, usually 
+# tracing their lineage back through Ajahn Chah.
+
+# Yo so bhagavæ arahaµ sammæsambuddho
+# To the Blessed One, the Lord, who fully attained perfect enlightenment
 
 class Forestsangha < Spider
 
@@ -26,23 +31,28 @@ class Forestsangha < Spider
 
     speaker = Speaker.first_or_create(:name => speaker_name)
 
-    # If the talk exists and we're not doing a recrawl then we end it here.
-    talk = Talk.find_by_permalink(permalink) || Talk.new
+    talk = Talk.first_or_create(:permalink => permalink)
     
+    description = parse_talk_detail('Album')
+    title = parse_talk_detail('Title')
+    # Sometimes the Album or Title description contains the date
+    date = (description + title).scan(/[1-2][0-9][0-9][0-9]/).first
+    date = "#{date}/01/01" if date
+
     talk_details = {
-      :title => parse_talk_detail('Title'),
+      :title => title,
       :speaker_id => speaker._id,
       :permalink => permalink,
-      :description => parse_talk_detail('Album'),
+      :date => date, 
+      :description => description,
       :source => BASE_DOMAIN,
       :license => LICENSE
     }
 
-    d talk_details
-    d "\n" 
-
     talk.update_attributes!(talk_details)
 
+    d Talk.find_by_permalink(permalink)
+    d "\n" 
   end
 
   def parse_talk_detail detail

@@ -3,6 +3,8 @@ The Dharma API [![Build Status](https://secure.travis-ci.org/tombh/dharma-api.pn
 
 The Dharma API aims to be a single canonical source of all the dharma talks and teachers on the web.
 
+<span class="talk_count"></span>
+
 It does this by scraping dharma talk information from various sites and providing a RESTful interface, against which
 you can make all kinds of powerful queries. It's endpoint is [dharma-api.com](http://dharma-api.com)
 
@@ -10,6 +12,7 @@ It currently archives all the talks from;
 
 - [dharmaseed.org](http://dharmaseed.org)
 - [audiodharma.org](http://audiodharma.org)
+- [forestsanghapublications.org](http://forestsanghapublications.org)
 
 ## Dana ##
 
@@ -24,11 +27,13 @@ availability of the dharma. Dig deep followers of the way!
 
 ## Requesting an API key ##
 
+<div class="email_request" markdown="1">
 You can request a key from;
-
-[dharma-api.com/request_api_key?email=](http://dharma-api.com/request_api_key?email=)
-
+<p>
+	<a href="http://dharma-api.com/request_api_key?email=">http://dharma-api.com/request_api_key?email=</a>
+</p>
 followed by your email address. You will be emailed a valid key straight away.
+</div>
 
 ## Using the API ##
 
