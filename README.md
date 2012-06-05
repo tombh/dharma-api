@@ -8,6 +8,8 @@ The Dharma API aims to be a single canonical source of all the dharma talks and 
 It does this by scraping dharma talk information from various sites and providing a RESTful interface, against which
 you can make all kinds of powerful queries. It's endpoint is [dharma-api.com](http://dharma-api.com)
 
+The code for this site is hosted on [Github](https://github.com/tombh/dharma-api) and can be contributed to by anyone.
+
 It currently archives all the talks from;
 
 - [dharmaseed.org](http://dharmaseed.org)
