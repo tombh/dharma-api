@@ -2,7 +2,7 @@ $(document).ready(function(){
 	
 	// The Dharama API uses keys as no more than a basic mechanism for tracking users.
 	// If a key is found to be the source of exploitative usage it will disabled.
-	var key = '922a2509ac16855c15150e3476b5536c';
+	var key = 'db2c3fe9dcfa0dfca53682546abbbd9e';
 	$.getJSON('/talks?api_key=' + key, function(response){
 		var text = "<p>There are currently " + response.metta.total + " archived talks.</p>";
 		$('.talk_count').html(text);
