@@ -104,9 +104,17 @@ class Dharma < Sinatra::Base
     auth
     talks = Talk.where(search_helper)
     @total = talks.count
-    respond talks.
+    talks = talks.
       order(order_helper).
       paginate(pagination_helper)
+    talks_full = []
+    talks.each do |talk|
+      talk_hash = talk.serializable_hash
+      talk_hash['speaker'] = talk.speaker.serializable_hash
+      talk_hash.delete('speaker_id')
+      talks_full << talk_hash
+    end
+    respond talks_full
   end
 
   # list individual talk with its parent speaker
