@@ -7,8 +7,8 @@ describe Audiodharma do
       Audiodharma.new(:recrawl => true).scrape_page(doc)
     end
 
-    it "should find and store the 149 talks in the sample" do
-      Talk.all().count.should == 149
+    it "should find and store the 101 talks in the sample" do
+      Talk.all().count.should == 101
     end
 
     # Even though there are more speakers in the sample the above Dharmaseed.open_speaker_doc()

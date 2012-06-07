@@ -106,15 +106,16 @@ class Dharmaseed < Spider
       permalink = BASE_DOMAIN + permalink
     end
 
-    # If the talk exists and we're not doing a recrawl then we end it here.
     talk = Talk.find_by_permalink(permalink) 
-    if talk && !@recrawl
+    
+    # If the talk exists and we're not doing a recrawl then we end it here.
+    if talk and !@recrawl
       @finished = true
       d "Found existing talk, ending crawl."
       return false
-    else
-      talk = Talk.new
     end
+
+    talk = Talk.new if !talk
 
     if @multiple_talk
       # use talk object from prevous loop as base and merge in new values

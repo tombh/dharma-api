@@ -11,13 +11,21 @@ gem "rake"
 gem "rdiscount"
 
 group :development do
-  gem "libnotify"
+  require 'rbconfig'
+
+  if RbConfig::CONFIG['target_os'] =~ /darwin/i
+    gem 'rb-fsevent', '>= 0.3.9'
+    gem 'growl', '~> 1.0.3'
+  end
+
+  if RbConfig::CONFIG['target_os'] =~ /linux/i
+    gem 'rb-inotify', '>= 0.5.1'
+    gem 'libnotify', '~> 0.1.3'
+  end
+
   gem "guard"
   gem "guard-bundler"
-  # I've forked my own version that sends a different kill signal to rack.
-  # This gives me much faster restart times.
-  # See https://github.com/dblock/guard-rack/issues/2
-  gem "guard-rack", :git => "http://github.com/tombh/guard-rack", :branch => "change_kill_signal"
+  gem "guard-rack", :git => "http://github.com/tombh/guard-rack"
   gem "rspec"
 end
 

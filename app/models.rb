@@ -3,7 +3,7 @@ require 'digest'
 class Speaker
   include MongoMapper::Document
 
-  key :name, String, :required => true
+  key :name, String, :required => true, :unique => true
   key :bio, String
   key :website, String
   key :picture, String
@@ -18,7 +18,7 @@ class Talk
   include MongoMapper::Document
   
   key :title, String, :required => true
-  key :permalink, String, :required => true
+  key :permalink, String, :required => true, :unique => true
   key :duration, Integer # in seconds
   key :date, Date
   key :description, String

@@ -26,7 +26,7 @@ describe Dharmaseed do
   describe '.parse_talk' do
     before :all do
       @doc = open( File.dirname(__FILE__) + '/fixtures/page_sample_with_multitalk.html')
-      @spider = Dharmaseed.new
+      @spider = Dharmaseed.new(:recrawl => true)
     end
 
     it "should find and store a talk from a given talklist table" do

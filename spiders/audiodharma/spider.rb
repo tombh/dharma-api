@@ -94,15 +94,16 @@ class Audiodharma < Spider
       permalink = BASE_DOMAIN + permalink
     end
 
-    # If the talk exists and we're not doing a recrawl then we end it here.
     talk = Talk.find_by_permalink(permalink) 
+    
+    # If the talk exists and we're not doing a recrawl then we end it here.
     if talk && !@recrawl
       @finished = true
       d "Found existing talk, ending crawl."
       return false
-    else
-      talk = Talk.new
     end
+      
+    talk = Talk.new if !talk
     
     @talk_scraped = {
       :title => @talk_fragment.tolerant_css('.talk_title'),
