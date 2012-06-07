@@ -65,7 +65,7 @@ task :crawl do
 end
 
 task :empty_db do
-  puts "Are you sure you wanna drop all the data in the db? "
+  puts "Are you sure you wanna drop all the data in Speaker and Talk? "
   answer = STDIN.gets.chomp.downcase
   if answer == 'y' or answer == 'yes'
     puts "Dropping..."

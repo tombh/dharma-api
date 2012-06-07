@@ -1,17 +1,18 @@
 GIT
-  remote: https://github.com/andrewtimberlake/mongomapper_plugins.git
-  revision: 06dcfb5e369ea4434d92c7dea772bbed32619aca
-  specs:
-    mongomapper_plugins (1.0.0)
-
-PATH
-  remote: /home/tombh/Workspace/guard-rack
+  remote: http://github.com/tombh/guard-rack
+  revision: 35cbc0959c6880575c057cf71b8decbeca3e38c3
   specs:
     guard-rack (1.0)
       guard
       guard-rack
       libnotify (~> 0.1.3)
       rb-inotify (>= 0.5.1)
+
+GIT
+  remote: https://github.com/andrewtimberlake/mongomapper_plugins.git
+  revision: 06dcfb5e369ea4434d92c7dea772bbed32619aca
+  specs:
+    mongomapper_plugins (1.0.0)
 
 GEM
   remote: http://rubygems.org/
