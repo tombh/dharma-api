@@ -65,6 +65,9 @@ end
 MongoMapper::Document.plugin(MongoMapper::Plugins::Stripper)
 
 if environment == 'production'
+  
+  require 'newrelic_rpm' # Monitoring
+
   Mail.defaults do
     delivery_method :smtp, {
       :address => 'smtp.sendgrid.net',

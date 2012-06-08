@@ -10,6 +10,10 @@ gem "mail"
 gem "rake"
 gem "rdiscount"
 
+group :production do
+  gem 'newrelic_rpm'
+end
+
 group :development do
   require 'rbconfig'
 
