@@ -6,6 +6,7 @@ class Dharma < Sinatra::Base
   set :root, File.join(File.dirname(__FILE__), '.')
   set :public_folder, Proc.new { File.join(root, 'public') }
   set :method_override, true
+  set :protection, :except => :json_csrf
 
   def initialize
     super
