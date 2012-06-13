@@ -7,6 +7,8 @@ require 'mongo_mapper/plugins/auto_increment_id'
 require 'mail'
 require 'rdiscount'
 
+require 'rack/cors'
+
 PROJECT_ROOT = File.expand_path("../../", __FILE__)
 
 $:.unshift PROJECT_ROOT # Add PROJECT_ROOT to Ruby's include path

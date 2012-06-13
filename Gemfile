@@ -9,7 +9,7 @@ gem "mongomapper_plugins", :git => "https://github.com/andrewtimberlake/mongomap
 gem "mail"
 gem "rake"
 gem "rdiscount"
-
+gem 'rack-cors', :require => 'rack/cors'
 gem 'newrelic_rpm'
 
 group :development do
@@ -27,7 +27,7 @@ group :development do
 
   gem "guard"
   gem "guard-bundler"
-  gem "guard-rack", :git => "http://github.com/tombh/guard-rack"
+  gem "guard-rack"
   gem "rspec"
 end
 
