@@ -159,7 +159,6 @@ class Audiodharma < Spider
   def run
     d "Crawling AUDIODHARMA, starting on page #{@page}"
     log.info "Crawl initiated on " + Time.now.inspect    
-    @page -= 1
     while
       @page += 1
       full_link = BASE_URL + @page.to_s
