@@ -17,6 +17,7 @@ class Dharma < Sinatra::Base
   end
 
   def auth
+    return if env['RACK_ENV'] != 'production'
     api_key = Key.find_by_api_key(params['api_key'])
     status = api_key ? api_key.status : 'not found'
     if status != 'active'
@@ -66,7 +67,7 @@ class Dharma < Sinatra::Base
   end
 
   def respond body, status = 200
-    return 404 if !body || body.empty?
+    return 404 if (!body || body.empty?) && (!body.kind_of? Array)
     answer = {}
     if body.kind_of? Array
       answer['metta'] = {}
