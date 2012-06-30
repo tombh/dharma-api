@@ -17,7 +17,7 @@ class Dharma < Sinatra::Base
   end
 
   def auth
-    return if ENV['RACK_ENV'] != 'production'
+    return if ENV['RACK_ENV'] != 'production' && ENV['RACK_ENV'] != 'test' 
     api_key = Key.find_by_api_key(params['api_key'])
     status = api_key ? api_key.status : 'not found'
     if status != 'active'
