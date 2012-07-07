@@ -15,6 +15,7 @@ It currently archives all the talks from;
 - [dharmaseed.org](http://dharmaseed.org)
 - [audiodharma.org](http://audiodharma.org)
 - [forestsanghapublications.org](http://forestsanghapublications.org)
+- [birken.ca](http://birken.ca/dhammatalks.html)
 
 ## Dana ##
 
@@ -47,6 +48,7 @@ All responses are in JSON and you can get JSONp responses by using a callback pa
 
 	dharma-api.com/talks?api_key=1234567890abc&callback=functionName
 
+NB. The server accepts Cross-Domain requests using CORS headers.
 
 ### Methods ###
 
