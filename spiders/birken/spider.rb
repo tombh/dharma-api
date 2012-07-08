@@ -28,6 +28,8 @@ class Birken < Spider
 
     speaker_name = fragment.css('li > strong').first.text
 
+    duration = colon_time_to_seconds fragment.css('li + li > strong').first.text
+
     speaker = Speaker.first_or_create(:name => speaker_name)
 
     # Add a profile pic if there isn't one already
@@ -43,6 +45,7 @@ class Birken < Spider
       :title => title,
       :speaker_id => speaker._id,
       :permalink => permalink,
+      :duration => duration,
       :source => 'http://birken.ca',
       :license => LICENSE
     }
@@ -66,7 +69,8 @@ class Birken < Spider
     end
   end
 
-  def initialize
+  def initialize(options = {})
+    super
     parse_speaker_pictures
   end
 

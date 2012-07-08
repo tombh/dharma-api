@@ -24,6 +24,7 @@ describe Birken do
       speaker.picture.should eq 'http://mirror1.birken.ca/ajahns/Ajahn_Amaro.jpg'
       talk.count.should eq 1
       talk = talk.first
+      talk.duration.should eq 3002
       talk.license.should eq "http://creativecommons.org/licenses/by-nc-nd/2.5/" 
       talk.permalink.should eq "http://mirror1.birken.ca/dhamma_talks/indiv/Ab-Giri/01/A_Amaro_Birth_Death_and_the_Deathless.mp3"
       talk.source.should eq "http://birken.ca" 
