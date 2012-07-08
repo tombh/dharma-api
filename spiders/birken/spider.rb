@@ -41,6 +41,8 @@ class Birken < Spider
     
     title = fragment.previous.previous.text.gsub('"', '')
 
+    return if title.nil?
+
     talk_details = {
       :title => title,
       :speaker_id => speaker._id,
