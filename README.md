@@ -17,6 +17,8 @@ It currently archives all the talks from;
 - [forestsanghapublications.org](http://forestsanghapublications.org)
 - [birken.ca](http://birken.ca/dhammatalks.html)
 
+The API can be used to build apps such as [@busyanimal](http://twitter.com/busyanimal)'s [dharmasearch.com](http://dharmasearch.com)
+
 ## Dana ##
 
 In order to use the API you will need an API key. But before you get one please bear in mind the nature of the media
