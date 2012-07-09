@@ -2,6 +2,7 @@ require 'digest'
 
 class Speaker
   include MongoMapper::Document
+  safe # Raises an error, in situations such as duplicates
 
   key :name, String, :required => true, :unique => true
   key :bio, String
@@ -16,6 +17,7 @@ end
 
 class Talk
   include MongoMapper::Document
+  safe
   
   key :title, String, :required => true
   key :permalink, String, :required => true, :unique => true
@@ -35,6 +37,7 @@ end
 
 class Key
   include MongoMapper::Document
+  safe
 
   key :api_key, String
   key :email, String

@@ -28,6 +28,10 @@ class Birken < Spider
 
     speaker_name = fragment.css('li > strong').first.text
 
+    if speaker_name =~ /^\s*$/
+      speaker_name = 'Unknown'
+    end
+
     duration = colon_time_to_seconds fragment.css('li + li > strong').first.text
 
     speaker = Speaker.first_or_create(:name => speaker_name)
