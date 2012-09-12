@@ -16,6 +16,7 @@ It currently archives all the talks from;
 - [audiodharma.org](http://audiodharma.org)
 - [forestsanghapublications.org](http://forestsanghapublications.org)
 - [birken.ca](http://birken.ca/dhammatalks.html)
+- [sfzc.org](http://www.sfzc.org/zc/display.asp?catid=1,10&pageid=440)
 
 The API can be used to build apps such as [@busyanimal](http://twitter.com/busyanimal)'s [dharmasearch.com](http://dharmasearch.com)
 

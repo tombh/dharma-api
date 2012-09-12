@@ -5,7 +5,7 @@ require_relative './spec_helper'
 describe Sfzc do
   describe '.parse_talk' do
 
-    it 'should correctly find the talk and speaker details' do
+    it 'should correctly find the talk and speaker details from URL (display.asp?catid=1,10&pageid=3125)' do
       Sfzc.new.parse_page open('http://www.sfzc.org/zc/display.asp?catid=1,10&pageid=3125').read
       speaker = Speaker.order(:name.asc)
       talk = Talk.order(:date.desc)
