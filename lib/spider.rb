@@ -1,3 +1,4 @@
+
 # Base class for spiders
 class Spider
   include SpiderLogging
@@ -32,4 +33,5 @@ class Spider
   def clean_long_text(text)
     text.gsub(/\s+/, ' ') if text
   end
+
 end

@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # http://birken.ca
 
 # Talks given by Theravadin monastics in the Thai forest tradition, usually 
@@ -25,7 +26,7 @@ class Sfzc < Spider
 
     title = fragment.css('td')[1].tolerant_css('a')
 
-    speaker_name = title.split(' - ').first
+    speaker_name = title.split(' - ').first.strip
 
     speaker = Speaker.first_or_create(:name => speaker_name)
     
