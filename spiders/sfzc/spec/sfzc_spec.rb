@@ -16,9 +16,10 @@ describe Sfzc do
       talk = talk.first
       talk.license.should eq Sfzc::LICENSE
       talk.source.should eq Sfzc::BASE_DOMAIN
-      talk.permalink.should eq "http://media.sfzc.org/mp3/2011/2011-11-12-cc-victoria-austin.mp3"
-      talk.speaker_id.should eq 5
-      talk.title.should eq "Continuous Practice"
+      talk.permalink.should eq "http://media.sfzc.org/mp3/2011/2011-12-31-cc-wendy-lewis.mp3"
+      talk.speaker_id.should eq 1
+      talk.title.should eq "Ethics and Community"
+      talk.date.to_s.should eq "2011-12-31"
     end
   end 
 end

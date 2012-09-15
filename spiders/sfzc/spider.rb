@@ -35,11 +35,15 @@ class Sfzc < Spider
 
     return if title =~ /^\s*$/
 
+    date = fragment.css('td')[0].text.split('/')
+
+    date = "#{date[1]}/#{date[0]}/#{date[2]}"
+
     talk_details = {
       :title => title,
       :speaker_id => speaker._id,
       :permalink => permalink,
-      :date => fragment.css('td')[0].text,
+      :date => date,
       :source => BASE_DOMAIN,
       :license => LICENSE
     }
