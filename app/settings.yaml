@@ -15,7 +15,7 @@ development:
 
 production:
   db:
-    name: dharma_api
+    name: heroku_app4680507
     host: ds033477.mongolab.com
     port: 33477
 
