@@ -13,13 +13,8 @@ development:
   db:
     <<: *db_defaults
 
-<% if ENV['MONGOLAB_URI'] %>
-  <% uri = URI.parse(ENV['MONGOLAB_URI']) %>
 production:
   db:
-    name: <%= uri.path.sub('/','') %>
-    host: <%= uri.host %>
-    port: <%= uri.port %>
-    user: <%= uri.user %>
-    pass: <%= uri.password %>
-<% end %>
+    host: ds033477.mongolab.com
+    port: 33477
+

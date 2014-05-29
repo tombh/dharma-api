@@ -35,9 +35,10 @@ MongoMapper.connection = Mongo::Connection.new(
   :logger => MONGO_LOGGER
 )
 if environment == 'production'
+  uri = URI.parse(ENV['MONGOLAB_URI'])
   MongoMapper.database.authenticate(
-    settings['db']['user'],
-    settings['db']['pass']
+    uri.user,
+    uri.pass
   )
 end
 MongoMapper.connection.connect
