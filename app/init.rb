@@ -38,7 +38,7 @@ if environment == 'production'
   uri = URI.parse(ENV['MONGOLAB_URI'])
   MongoMapper.database.authenticate(
     uri.user,
-    uri.pass
+    uri.password
   )
 end
 MongoMapper.connection.connect
