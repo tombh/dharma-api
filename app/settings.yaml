@@ -13,10 +13,12 @@ development:
   db:
     <<: *db_defaults
 
+<% if ENV['MONGOLAB_URI'] %>
+  <% uri = URI.parse(ENV['MONGOLAB_URI']) %>
 production:
   db:
-    host: ds033477.mongolab.com
-    port: 33477
-    name: heroku_app4680507
-    user: heroku_app4680507
-
+    name: <%= uri.path.sub('/','') %>
+    host: <%= uri.host %>:<%= uri.port %>
+    user: <%= uri.user %>
+    pass: <%= uri.password %>
+<% end %>

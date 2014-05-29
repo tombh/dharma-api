@@ -37,7 +37,7 @@ MongoMapper.connection = Mongo::Connection.new(
 if environment == 'production'
   MongoMapper.database.authenticate(
     settings['db']['user'],
-    ENV['MONGOLAB_PASSWORD']
+    settings['db']['pass']
   )
 end
 MongoMapper.connection.connect
