@@ -15,6 +15,7 @@ development:
 
 production:
   db:
+    name: dharma_api
     host: ds033477.mongolab.com
     port: 33477
 
