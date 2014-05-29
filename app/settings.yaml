@@ -18,7 +18,8 @@ development:
 production:
   db:
     name: <%= uri.path.sub('/','') %>
-    host: <%= uri.host %>:<%= uri.port %>
+    host: <%= uri.host %>
+    port: <%= uri.port %>
     user: <%= uri.user %>
     pass: <%= uri.password %>
 <% end %>
