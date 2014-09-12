@@ -70,7 +70,7 @@ class Birken < Spider
   # So scrape it and put them into a hash.
   def parse_speaker_pictures
     @pics = {}
-    Nokogiri::HTML(open('http://birken.ca/monastics_in_dhamma_talks_info.html')).css('td > p > img').each do |img|
+    Nokogiri::HTML(open('http://birken.ca/audio_monastics')).css('td > p > img').each do |img|
       @pics[img.attribute('alt').text] = img.attribute('src').text
     end
   end
