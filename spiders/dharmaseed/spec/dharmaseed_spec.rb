@@ -58,10 +58,10 @@ describe Dharmaseed do
       speaker = @spider.parse_speaker
       # This is the name from the the main page, as the spider uses that name rather then the name from the speaker page.
       # And as we've hardcoded the Sayadaw's page as the remote speaker page the name and bio don't match here.
-      speaker.name.should eq 'Anushka Fernandopulle' 
+      speaker.name.should eq 'Anushka Fernandopulle'
       speaker.bio.start_with?('Sayadaw U Tejaniya began his Buddhist training as a young teenager').should be true
       speaker.website.should eq 'http://sayadawutejaniya.org/'
-      speaker.picture.should eq 'http://media.dharmaseed.org/uploads/photos/thumb_tejaniya.jpg'
+      speaker.picture.should eq 'http://media.dharmaseed.org/uploads/photos/teacher_246_125_0.png'
     end
 
   end

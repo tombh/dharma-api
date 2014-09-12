@@ -18,7 +18,7 @@ class Dharmaseed < Spider
 
   # Parse a speaker's page for relevant info
   def scrape_speaker(doc, speaker_name)
-    table = doc.at_css('.talklist table')
+    table = doc.at_css('.bodyhead ~ table')
 
     if not table
       log.warn "DOM elements for speaker not found"

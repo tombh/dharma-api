@@ -5,33 +5,42 @@
 <html lang="en-US">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-    <title>Dharma Seed - Sayadaw U Tejaniya's Dharma Talks   </title>
+    <title>Dharma Seed - Sayadaw U Tejaniya's Dharma Talks
+    
+    
+ </title>
     <script language="javascript" type="text/javascript"
-            src="http://media.dharmaseed.org/js/lib3.js"></script>
+            src="/static/js/lib3.js"></script>
     <script language="javascript" type="text/javascript"
-            src="http://media.dharmaseed.org/js/audio_popup.js"></script>
+            src="/static/js/audio_popup.js"></script>
     <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>  -->
-    <script type="text/javascript" src="http://media.dharmaseed.org/js/jquery-1.4.2.min.js"></script> 
+    <script type="text/javascript" src="/static/js/jquery-1.4.2.min.js"></script> 
 
     <link rel="stylesheet" type="text/css"
-          href="http://media.dharmaseed.org//css/templateStyle.css"> 
+          href="/static/css/templateStyle.css"> 
     
-    <link rel="shortcut icon" href="http://media.dharmaseed.org/images/favicon.ico"
+    <link rel="shortcut icon" href="/static/images/favicon.ico"
           type="image/vnd.microsoft.icon">
     <meta name="keywords" content="Dharma talks, Buddhist audio talks, Vipassana,
             meditation, Buddhist teachings, Jack Kornfield, Sharon Salzberg, Joseph Goldstein">
     
+   
+
+
   </head>
   
   <body id="canvas">
     <table width="100%" border="0" cellspacing="0" cellpadding="0" >
       <tr>
-        <td><img src="http://media.dharmaseed.org/images/spacer.gif"
-                 alt="" width="1" height="10" border="0"></td>
+        <td style="width: 170px;"></td>
+        <td><img src="/static/images/spacer.gif"
+                 alt="" width="1" height="1" border="0"></td>
+        <td style="width: 170px;"></td>
       </tr>
       <tr>
+        <td></td>
         <td valign="top" align="center">
-          <table width="739" border="0" cellspacing="0" cellpadding="0">
+          <table border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td colspan="3" height="30" align="right">
                 <span class="topcontrols">
@@ -48,160 +57,438 @@
                   
 
 <!--this first column is the left navigation bar-->
-	<td id="navbar" valign="top">
+  <td id="navbar" valign="top">
 
-		<div style="text-align: center; padding-left: 30; padding-right: 30; padding-top: 60; padding-bottom: 0;">
+    <div style="text-align: center; padding-left: 30; padding-right: 30; padding-top: 60; padding-bottom: 0;">
           <a href="/">
 
-			<img src="http://media.dharmaseed.org/images/bodhiLeaf-3.png" alt="" width="102" height="173" border="0"></a>
+      <img src="/static/images/bodhiLeaf-3.png" alt="" width="102" height="173" border="0"></a>
 
-		</div>
+    </div>
 
-		<div class="navmenu">
+    <div class="navmenu">
             <ul> 
 
 
 
 
-			<li><a href="/news">News</a>
-			<li><a href="/about/us">About Dharma Seed</a>
-		    <li><a href="/teachers">Teachers</a>
-		    <li><a href="/talks">Talks</a>
+      <li><a href="/news">News</a>
+      <li><a href="/about/us">About Dharma Seed</a>
+        <li><a href="/teachers">Teachers</a>
+        <li><a href="/talks">Talks</a>
             <li><a href="/retreats" id='retreats-link'>Retreats</a>
-			<li><a href="/centers">Centers</a>
-			<li><a href="/about/ordering">Finding and Ordering Talks</a>
+      <li><a href="/centers">Centers</a>
+            <li><a href="/collections">Collections</a>
+      <li><a href="/about/ordering">Finding and Ordering Talks</a><p>
+            <li>    <select name="language_filter" onchange="selectURL(this.options[this.selectedIndex].value)">
+    <option value="?language_filter=">All Languages</option>
+    
+  <option value="?language_filter=8"
+  
+  >Burmese</option>
+    
+  <option value="?language_filter=7"
+  
+  >Česky</option>
+    
+  <option value="?language_filter=4"
+  
+  >Deutsch</option>
+    
+  <option value="?language_filter=1"
+  
+  >English</option>
+    
+  <option value="?language_filter=2"
+  
+  >Español</option>
+    
+  <option value="?language_filter=5"
+  
+  >Français</option>
+    
+  <option value="?language_filter=11"
+  
+  >Italiano</option>
+    
+  <option value="?language_filter=6"
+  
+  >Schwyzerdütsch</option>
+    
+  <option value="?language_filter=9"
+  
+  >Tibetan</option>
+    
+  <option value="?language_filter=10"
+  
+  >Tiếng Việt</option>
+    
+  <option value="?language_filter=3"
+  
+  >ภาษาไทย</option>
+    
+   </select>
+
+ </li>
             <p>
- 			<li><a href="/about/donation">
-				<img src="http://media.dharmaseed.org/images/donationButton.jpg"
+      <li><a href="/about/donation">
+        <img src="/static/images/donationButton.jpg"
                      alt="Make A Donation" width="140" height="42" border="0"></a>
 
           </ul>
-		</div>
-	</td>
+    </div>
+  </td>
 
 <!--end of the left navigation bar-->
 
 
               <!-- the next column is the thin yellow spacer -->
-              <td id="bodyrule" width="1"><img src="http://media.dharmaseed.org/images/spacer.gif"
+              <td id="bodyrule" width="1"><img src="/static/images/spacer.gif"
                                                    alt="" width="1" height="1" border="0"></td>
 
               
 <!-- the last column is the main body -->
-<td id="bodypane" width="700" valign="top" align="right">
+<td id="bodypane" valign="top" align="right">
   <span style="color:ff0000;"><center>
 
 </center></span>
 
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
-	<tr>
-	  <td width="25">
-        <img src="http://media.dharmaseed.org/images/spacer.gif" alt="" width="25" height="1" border="0">
+  <tr>
+    <td width="25">
+        <img src="/static/images/spacer.gif" alt="" width="25" height="1" border="0">
       </td>
-	  <td valign="top"><br>
-        <img src="http://media.dharmaseed.org/images/spacer.gif" alt="" width="250" height="1" border="0">
+    <td valign="top"><br>
+        <img src="/static/images/spacer.gif" alt="" width="250" height="1" border="0">
 
 
 
-	  </td>
-      <td>
+    </td>
+      <td align='right'>
         <table>
           <tr>
             <td>
-    			<img src="http://media.dharmaseed.org/images/spacer.gif"
+          <img src="/static/images/spacer.gif"
                             alt="" width="190" height="1" border="0">
             </td>
           </tr>
           <tr>
              <td id="teachings" align="right" valign="middle">
-	
-               <i><b>The greatest gift is the <br>gift of the teachings</i></b>
+  
+               <i><b>The greatest gift is the <br>gift of the teachings</b></i>
     
              </td>
           </tr>
         </table>
       </td>
-      <td valign="top">
+      <td valign="top" width='203'>
 
-			<img src="http://media.dharmaseed.org/images/buddha_lge.jpg"
- 				alt="" width="203" height="203" border="0">
+      <img src="/static/images/buddha_lge.jpg"
+        alt="" width="203" height="203" border="0">
 
       </td>
-	</tr>
-	<tr>
-	  <td>&nbsp;</td>
-	  <td colspan="3">
+  </tr>
+   
+<!-- <tr><td colspan=4 align=right>     <select name="language_filter" onchange="selectURL(this.options[this.selectedIndex].value)">
+    <option value="?language_filter=">All Languages</option>
+    
+  <option value="?language_filter=8"
+  
+  >Burmese</option>
+    
+  <option value="?language_filter=7"
+  
+  >Česky</option>
+    
+  <option value="?language_filter=4"
+  
+  >Deutsch</option>
+    
+  <option value="?language_filter=1"
+  
+  >English</option>
+    
+  <option value="?language_filter=2"
+  
+  >Español</option>
+    
+  <option value="?language_filter=5"
+  
+  >Français</option>
+    
+  <option value="?language_filter=11"
+  
+  >Italiano</option>
+    
+  <option value="?language_filter=6"
+  
+  >Schwyzerdütsch</option>
+    
+  <option value="?language_filter=9"
+  
+  >Tibetan</option>
+    
+  <option value="?language_filter=10"
+  
+  >Tiếng Việt</option>
+    
+  <option value="?language_filter=3"
+  
+  >ภาษาไทย</option>
+    
+   </select>
+
+ </td> </tr> -->
+
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan="3">
         <table width='95%'>
           <tr>
             <td>
 
               <div class="bodyhead">
-                Sayadaw U Tejaniya's Dharma Talks  
+                Sayadaw U Tejaniya's Dharma Talks
+    
+    
+
               </div>
 
               
 
-<script type="text/javascript" src="http://media.dharmaseed.org/js/jquery-1.4.2.min.js"></script> 
+<script type="text/javascript" src="/static/js/jquery-1.4.2.min.js"></script> 
+
+
 
 <script language="Javascript" type="text/javascript">
 function showOrHide(eId, state) {
-	if (e = document.getElementById('box'+eId)) {
-		if (state == null) {
-			state = e.style.display == 'none';
-			e.style.display = (state ? '' : 'none');
-		}
-		//...except for this, probably a better way of doing this, but it works at any rate...
-		if (state == true){				
-			document.getElementById('img'+eId).src="http://media.dharmaseed.org/images/minus.gif";
-		}
-		if (state == false){
-			document.getElementById('img'+eId).src="http://media.dharmaseed.org/images/plus.gif";
-		}
-	}
+  if (e = document.getElementById('box'+eId)) {
+    if (state == null) {
+      state = e.style.display == 'none';
+      e.style.display = (state ? '' : 'none');
+    }
+    //...except for this, probably a better way of doing this, but it works at any rate...
+    if (state == true){       
+      document.getElementById('img'+eId).src="/static/images/minus.gif"; 
+    }
+    if (state == false){
+      document.getElementById('img'+eId).src="/static/images/plus.gif";
+    }
+  }
 }
 </script>
 
 
 
 <script language="Javascript" type="text/javascript">
-function ShowOrHideTracks(eId, state) {
-	if (e = document.getElementById('tracklist'+eId)) {
-		if (state == null) {
-			state = e.style.display == 'none';
-			e.style.display = (state ? '' : 'none');
-		}
-		//...except for this, probably a better way of doing this, but it works at any rate...
-		if (state == true) {				
-			document.getElementById('button'+eId).innerHTML="Hide Tracks";
-		}
-		if (state == false) {
-			document.getElementById('button'+eId).innerHTML="Show Tracks";
-		}
-	}
+function ShowOrHideTracks(eId, count, state) {
+  if (e = document.getElementById('tracklist'+eId)) {
+    if (state == null) {
+      state = e.style.display == 'none';
+    }
+    //...except for this, probably a better way of doing this, but it works at any rate...
+    if (state == true) {        
+      document.getElementById('button'+eId).innerHTML="Hide Tracks";
+    }
+    if (state == false) {
+      document.getElementById('button'+eId).innerHTML="Show " + count + " Tracks";
+    }
+        e.style.display = (state ? '' : 'none');
+  }
+}
+function ShowOrHideAllTracks(talklist, countlist) {
+    button = document.getElementById('button_all');
+    if (button.innerHTML == "Hide All Tracks") {
+        button.innerHTML = "Show All Tracks"
+        show = false;
+    } else {
+        button.innerHTML = "Hide All Tracks"
+        show = true;
+    }
+    for (i in talklist) {
+        talk = talklist[i];
+        ShowOrHideTracks(talklist[i], countlist[i], show);
+    }
 }
 </script>
 
+
+
+
+<table width='100%'>
+            
+
+<!-- Shows the teacher's photo, bio and website/donation buttons -->
+
+
+<tr>
+    <td align=left colspan=2>
+        <a class="talkteacher" href="/teacher/246"><b style='font-size:16'>Sayadaw U Tejaniya</b></a><a
+        
+           style='position:relative;
+                  bottom:-1px; left: 1em;'
+           class="talkteacher"
+           title="Sayadaw U Tejaniya's 15 most recent talks"                                                                                                                     
+           href="/feeds/teacher/246?max-entries=15"><img
+           border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a><a
+           style='position:relative;
+                  bottom:-1px; left: 1em;'
+           class="talkteacher"
+           title="All 64 of Sayadaw U Tejaniya's talks"                                                                                                                     
+           href="/feeds/teacher/246?max-entries=all"><img
+           border=0 src="/static/images/feed-icon-red-14x14.jpg"/>
+        </a>
+    <br>
+    </td>
+</tr>
+
+<tr>
+    <td align=left  colspan=2>
+        <table align=left  cellpadding=4>
+            
+             <tr>
+               <td align=center>
+                <a class="talkteacher" href="/teacher/246">
+                  <img src="http://media.dharmaseed.org/uploads/photos/teacher_246_125_0.png"
+                    vspace='0' hspace='4' border='0'></a>
+               </td>
+             </tr>
+            
+
+            
+              
+               <tr>
+                   <td class="talkbutton" align=center>
+                   
+                   
+                       <a href="http://sayadawutejaniya.org/">Sayadaw U Tejaniya's Website</a>
+                   
+                   </td>
+               </tr>
+              
+            
+
+        </table>
+
+                            
+      <i>Sayadaw U Tejaniya began his Buddhist training as a young teenager in Burma under the late Shwe Oo Min Sayadaw (1913–2002). After a career in business and life as a householder, he has become a permanent monk since 1996. He teaches meditation at Shwe Oo Min Dhammasukha Tawya in Rangoon, Burma.
+
+                                
+          <br>
+          <a href="javascript:;" onclick="showOrHide('246')"><img src="/static/images/plus.gif"
+                name="img246" width="10" height="10" border="0" id="img246"/></a>
+
+          <div class='talklist' style='display:none' id="box246">
+            <p>Sayadaw’s relaxed demeanor and easy sense of humor can belie a commitment to awareness he encourages his students to apply in every aspect of their lives. His earlier life as a householder gives him a rare insight into the challenges faced by his lay students. His book, “Don’t Look Down on the Defilements, They Will Laugh at You”, aptly characterizes his teaching style—accessible and true to the traditional teachings of the Buddha.</p>
+          </div>
+          </i>
+        
+    
+
+
+    </td>
+</tr>
+
+
+</table>
 
 <table width='100%'>
     <tr>
         <td colspan=2>
-          
-
-<select name="link_list" onchange="selectURL(this.options[this.selectedIndex].value)">
+          <select id='teacher_talk_selector' style='width: 300px;' name="link_list" onchange="selectURL(this.options[this.selectedIndex].value)">
     <option value="#">--
     
             Select from Sayadaw U Tejaniya's
-            24
+            64
             talks
     
      --</option>
     <option value="/teacher/246">VIEW ALL</option>
     
-        <option value="/teacher/246/talk/15990">2012-05-03
-            Afternoon Session in Hall 5-3-12</option>
+        <option value="/teacher/246/talk/16086">2012-05-11
+            Advice For Taking Awareness Home</option>
     
         <option value="/teacher/246/talk/15938">2012-04-28
             Dhamma Everywhere: Why And How?</option>
+    
+        <option value="/teacher/246/talk/15990">2012-05-03
+            Dhamma Everywhere: Why and How? </option>
+    
+        <option value="/teacher/246/talk/23132">2014-05-01
+            Dharma Discussion C2</option>
+    
+        <option value="/teacher/246/talk/23107">2014-04-27
+            Dharma Discussion Group A1</option>
+    
+        <option value="/teacher/246/talk/23129">2014-04-30
+            Dharma discussion Group A2</option>
+    
+        <option value="/teacher/246/talk/23163">2014-05-03
+            Dharma Discussion Group A3</option>
+    
+        <option value="/teacher/246/talk/23244">2014-05-06
+            Dharma Discussion Group A4</option>
+    
+        <option value="/teacher/246/talk/23111">2014-04-27
+            Dharma Discussion Group B1</option>
+    
+        <option value="/teacher/246/talk/23130">2014-04-30
+            Dharma Discussion Group B2</option>
+    
+        <option value="/teacher/246/talk/23165">2014-05-03
+            Dharma Discussion Group B3</option>
+    
+        <option value="/teacher/246/talk/23245">2014-05-06
+            Dharma Discussion Group B4</option>
+    
+        <option value="/teacher/246/talk/23115">2014-04-28
+            Dharma Discussion Group C1</option>
+    
+        <option value="/teacher/246/talk/23232">2014-05-04
+            Dharma discussion group C3</option>
+    
+        <option value="/teacher/246/talk/23246">2014-05-07
+            Dharma Discussion Group C4</option>
+    
+        <option value="/teacher/246/talk/23116">2014-04-28
+            Dharma Discussion Group D1</option>
+    
+        <option value="/teacher/246/talk/23156">2014-05-01
+            Dharma Discussion Group D2</option>
+    
+        <option value="/teacher/246/talk/23187">2014-05-04
+            Dharma Discussion Group D3</option>
+    
+        <option value="/teacher/246/talk/23247">2014-05-07
+            Dharma Discussion Group D4</option>
+    
+        <option value="/teacher/246/talk/23122">2014-04-29
+            Dharma Discussion Group E1</option>
+    
+        <option value="/teacher/246/talk/23162">2014-05-02
+            Dharma Discussion Group E2</option>
+    
+        <option value="/teacher/246/talk/23196">2014-05-05
+            Dharma discussion group E3</option>
+    
+        <option value="/teacher/246/talk/23248">2014-05-08
+            Dharma Discussion Group E4</option>
+    
+        <option value="/teacher/246/talk/23128">2014-04-29
+            Dharma Discussion Group F1</option>
+    
+        <option value="/teacher/246/talk/23164">2014-05-02
+            Dharma Discussion Group F2</option>
+    
+        <option value="/teacher/246/talk/23243">2014-05-05
+            Dharma Discussion Group F3</option>
+    
+        <option value="/teacher/246/talk/23249">2014-05-08
+            Dharma Discussion Group F4</option>
+    
+        <option value="/teacher/246/talk/16077">2012-05-09
+            Dharma Teachers Group</option>
     
         <option value="/teacher/246/talk/15974">2012-05-02
             Group A #2</option>
@@ -221,29 +508,68 @@ function ShowOrHideTracks(eId, state) {
         <option value="/teacher/246/talk/16004">2012-05-06
             Group C #3</option>
     
+        <option value="/teacher/246/talk/16080">2012-05-09
+            Group C #4</option>
+    
         <option value="/teacher/246/talk/15992">2012-05-03
             Group D #2</option>
     
         <option value="/teacher/246/talk/16003">2012-05-06
             Group D #3</option>
     
+        <option value="/teacher/246/talk/16079">2012-05-09
+            Group D #4</option>
+    
+        <option value="/teacher/246/talk/23251">2014-05-09
+            Group Discussion</option>
+    
         <option value="/teacher/246/talk/16002">2012-05-07
             Group E # 3</option>
     
         <option value="/teacher/246/talk/15993">2012-05-04
-            Group E #2</option>
+            Group E #2 </option>
     
-        <option value="/teacher/246/talk/15998">2012-05-04
-            Group E #2</option>
+        <option value="/teacher/246/talk/16078">2012-05-10
+            Group E #4</option>
     
         <option value="/teacher/246/talk/16030">2012-05-07
             Group F #3</option>
     
+        <option value="/teacher/246/talk/16076">2012-05-10
+            Group F #4</option>
+    
         <option value="/teacher/246/talk/15997">2012-05-04
             Group F 2</option>
     
-        <option value="/teacher/246/talk/16028">2012-05-07
-            Mindful Speaking</option>
+        <option value="/teacher/246/talk/23131">2014-05-01
+            Guided meditation</option>
+    
+        <option value="/teacher/246/talk/23157">2014-05-02
+            Guided Meditation</option>
+    
+        <option value="/teacher/246/talk/23160">2014-05-03
+            Guided Meditation</option>
+    
+        <option value="/teacher/246/talk/23170">2014-05-04
+            Guided Meditation</option>
+    
+        <option value="/teacher/246/talk/23104">2014-04-27
+            Guided Meditation - Morning Reminders</option>
+    
+        <option value="/teacher/246/talk/23113">2014-04-28
+            Guided Meditation with reminders</option>
+    
+        <option value="/teacher/246/talk/23121">2014-04-29
+            Guided Meditation with reminders</option>
+    
+        <option value="/teacher/246/talk/23250">2014-05-09
+            Last  Words From Sayadaw </option>
+    
+        <option value="/teacher/246/talk/23241">2014-05-08
+            Morning reflections</option>
+    
+        <option value="/teacher/246/talk/23102">2014-04-26
+            Overview of the meditation instructions by Sayadaw U Tejaniya</option>
     
         <option value="/teacher/246/talk/15942">2012-04-29
             Q&amp;A Group A #1</option>
@@ -269,6 +595,9 @@ function ShowOrHideTracks(eId, state) {
         <option value="/teacher/246/talk/3338">2007-05-30
             Questions And Answers</option>
     
+        <option value="/teacher/246/talk/16028">2012-05-07
+            Taking Practice into Life</option>
+    
 </select>
 
         </td>
@@ -277,11 +606,11 @@ function ShowOrHideTracks(eId, state) {
         <td>
             
 
-<form id="search" action="" method="get">
+<form id="search" action="/teacher/246" method="get">
     <input id="id_search" type="text" name="search" maxlength="150" />
     <input type="submit" value="Search Sayadaw U Tejaniya's Talks" />
     <label for="searchbar"><img style='position:relative;
-        bottom:-5px' height='18' width='20' src="http://media.dharmaseed.org/img/admin/icon_searchbox.png" alt="Search" /></label>
+        bottom:-5px' height='18' width='20' src="/static/img/admin/icon_searchbox.png" alt="Search" /></label>
 </form>
 
         </td>
@@ -294,1250 +623,37 @@ function ShowOrHideTracks(eId, state) {
     </tr>
 </table>
 
+
 <script type="text/javascript">
 // On Page Ready ...
 $(
   function() {
-	$("#searchbar")[0].focus()
+  $("#id_search")[0].focus()
   }
 );
 </script> 
 
 
 
-
-    <form id="search" action="" method="get">
-  <select onchange="this.form.submit()" name="sort" id="id_sort">
+    
+        <form id="search" action="" method="get">
+  Sort order: <select onchange="this.form.submit()" name="sort" id="id_sort">
 <option value="title">Sorted by title</option>
 <option value="-rec_date" selected="selected">Sorted by recording date (newest to oldest)</option>
 <option value="rec_date">Sorted by recording date (oldest to newest)</option>
 <option value="-upload_date">Sorted by date added (newest to oldest)</option>
 <option value="upload_date">Sorted by date added (oldest to newest)</option>
-</select> Sort Order
+</select> Items on page: <select onchange="this.form.submit()" name="page_items" id="id_page_items">
+<option value="10">10</option>
+<option value="25" selected="selected">25</option>
+<option value="50">50</option>
+<option value="100">100</option>
+</select>
 </form>
 
-	<div class="talklist">
-	    <table width='100%'>
-            <!-- Shows the teacher's photo, bio and website/donation buttons -->
-
-<tr>
-    <td align=left colspan=2>
-        <a class="talkteacher" href="/teacher/246"><b style='font-size:16'>Sayadaw U Tejaniya</b></a><a
+    
+  <div class="talklist">
         
-           style='position:relative;
-                  bottom:-1px; left: 1em;'
-           class="talkteacher"
-           title="Sayadaw U Tejaniya's 15 most recent talks"                                                                                                                     
-           href="/feeds/teacher/246"><img
-           border=0 src="http://media.dharmaseed.org/images/feed-icon-14x14.png"/>
-        </a><a
-           style='position:relative;
-                  bottom:-1px; left: 1em;'
-           class="talkteacher"
-           title="All 24 of Sayadaw U Tejaniya's talks"                                                                                                                     
-           href="/feeds/complete_teacher/246"><img
-           border=0 src="http://media.dharmaseed.org/images/feed-icon-red-14x14.jpg"/>
-        </a>
-    <br>
-    </td>
-</tr>
-
-<tr>
-    <td align=left  colspan=2>
-        <table align=left  cellpadding=4>
-            
-             <tr>
-               <td align=center>
-                <a class="talkteacher" href="/teacher/246">
-                  <img src="http://media.dharmaseed.org/uploads/photos/thumb_tejaniya.jpg"
-                		vspace='0' hspace='4' border='0'></a>
-               </td>
-             </tr>
-            
-
-            
-              
-               <tr>
-                   <td class="talkbutton" align=center>
-                   
-                   
-                       <a href="http://sayadawutejaniya.org/">Sayadaw U Tejaniya's Website</a>
-                   
-                   </td>
-               </tr>
-              
-            
-
-        </table>
-
-                            
-      <i>Sayadaw U Tejaniya began his Buddhist training as a young teenager in Burma under the late Shwe Oo Min Sayadaw (1913–2002). After a career in business and life as a householder, he has become a permanent monk since 1996. He teaches meditation at Shwe Oo Min Dhammasukha Tawya in Rangoon, Burma.
-
-                                
-          <br>
-          <a href="javascript:;" onclick="showOrHide('246')"><img src="http://media.dharmaseed.org/images/plus.gif"
-                name="img246" width="10" height="10" border="0" id="img246"/></a>
-
-          <div class='talklist' style='display:none' id="box246">
-            <p>Sayadaw’s relaxed demeanor and easy sense of humor can belie a commitment to awareness he encourages his students to apply in every aspect of their lives. His earlier life as a householder gives him a rare insight into the challenges faced by his lay students. His book, “Don’t Look Down on the Defilements, They Will Laugh at You”, aptly characterizes his teaching style—accessible and true to the traditional teachings of the Buddha.</p>
-          </div>
-          </i>
-        
-    
-
-
-    </td>
-</tr>
-
-
-            <tr><td colspan=2>
-
-<div class="paginator" style="margin-bottom:10px;">
-    
-        <span class="disabled prev">&lsaquo;&lsaquo; previous</span>
-    
-    
-        <a href="?page=2" class="next">next &rsaquo;&rsaquo;</a>
-    
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    
-        
-            
-                <span class="current page">1</span>
-            
-        
-    
-        
-            
-                <a href="?page=2" class="page">2</a>
-            
-        
-    
-        
-            
-                <a href="?page=3" class="page">3</a>
-            
-        
-    
-</div>
-
-</td></tr>
-        </table>
-		
-			<table width='100%'>
-                <tr><td colspan=2>
-                    
-
-
-
-
-
-<table width='100%'>   
-    <tr >
-      
-        <td> 
-           
-
-
-  2012-05-08 
-
-
-
-<a class="talkteacher" href="/teacher/246/talk/16050/">
-  Group B#4
-</a>
-<i>1:37:54</i>
-
-
-
-        </td>
-        <td nowrap align=right valign=top>
-            
-        
-<div class="talkbutton">
-
-
-
-
-    
-        <a href="/teacher/246/talk/16050/20120508-Sayadaw_U_Tejaniya-IMSRC-group_b_4.mp3">Download</a>
-    
-
-
-
-    <a title="Stream Audio of Group B#4"
-       href="http://dharmaseed.org/talks/audio_player/246/16050.html"
-       onClick="popup('http://dharmaseed.org/talks/audio_player/246/16050.html', 660,
-                 195 ); return false;"
-    
-        >Stream</a>
-    
-
-
-       
-    
-        <a href="/shop/cart/add/16050/testcookie">Order</a>
-    
-
-    
-
-
-
-
-
-
-    
-        <a title="RSS feed for 'Group B#4'"
-           style='position:relative; bottom:-3px; left:0px'
-           class="talkteacher" href="/feeds/talk/246/16050">
-          <img border=0 src="http://media.dharmaseed.org/images/feed-icon-14x14.png"/>
-        </a>
-        <a title="Subscribe to 'Group B#4' in iTunes"
-           style='position:relative; bottom:-3px; left:-5px'
-           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/16050">
-          <img border="0" src="http://media.dharmaseed.org/images/podcast_icon_small.png" alt="iTunes"></a>
-    
-
-
-</div>
-
-        </td>
-      
-    </tr>
-  
-
-  
-
-  
-      <tr>
-          <td colspan=2>
-            
-            	<a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>:&nbsp;
-<a class='quietlink' href="/retreats/1446/">
-  <i>Dhamma Everywhere: Awareness with Wisdom Retreat </i>
-</a>
-
-
-          </td>
-      </tr>
-  
-
-  
-  
-  
-
-  
-</table>
-
-
-
-
-                </td></tr>
-			</table>
-		
-			<table width='100%'>
-                <tr><td colspan=2>
-                    
-
-
-
-
-
-<table width='100%'>   
-    <tr >
-      
-        <td> 
-           
-
-
-  2012-05-08 
-
-
-
-<a class="talkteacher" href="/teacher/246/talk/16031/">
-  Group A #4
-</a>
-<i>1:43:41</i>
-
-
-
-        </td>
-        <td nowrap align=right valign=top>
-            
-        
-<div class="talkbutton">
-
-
-
-
-    
-        <a href="/teacher/246/talk/16031/20120508-Sayadaw_U_Tejaniya-IMSRC-group_a_4.mp3">Download</a>
-    
-
-
-
-    <a title="Stream Audio of Group A #4"
-       href="http://dharmaseed.org/talks/audio_player/246/16031.html"
-       onClick="popup('http://dharmaseed.org/talks/audio_player/246/16031.html', 660,
-                 195 ); return false;"
-    
-        >Stream</a>
-    
-
-
-       
-    
-        <a href="/shop/cart/add/16031/testcookie">Order</a>
-    
-
-    
-
-
-
-
-
-
-    
-        <a title="RSS feed for 'Group A #4'"
-           style='position:relative; bottom:-3px; left:0px'
-           class="talkteacher" href="/feeds/talk/246/16031">
-          <img border=0 src="http://media.dharmaseed.org/images/feed-icon-14x14.png"/>
-        </a>
-        <a title="Subscribe to 'Group A #4' in iTunes"
-           style='position:relative; bottom:-3px; left:-5px'
-           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/16031">
-          <img border="0" src="http://media.dharmaseed.org/images/podcast_icon_small.png" alt="iTunes"></a>
-    
-
-
-</div>
-
-        </td>
-      
-    </tr>
-  
-
-  
-
-  
-      <tr>
-          <td colspan=2>
-            
-            	<a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>:&nbsp;
-<a class='quietlink' href="/retreats/1446/">
-  <i>Dhamma Everywhere: Awareness with Wisdom Retreat </i>
-</a>
-
-
-          </td>
-      </tr>
-  
-
-  
-  
-  
-
-  
-</table>
-
-
-
-
-                </td></tr>
-			</table>
-		
-			<table width='100%'>
-                <tr><td colspan=2>
-                    
-
-
-
-
-
-<table width='100%'>   
-    <tr >
-      
-        <td> 
-           
-
-
-  2012-05-07 
-
-
-
-<a class="talkteacher" href="/teacher/246/talk/16028/">
-  Mindful Speaking
-</a>
-<i>12:21</i>
-
-
-
-        </td>
-        <td nowrap align=right valign=top>
-            
-        
-<div class="talkbutton">
-
-
-
-
-    
-        <a href="/teacher/246/talk/16028/20120507-Sayadaw_U_Tejaniya-IMSRC-mindful_speaking.mp3">Download</a>
-    
-
-
-
-    <a title="Stream Audio of Mindful Speaking"
-       href="http://dharmaseed.org/talks/audio_player/246/16028.html"
-       onClick="popup('http://dharmaseed.org/talks/audio_player/246/16028.html', 660,
-                 195 ); return false;"
-    
-        >Stream</a>
-    
-
-
-       
-    
-        <a href="/shop/cart/add/16028/testcookie">Order</a>
-    
-
-    
-
-
-
-
-
-
-    
-        <a title="RSS feed for 'Mindful Speaking'"
-           style='position:relative; bottom:-3px; left:0px'
-           class="talkteacher" href="/feeds/talk/246/16028">
-          <img border=0 src="http://media.dharmaseed.org/images/feed-icon-14x14.png"/>
-        </a>
-        <a title="Subscribe to 'Mindful Speaking' in iTunes"
-           style='position:relative; bottom:-3px; left:-5px'
-           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/16028">
-          <img border="0" src="http://media.dharmaseed.org/images/podcast_icon_small.png" alt="iTunes"></a>
-    
-
-
-</div>
-
-        </td>
-      
-    </tr>
-  
-
-  
-      <tr><td colspan=2>Sayadaw is giving instructions - 10 days into the retreat - for including speaking and listening in the practice of momentum of awareness</td></tr>
-  
-
-  
-      <tr>
-          <td colspan=2>
-            
-            	<a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>:&nbsp;
-<a class='quietlink' href="/retreats/1446/">
-  <i>Dhamma Everywhere: Awareness with Wisdom Retreat </i>
-</a>
-
-
-          </td>
-      </tr>
-  
-
-  
-  
-  
-
-  
-</table>
-
-
-
-
-                </td></tr>
-			</table>
-		
-			<table width='100%'>
-                <tr><td colspan=2>
-                    
-
-
-
-
-
-<table width='100%'>   
-    <tr >
-      
-        <td> 
-           
-
-
-  2012-05-07 
-
-
-
-<a class="talkteacher" href="/teacher/246/talk/16030/">
-  Group F #3
-</a>
-<i>1:49:06</i>
-
-
-
-        </td>
-        <td nowrap align=right valign=top>
-            
-        
-<div class="talkbutton">
-
-
-
-
-    
-        <a href="/teacher/246/talk/16030/20120507-Sayadaw_U_Tejaniya-IMSRC-group_f_3.mp3">Download</a>
-    
-
-
-
-    <a title="Stream Audio of Group F #3"
-       href="http://dharmaseed.org/talks/audio_player/246/16030.html"
-       onClick="popup('http://dharmaseed.org/talks/audio_player/246/16030.html', 660,
-                 195 ); return false;"
-    
-        >Stream</a>
-    
-
-
-       
-    
-        <a href="/shop/cart/add/16030/testcookie">Order</a>
-    
-
-    
-
-
-
-
-
-
-    
-        <a title="RSS feed for 'Group F #3'"
-           style='position:relative; bottom:-3px; left:0px'
-           class="talkteacher" href="/feeds/talk/246/16030">
-          <img border=0 src="http://media.dharmaseed.org/images/feed-icon-14x14.png"/>
-        </a>
-        <a title="Subscribe to 'Group F #3' in iTunes"
-           style='position:relative; bottom:-3px; left:-5px'
-           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/16030">
-          <img border="0" src="http://media.dharmaseed.org/images/podcast_icon_small.png" alt="iTunes"></a>
-    
-
-
-</div>
-
-        </td>
-      
-    </tr>
-  
-
-  
-
-  
-      <tr>
-          <td colspan=2>
-            
-            	<a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>:&nbsp;
-<a class='quietlink' href="/retreats/1446/">
-  <i>Dhamma Everywhere: Awareness with Wisdom Retreat </i>
-</a>
-
-
-          </td>
-      </tr>
-  
-
-  
-  
-  
-
-  
-</table>
-
-
-
-
-                </td></tr>
-			</table>
-		
-			<table width='100%'>
-                <tr><td colspan=2>
-                    
-
-
-
-
-
-<table width='100%'>   
-    <tr >
-      
-        <td> 
-           
-
-
-  2012-05-07 
-
-
-
-<a class="talkteacher" href="/teacher/246/talk/16002/">
-  Group E # 3
-</a>
-<i>1:47:05</i>
-
-
-
-        </td>
-        <td nowrap align=right valign=top>
-            
-        
-<div class="talkbutton">
-
-
-
-
-    
-        <a href="/teacher/246/talk/16002/20120507-Sayadaw_U_Tejaniya-IMSRC-group_e_3.mp3">Download</a>
-    
-
-
-
-    <a title="Stream Audio of Group E # 3"
-       href="http://dharmaseed.org/talks/audio_player/246/16002.html"
-       onClick="popup('http://dharmaseed.org/talks/audio_player/246/16002.html', 660,
-                 195 ); return false;"
-    
-        >Stream</a>
-    
-
-
-       
-    
-        <a href="/shop/cart/add/16002/testcookie">Order</a>
-    
-
-    
-
-
-
-
-
-
-    
-        <a title="RSS feed for 'Group E # 3'"
-           style='position:relative; bottom:-3px; left:0px'
-           class="talkteacher" href="/feeds/talk/246/16002">
-          <img border=0 src="http://media.dharmaseed.org/images/feed-icon-14x14.png"/>
-        </a>
-        <a title="Subscribe to 'Group E # 3' in iTunes"
-           style='position:relative; bottom:-3px; left:-5px'
-           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/16002">
-          <img border="0" src="http://media.dharmaseed.org/images/podcast_icon_small.png" alt="iTunes"></a>
-    
-
-
-</div>
-
-        </td>
-      
-    </tr>
-  
-
-  
-
-  
-      <tr>
-          <td colspan=2>
-            
-            	<a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>:&nbsp;
-<a class='quietlink' href="/retreats/1446/">
-  <i>Dhamma Everywhere: Awareness with Wisdom Retreat </i>
-</a>
-
-
-          </td>
-      </tr>
-  
-
-  
-  
-  
-
-  
-</table>
-
-
-
-
-                </td></tr>
-			</table>
-		
-			<table width='100%'>
-                <tr><td colspan=2>
-                    
-
-
-
-
-
-<table width='100%'>   
-    <tr >
-      
-        <td> 
-           
-
-
-  2012-05-06 
-
-
-
-<a class="talkteacher" href="/teacher/246/talk/16003/">
-  Group D #3
-</a>
-<i>2:03:10</i>
-
-
-
-        </td>
-        <td nowrap align=right valign=top>
-            
-        
-<div class="talkbutton">
-
-
-
-
-    
-        <a href="/teacher/246/talk/16003/20120506-Sayadaw_U_Tejaniya-IMSRC-group_d_3.mp3">Download</a>
-    
-
-
-
-    <a title="Stream Audio of Group D #3"
-       href="http://dharmaseed.org/talks/audio_player/246/16003.html"
-       onClick="popup('http://dharmaseed.org/talks/audio_player/246/16003.html', 660,
-                 195 ); return false;"
-    
-        >Stream</a>
-    
-
-
-       
-    
-        <a href="/shop/cart/add/16003/testcookie">Order</a>
-    
-
-    
-
-
-
-
-
-
-    
-        <a title="RSS feed for 'Group D #3'"
-           style='position:relative; bottom:-3px; left:0px'
-           class="talkteacher" href="/feeds/talk/246/16003">
-          <img border=0 src="http://media.dharmaseed.org/images/feed-icon-14x14.png"/>
-        </a>
-        <a title="Subscribe to 'Group D #3' in iTunes"
-           style='position:relative; bottom:-3px; left:-5px'
-           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/16003">
-          <img border="0" src="http://media.dharmaseed.org/images/podcast_icon_small.png" alt="iTunes"></a>
-    
-
-
-</div>
-
-        </td>
-      
-    </tr>
-  
-
-  
-
-  
-      <tr>
-          <td colspan=2>
-            
-            	<a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>:&nbsp;
-<a class='quietlink' href="/retreats/1446/">
-  <i>Dhamma Everywhere: Awareness with Wisdom Retreat </i>
-</a>
-
-
-          </td>
-      </tr>
-  
-
-  
-  
-  
-
-  
-</table>
-
-
-
-
-                </td></tr>
-			</table>
-		
-			<table width='100%'>
-                <tr><td colspan=2>
-                    
-
-
-
-
-
-<table width='100%'>   
-    <tr >
-      
-        <td> 
-           
-
-
-  2012-05-06 
-
-
-
-<a class="talkteacher" href="/teacher/246/talk/16004/">
-  Group C #3
-</a>
-<i>1:55:17</i>
-
-
-
-        </td>
-        <td nowrap align=right valign=top>
-            
-        
-<div class="talkbutton">
-
-
-
-
-    
-        <a href="/teacher/246/talk/16004/20120506-Sayadaw_U_Tejaniya-IMSRC-group_c_3.mp3">Download</a>
-    
-
-
-
-    <a title="Stream Audio of Group C #3"
-       href="http://dharmaseed.org/talks/audio_player/246/16004.html"
-       onClick="popup('http://dharmaseed.org/talks/audio_player/246/16004.html', 660,
-                 195 ); return false;"
-    
-        >Stream</a>
-    
-
-
-       
-    
-        <a href="/shop/cart/add/16004/testcookie">Order</a>
-    
-
-    
-
-
-
-
-
-
-    
-        <a title="RSS feed for 'Group C #3'"
-           style='position:relative; bottom:-3px; left:0px'
-           class="talkteacher" href="/feeds/talk/246/16004">
-          <img border=0 src="http://media.dharmaseed.org/images/feed-icon-14x14.png"/>
-        </a>
-        <a title="Subscribe to 'Group C #3' in iTunes"
-           style='position:relative; bottom:-3px; left:-5px'
-           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/16004">
-          <img border="0" src="http://media.dharmaseed.org/images/podcast_icon_small.png" alt="iTunes"></a>
-    
-
-
-</div>
-
-        </td>
-      
-    </tr>
-  
-
-  
-
-  
-      <tr>
-          <td colspan=2>
-            
-            	<a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>:&nbsp;
-<a class='quietlink' href="/retreats/1446/">
-  <i>Dhamma Everywhere: Awareness with Wisdom Retreat </i>
-</a>
-
-
-          </td>
-      </tr>
-  
-
-  
-  
-  
-
-  
-</table>
-
-
-
-
-                </td></tr>
-			</table>
-		
-			<table width='100%'>
-                <tr><td colspan=2>
-                    
-
-
-
-
-
-<table width='100%'>   
-    <tr >
-      
-        <td> 
-           
-
-
-  2012-05-05 
-
-
-
-<a class="talkteacher" href="/teacher/246/talk/16006/">
-  Group B #3
-</a>
-<i>1:55:35</i>
-
-
-
-        </td>
-        <td nowrap align=right valign=top>
-            
-        
-<div class="talkbutton">
-
-
-
-
-    
-        <a href="/teacher/246/talk/16006/20120505-Sayadaw_U_Tejaniya-IMSRC-group_b_3.mp3">Download</a>
-    
-
-
-
-    <a title="Stream Audio of Group B #3"
-       href="http://dharmaseed.org/talks/audio_player/246/16006.html"
-       onClick="popup('http://dharmaseed.org/talks/audio_player/246/16006.html', 660,
-                 195 ); return false;"
-    
-        >Stream</a>
-    
-
-
-       
-    
-        <a href="/shop/cart/add/16006/testcookie">Order</a>
-    
-
-    
-
-
-
-
-
-
-    
-        <a title="RSS feed for 'Group B #3'"
-           style='position:relative; bottom:-3px; left:0px'
-           class="talkteacher" href="/feeds/talk/246/16006">
-          <img border=0 src="http://media.dharmaseed.org/images/feed-icon-14x14.png"/>
-        </a>
-        <a title="Subscribe to 'Group B #3' in iTunes"
-           style='position:relative; bottom:-3px; left:-5px'
-           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/16006">
-          <img border="0" src="http://media.dharmaseed.org/images/podcast_icon_small.png" alt="iTunes"></a>
-    
-
-
-</div>
-
-        </td>
-      
-    </tr>
-  
-
-  
-
-  
-      <tr>
-          <td colspan=2>
-            
-            	<a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>:&nbsp;
-<a class='quietlink' href="/retreats/1446/">
-  <i>Dhamma Everywhere: Awareness with Wisdom Retreat </i>
-</a>
-
-
-          </td>
-      </tr>
-  
-
-  
-  
-  
-
-  
-</table>
-
-
-
-
-                </td></tr>
-			</table>
-		
-			<table width='100%'>
-                <tr><td colspan=2>
-                    
-
-
-
-
-
-<table width='100%'>   
-    <tr >
-      
-        <td> 
-           
-
-
-  2012-05-05 
-
-
-
-<a class="talkteacher" href="/teacher/246/talk/16005/">
-  Group A #3
-</a>
-<i>1:59:19</i>
-
-
-
-        </td>
-        <td nowrap align=right valign=top>
-            
-        
-<div class="talkbutton">
-
-
-
-
-    
-        <a href="/teacher/246/talk/16005/20120505-Sayadaw_U_Tejaniya-IMSRC-group_a_3.mp3">Download</a>
-    
-
-
-
-    <a title="Stream Audio of Group A #3"
-       href="http://dharmaseed.org/talks/audio_player/246/16005.html"
-       onClick="popup('http://dharmaseed.org/talks/audio_player/246/16005.html', 660,
-                 195 ); return false;"
-    
-        >Stream</a>
-    
-
-
-       
-    
-        <a href="/shop/cart/add/16005/testcookie">Order</a>
-    
-
-    
-
-
-
-
-
-
-    
-        <a title="RSS feed for 'Group A #3'"
-           style='position:relative; bottom:-3px; left:0px'
-           class="talkteacher" href="/feeds/talk/246/16005">
-          <img border=0 src="http://media.dharmaseed.org/images/feed-icon-14x14.png"/>
-        </a>
-        <a title="Subscribe to 'Group A #3' in iTunes"
-           style='position:relative; bottom:-3px; left:-5px'
-           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/16005">
-          <img border="0" src="http://media.dharmaseed.org/images/podcast_icon_small.png" alt="iTunes"></a>
-    
-
-
-</div>
-
-        </td>
-      
-    </tr>
-  
-
-  
-
-  
-      <tr>
-          <td colspan=2>
-            
-            	<a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>:&nbsp;
-<a class='quietlink' href="/retreats/1446/">
-  <i>Dhamma Everywhere: Awareness with Wisdom Retreat </i>
-</a>
-
-
-          </td>
-      </tr>
-  
-
-  
-  
-  
-
-  
-</table>
-
-
-
-
-                </td></tr>
-			</table>
-		
-			<table width='100%'>
-                <tr><td colspan=2>
-                    
-
-
-
-
-
-<table width='100%'>   
-    <tr >
-      
-        <td> 
-           
-
-
-  2012-05-04 
-
-
-
-<a class="talkteacher" href="/teacher/246/talk/15997/">
-  Group F 2
-</a>
-<i>1:40:42</i>
-
-
-
-        </td>
-        <td nowrap align=right valign=top>
-            
-        
-<div class="talkbutton">
-
-
-
-
-    
-        <a href="/teacher/246/talk/15997/20120504-Sayadaw_U_Tejaniya-IMSRC-group_f_2.mp3">Download</a>
-    
-
-
-
-    <a title="Stream Audio of Group F 2"
-       href="http://dharmaseed.org/talks/audio_player/246/15997.html"
-       onClick="popup('http://dharmaseed.org/talks/audio_player/246/15997.html', 660,
-                 195 ); return false;"
-    
-        >Stream</a>
-    
-
-
-       
-    
-        <a href="/shop/cart/add/15997/testcookie">Order</a>
-    
-
-    
-
-
-
-
-
-
-    
-        <a title="RSS feed for 'Group F 2'"
-           style='position:relative; bottom:-3px; left:0px'
-           class="talkteacher" href="/feeds/talk/246/15997">
-          <img border=0 src="http://media.dharmaseed.org/images/feed-icon-14x14.png"/>
-        </a>
-        <a title="Subscribe to 'Group F 2' in iTunes"
-           style='position:relative; bottom:-3px; left:-5px'
-           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/15997">
-          <img border="0" src="http://media.dharmaseed.org/images/podcast_icon_small.png" alt="iTunes"></a>
-    
-
-
-</div>
-
-        </td>
-      
-    </tr>
-  
-
-  
-
-  
-      <tr>
-          <td colspan=2>
-            
-            	<a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>:&nbsp;
-<a class='quietlink' href="/retreats/1446/">
-  <i>Dhamma Everywhere: Awareness with Wisdom Retreat </i>
-</a>
-
-
-          </td>
-      </tr>
-  
-
-  
-  
-  
-
-  
-</table>
-
-
-
-
-                </td></tr>
-			</table>
-		
-		<p>
-		
 
 <div class="paginator" style="margin-bottom:10px;">
     
@@ -1569,7 +685,3066 @@ $(
 </div>
 
 
-	</div>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-05-09 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23251/"
+    
+>
+  Group Discussion
+</a>
+
+    <i>49:49</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23251/20140509-Sayadaw_U_Tejaniya-IMSRC-group_discussion.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Group Discussion"
+           href="/talks/audio_player/246/23251.html"
+           onClick="popup('/talks/audio_player/246/23251.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23251/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Group Discussion'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23251?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Group Discussion' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23251">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-05-09 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23250/"
+    
+>
+  Last  Words From Sayadaw 
+</a>
+
+    <i>38:35</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23250/20140509-Sayadaw_U_Tejaniya-IMSRC-last_words_from_sayadaw.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Last  Words From Sayadaw "
+           href="/talks/audio_player/246/23250.html"
+           onClick="popup('/talks/audio_player/246/23250.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23250/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Last  Words From Sayadaw '"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23250?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Last  Words From Sayadaw ' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23250">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-05-08 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23249/"
+    
+>
+  Dharma Discussion Group F4
+</a>
+
+    <i>1:46:44</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23249/20140508-Sayadaw_U_Tejaniya-IMSRC-dharma_discussion_group_f4.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Dharma Discussion Group F4"
+           href="/talks/audio_player/246/23249.html"
+           onClick="popup('/talks/audio_player/246/23249.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23249/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Dharma Discussion Group F4'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23249?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Dharma Discussion Group F4' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23249">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-05-08 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23241/"
+    
+>
+  Morning reflections
+</a>
+
+    <i>30:33</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23241/20140508-Sayadaw_U_Tejaniya-IMSRC-morning_reflections.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Morning reflections"
+           href="/talks/audio_player/246/23241.html"
+           onClick="popup('/talks/audio_player/246/23241.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23241/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Morning reflections'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23241?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Morning reflections' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23241">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-05-08 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23248/"
+    
+>
+  Dharma Discussion Group E4
+</a>
+
+    <i>2:05:09</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23248/20140508-Sayadaw_U_Tejaniya-IMSFR-dharma_discussion_group_e4.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Dharma Discussion Group E4"
+           href="/talks/audio_player/246/23248.html"
+           onClick="popup('/talks/audio_player/246/23248.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23248/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Dharma Discussion Group E4'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23248?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Dharma Discussion Group E4' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23248">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSFR.dharmaseed.org">Insight Meditation Society - Forest Refuge</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-05-07 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23247/"
+    
+>
+  Dharma Discussion Group D4
+</a>
+
+    <i>1:58:01</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23247/20140507-Sayadaw_U_Tejaniya-IMSRC-dharma_discussion_group_d4.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Dharma Discussion Group D4"
+           href="/talks/audio_player/246/23247.html"
+           onClick="popup('/talks/audio_player/246/23247.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23247/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Dharma Discussion Group D4'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23247?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Dharma Discussion Group D4' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23247">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-05-07 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23246/"
+    
+>
+  Dharma Discussion Group C4
+</a>
+
+    <i>1:52:32</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23246/20140507-Sayadaw_U_Tejaniya-IMSRC-dharma_discussion_group_c4.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Dharma Discussion Group C4"
+           href="/talks/audio_player/246/23246.html"
+           onClick="popup('/talks/audio_player/246/23246.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23246/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Dharma Discussion Group C4'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23246?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Dharma Discussion Group C4' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23246">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-05-06 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23245/"
+    
+>
+  Dharma Discussion Group B4
+</a>
+
+    <i>2:00:26</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23245/20140506-Sayadaw_U_Tejaniya-IMSRC-dharma_discussion_group_b4.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Dharma Discussion Group B4"
+           href="/talks/audio_player/246/23245.html"
+           onClick="popup('/talks/audio_player/246/23245.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23245/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Dharma Discussion Group B4'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23245?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Dharma Discussion Group B4' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23245">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-05-06 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23244/"
+    
+>
+  Dharma Discussion Group A4
+</a>
+
+    <i>1:41:14</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23244/20140506-Sayadaw_U_Tejaniya-IMSRC-dharma_discussion_group_a4.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Dharma Discussion Group A4"
+           href="/talks/audio_player/246/23244.html"
+           onClick="popup('/talks/audio_player/246/23244.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23244/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Dharma Discussion Group A4'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23244?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Dharma Discussion Group A4' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23244">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-05-05 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23243/"
+    
+>
+  Dharma Discussion Group F3
+</a>
+
+    <i>2:14:12</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23243/20140505-Sayadaw_U_Tejaniya-IMSRC-dharma_discussion_group_f3.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Dharma Discussion Group F3"
+           href="/talks/audio_player/246/23243.html"
+           onClick="popup('/talks/audio_player/246/23243.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23243/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Dharma Discussion Group F3'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23243?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Dharma Discussion Group F3' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23243">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-05-05 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23196/"
+    
+>
+  Dharma discussion group E3
+</a>
+
+    <i>1:50:39</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23196/20140505-Sayadaw_U_Tejaniya-IMSRC-dharma_discussion_group_e3.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Dharma discussion group E3"
+           href="/talks/audio_player/246/23196.html"
+           onClick="popup('/talks/audio_player/246/23196.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23196/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Dharma discussion group E3'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23196?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Dharma discussion group E3' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23196">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-05-04 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23187/"
+    
+>
+  Dharma Discussion Group D3
+</a>
+
+    <i>2:00:37</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23187/20140504-Sayadaw_U_Tejaniya-IMSRC-dharma_discussion_group_d3.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Dharma Discussion Group D3"
+           href="/talks/audio_player/246/23187.html"
+           onClick="popup('/talks/audio_player/246/23187.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23187/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Dharma Discussion Group D3'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23187?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Dharma Discussion Group D3' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23187">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-05-04 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23232/"
+    
+>
+  Dharma discussion group C3
+</a>
+
+    <i>1:45:20</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23232/20140504-Sayadaw_U_Tejaniya-IMSRC-dharma_discussion_group_c3.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Dharma discussion group C3"
+           href="/talks/audio_player/246/23232.html"
+           onClick="popup('/talks/audio_player/246/23232.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23232/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Dharma discussion group C3'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23232?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Dharma discussion group C3' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23232">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-05-04 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23170/"
+    
+>
+  Guided Meditation
+</a>
+
+    <i>27:41</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23170/20140504-Sayadaw_U_Tejaniya-IMSRC-guided_meditation.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Guided Meditation"
+           href="/talks/audio_player/246/23170.html"
+           onClick="popup('/talks/audio_player/246/23170.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23170/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Guided Meditation'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23170?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Guided Meditation' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23170">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-05-03 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23165/"
+    
+>
+  Dharma Discussion Group B3
+</a>
+
+    <i>2:09:24</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23165/20140503-Sayadaw_U_Tejaniya-IMSRC-dharma_discussion_group_b3.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Dharma Discussion Group B3"
+           href="/talks/audio_player/246/23165.html"
+           onClick="popup('/talks/audio_player/246/23165.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23165/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Dharma Discussion Group B3'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23165?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Dharma Discussion Group B3' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23165">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-05-03 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23163/"
+    
+>
+  Dharma Discussion Group A3
+</a>
+
+    <i>1:39:15</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23163/20140503-Sayadaw_U_Tejaniya-IMSRC-dharma_discussion_group_a3.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Dharma Discussion Group A3"
+           href="/talks/audio_player/246/23163.html"
+           onClick="popup('/talks/audio_player/246/23163.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23163/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Dharma Discussion Group A3'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23163?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Dharma Discussion Group A3' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23163">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-05-03 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23160/"
+    
+>
+  Guided Meditation
+</a>
+
+    <i>33:43</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23160/20140503-Sayadaw_U_Tejaniya-IMSRC-guided_meditation.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Guided Meditation"
+           href="/talks/audio_player/246/23160.html"
+           onClick="popup('/talks/audio_player/246/23160.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23160/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Guided Meditation'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23160?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Guided Meditation' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23160">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-05-02 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23164/"
+    
+>
+  Dharma Discussion Group F2
+</a>
+
+    <i>1:51:20</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23164/20140502-Sayadaw_U_Tejaniya-IMSRC-dharma_discussion_group_f2.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Dharma Discussion Group F2"
+           href="/talks/audio_player/246/23164.html"
+           onClick="popup('/talks/audio_player/246/23164.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23164/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Dharma Discussion Group F2'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23164?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Dharma Discussion Group F2' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23164">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-05-02 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23162/"
+    
+>
+  Dharma Discussion Group E2
+</a>
+
+    <i>2:14:27</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23162/20140502-Sayadaw_U_Tejaniya-IMSRC-dharma_discussion_group_e2.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Dharma Discussion Group E2"
+           href="/talks/audio_player/246/23162.html"
+           onClick="popup('/talks/audio_player/246/23162.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23162/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Dharma Discussion Group E2'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23162?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Dharma Discussion Group E2' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23162">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-05-02 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23157/"
+    
+>
+  Guided Meditation
+</a>
+
+    <i>23:26</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23157/20140502-Sayadaw_U_Tejaniya-IMSRC-guided_meditation.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Guided Meditation"
+           href="/talks/audio_player/246/23157.html"
+           onClick="popup('/talks/audio_player/246/23157.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23157/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Guided Meditation'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23157?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Guided Meditation' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23157">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-05-01 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23156/"
+    
+>
+  Dharma Discussion Group D2
+</a>
+
+    <i>2:02:01</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23156/20140501-Sayadaw_U_Tejaniya-IMSRC-dharma_discussion_group_d2.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Dharma Discussion Group D2"
+           href="/talks/audio_player/246/23156.html"
+           onClick="popup('/talks/audio_player/246/23156.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23156/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Dharma Discussion Group D2'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23156?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Dharma Discussion Group D2' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23156">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-05-01 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23131/"
+    
+>
+  Guided meditation
+</a>
+
+    <i>31:44</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23131/20140501-Sayadaw_U_Tejaniya-IMSRC-guided_meditation.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Guided meditation"
+           href="/talks/audio_player/246/23131.html"
+           onClick="popup('/talks/audio_player/246/23131.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23131/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Guided meditation'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23131?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Guided meditation' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23131">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-05-01 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23132/"
+    
+>
+  Dharma Discussion C2
+</a>
+
+    <i>1:26:44</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23132/20140501-Sayadaw_U_Tejaniya-IMSRC-dharma_discussion_c2.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Dharma Discussion C2"
+           href="/talks/audio_player/246/23132.html"
+           onClick="popup('/talks/audio_player/246/23132.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23132/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Dharma Discussion C2'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23132?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Dharma Discussion C2' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23132">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-04-30 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23130/"
+    
+>
+  Dharma Discussion Group B2
+</a>
+
+    <i>2:09:43</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23130/20140430-Sayadaw_U_Tejaniya-IMSRC-dharma_discussion_group_b2.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Dharma Discussion Group B2"
+           href="/talks/audio_player/246/23130.html"
+           onClick="popup('/talks/audio_player/246/23130.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23130/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Dharma Discussion Group B2'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23130?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Dharma Discussion Group B2' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23130">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+      <table width='100%'>
+                <tr><td colspan=2>
+                    
+
+
+
+
+
+<table width='100%'>
+    <tr >
+      
+        <td>
+           
+
+
+  2014-04-30 
+
+
+
+<a class="talkteacher"
+    
+        href="/teacher/246/talk/23129/"
+    
+>
+  Dharma discussion Group A2
+</a>
+
+    <i>1:46:49</i>
+
+
+
+
+        </td>
+        <td nowrap align=right valign=top>
+            
+        
+
+
+<div class="talkbutton">
+
+
+
+
+    
+        <a href="/teacher/246/talk/23129/20140430-Sayadaw_U_Tejaniya-IMSRC-dharma_discussion_group_a2.mp3">Download</a>
+    
+
+
+
+    
+        <a title="Listen to Dharma discussion Group A2"
+           href="/talks/audio_player/246/23129.html"
+           onClick="popup('/talks/audio_player/246/23129.html', 660,
+                     195 ); return false;"
+        
+            >Listen</a>
+        
+    
+       
+    
+        <a href="/shop/cart/add/23129/testcookie">Order</a>
+    
+
+    
+
+
+
+
+
+
+    
+        <a title="RSS feed for 'Dharma discussion Group A2'"
+           style='position:relative; bottom:-3px; left:0px'
+           class="talkteacher" href="/feeds/talk/246/23129?max-entries=15">
+          <img border=0 src="/static/images/feed-icon-14x14.png"/>
+        </a>
+        <a title="Subscribe to 'Dharma discussion Group A2' in iTunes"
+           style='position:relative; bottom:-3px; left:-5px'
+           class="talkteacher" href="itpc://dharmaseed.org/feeds/talk/246/23129">
+          <img border="0" src="/static/images/podcast_icon_small.png" alt="iTunes"></a>
+    
+
+
+</div>
+
+        </td>
+      
+    </tr>
+  
+
+  
+
+  
+      <tr>
+          <td colspan=2>
+            
+              <a class='quietlink' href="http://IMSRC.dharmaseed.org">Insight Meditation Society - Retreat Center</a>
+:&nbsp;
+<a class='quietlink' href="/retreats/2016/">
+  <i>Dhamma Everywhere: Awareness with Wisdom Retreat
+ </i>
+</a>
+
+
+          </td>
+      </tr>
+  
+
+  
+  
+  
+
+  
+</table>
+
+
+
+
+                </td></tr>
+      </table>
+    
+    <p>
+    
+
+<div class="paginator" style="margin-bottom:10px;">
+    
+        <span class="disabled prev">&lsaquo;&lsaquo; previous</span>
+    
+    
+        <a href="?page=2" class="next">next &rsaquo;&rsaquo;</a>
+    
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    
+        
+            
+                <span class="current page">1</span>
+            
+        
+    
+        
+            
+                <a href="?page=2" class="page">2</a>
+            
+        
+    
+        
+            
+                <a href="?page=3" class="page">3</a>
+            
+        
+    
+</div>
+
+
+  </div>
 
 
 
@@ -1580,8 +3755,8 @@ $(
             </td>
           </tr>
         </table>
-	  </td>
-	</tr>
+    </td>
+  </tr>
   </table>
 </td>
 
@@ -1599,7 +3774,7 @@ $(
                     <td rowspan='2'><a
                      href="http://creativecommons.org/licenses/by-nc-nd/3.0/"><img alt="Creative
                              Commons Logo"
-                     src="http://media.dharmaseed.org/images/creative_commons_logo.gif"
+                     src="/static/images/creative_commons_logo.gif"
                      border="0"></a></td>
                     <td align='left' class="footer"> Material on this site is licensed under a
                       <a class="cclink" rel="license"
@@ -1618,6 +3793,7 @@ $(
             </tr>
           </table>
         </td>
+        <td></td>
       </tr>
     </table>
   </body>
