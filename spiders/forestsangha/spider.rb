@@ -17,7 +17,7 @@ class Forestsangha < Spider
     @talk_fragment = doc.at_css('.product-display')
 
     # There has to be a permalink to a talk
-    if not permalink = talk_fragment.tolerant_css('div > a', 'href')
+    if not permalink = talk_fragment.tolerant_css('p > a', 'href')
       log.warn "Couldn't get talk's permalink"
       return false
     end
