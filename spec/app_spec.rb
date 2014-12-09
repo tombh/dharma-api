@@ -7,7 +7,7 @@ describe "Dharma API" do
     Mail.defaults do
       delivery_method :test # in practice you'd do this in spec_helper.rb
     end
-    
+
     talks = JSON.parse(open(File.dirname(__FILE__) + '/fixtures/talks.json').read)
     # load talks.json
     talks.each do |talk|
@@ -25,7 +25,7 @@ describe "Dharma API" do
       :email => 'mrbuddha@548bc.com',
       :status => 'active'
     })
-    
+
     @auth = '?api_key=123'
   end
 
@@ -98,10 +98,10 @@ describe "Dharma API" do
       results = json['results']
       results.count.should eq 11
     end
-    it "should find the speaker with 'Burma' in their bio" do
-      get "/speakers#{@auth}&search=Burma"
-      json = JSON.parse(last_response.body)['results'][0]      
-      json['name'].should eq "Sayadaw U Tejaniya"
+    it "should find the speaker with 'Zen Hospice' in their bio" do
+      get "/speakers#{@auth}&search=Zen%20Hospice"
+      json = JSON.parse(last_response.body)['results'][0]
+      json['name'].should eq "David Cohn"
     end
   end
 
@@ -110,7 +110,7 @@ describe "Dharma API" do
   describe "API key manager" do
 
     include Mail::Matchers
-    
+
     describe "/request_api_key" do
       before :all do
         Mail::TestMailer.deliveries.clear
