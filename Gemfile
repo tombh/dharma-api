@@ -1,5 +1,6 @@
-ruby '1.9.3'
+ruby '2.1.5'
 source "http://rubygems.org"
+
 gem "log_buddy"
 gem "nokogiri"
 gem "bson_ext"
