@@ -30,78 +30,79 @@ describe "Dharma API" do
   end
 
   describe "Authentication" do
-    it "should return a 401 status with no results for an invalid API key" do
+    it "returns a 401 status with no results for an invalid API key" do
       get '/talks' do
-        last_response.status.should be 401
+        expect(last_response.status).to eq 401
         json = JSON.parse(last_response.body)
-        json['results'].count.should <= 1
+        expect(json['results'].count).to be <= 1
       end
     end
   end
 
   describe "Homepage" do
-    it "should load the home page" do
+    it "loads the home page" do
       get '/'
-      last_response.should be_ok
+      expect(last_response.status).to eq 200
     end
   end
 
   describe '/talk/:id' do
-    it "should return a talk with its speaker" do
+    it "returns a talk with its speaker" do
     	get '/talk/1' + @auth
     	json = JSON.parse(last_response.body)['results'][0]
-    	json['title'].should eq 'How Does the Heart Let Go?'
-    	json['description'].start_with?('Being with things as they are and letting').should eq true
-    	json['duration'].should eq 3032
-    	json['event'].should eq nil
-    	json['speaker']['name'].should eq "Mary Grace Orr"
-    	json['speaker']['picture'].should eq 'http://media.dharmaseed.org/uploads/photos/thumb_13589%20C%20Mary.jpg'
-      json['source'].should eq 'http://dharmaseed.org'
-      json['license'].should eq 'http://creativecommons.org/licenses/by-nc-nd/3.0/'
+    	expect(json['title']).to eq 'How Does the Heart Let Go?'
+    	expect(json['description']).to start_with('Being with things as they are and letting')
+    	expect(json['duration']).to eq 3032
+    	expect(json['event']).to eq nil
+    	expect(json['speaker']['name']).to eq "Mary Grace Orr"
+    	expect(json['speaker']['picture']).to eq 'http://media.dharmaseed.org/uploads/photos/thumb_13589%20C%20Mary.jpg'
+      expect(json['source']).to eq 'http://dharmaseed.org'
+      expect(json['license']).to eq 'http://creativecommons.org/licenses/by-nc-nd/3.0/'
     end
   end
 
   describe '/speaker/:id' do
-    it "should return a speaker with talks" do
+    it "returns a speaker with talks" do
     	get '/speaker/2' + @auth
     	json = JSON.parse(last_response.body)['results'][0]
-    	json['name'].should eq "Jack Kornfield"
-    	json['bio'].start_with?("Over the years of teaching, I've found a growing need").should eq true
-    	json['picture'].should eq 'http://media.dharmaseed.org/uploads/photos/thumb_jack_kornfield.jpg'
-    	json['talks'].count eq 1
+    	expect(json['name']).to eq "Jack Kornfield"
+    	expect(json['bio']).to start_with("Over the years of teaching, I've found a growing need")
+    	expect(json['picture']).to eq 'http://media.dharmaseed.org/uploads/photos/thumb_jack_kornfield.jpg'
+    	expect(json['talks'].count).to eq 1
     end
   end
 
   describe "/talks" do
-    it "should return a page of talks when called without args" do
+    it "returns a page of talks when called without args" do
       get '/talks' + @auth
       json = JSON.parse(last_response.body)
       metta = json['metta']
-      metta['total'].should eq 29
+      expect(metta['total']).to eq 29
       results = json['results']
-      results.count.should eq 25
+      expect(results.count).to eq 25
     end
 
-    it "should find the talk with 'mountain' in it" do
+    it "finds the talk with 'mountain' in it" do
       get "/talks#{@auth}&search=mountain"
       json = JSON.parse(last_response.body)['results'][0]
-      json['permalink'].should eq "http://dharmaseed.org/teacher/178/talk/16074/20120510-Thanissara-DG-3_9_68_icon_of_the_heart.mp3"
+      expect(json['permalink']).to eq "http://dharmaseed.org/teacher/178/talk/16074/20120510-Thanissara-DG-3_9_68_icon_of_the_heart.mp3"
     end
   end
 
   describe "/speakers" do
-    it "should return a page of speakers when called without args" do
+    it "returns a page of speakers when called without args" do
       get '/speakers' + @auth
       json = JSON.parse(last_response.body)
       metta = json['metta']
-      metta['total'].should eq 11
+      expect(metta['total']).to eq 11
       results = json['results']
-      results.count.should eq 11
+      expect(results.count).to eq 11
     end
-    it "should find the speaker with 'Zen Hospice' in their bio" do
+
+    it "finds the speaker with 'Zen Hospice' in their bio" do
       get "/speakers#{@auth}&search=Zen%20Hospice"
       json = JSON.parse(last_response.body)['results'][0]
-      json['name'].should eq "David Cohn"
+      expect(json['name']).to eq "David Cohn"
     end
   end
 
@@ -118,13 +119,14 @@ describe "Dharma API" do
         get "/request_api_key?email=" + @email
       end
 
-      it "should send an email with an API key in it" do
-        last_response.status.should be 200
+      it "generates API key" do
+        expect(last_response.status).to eq 200
         @api_key = Key.find_by_email(@email).api_key
-        @api_key.empty?.should_not eq true
-        should have_sent_email.to(@email)
-        should have_sent_email.matching_body(/#{@api_key}/)
+        expect(@api_key).not_to be_empty
       end
+
+      it { should have_sent_email.to(@email) }
+      it { should have_sent_email.matching_body(/#{@api_key}/) }
     end
 
   end
