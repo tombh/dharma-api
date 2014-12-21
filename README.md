@@ -27,7 +27,7 @@ available throught this API. All the talks are gathered from around the web and 
 permit their redistribution they do come with formal licensing agreements such as dharmaseesd.org's and audiodharma.org's
 [Creative Common's License](http://creativecommons.org/licenses/by-nc-nd/3.0/).
 
-I believe the essential thing to consider is the spirit of dana (generosity) that these talks are given in, they are given 
+I believe the essential thing to consider is the spirit of dana (generosity) that these talks are given in, they are given
 freely. However, the archivers and givers of these talks often seek modest donations to help them sustain the continued
 availability of the dharma. Dig deep followers of the way!
 
@@ -77,7 +77,7 @@ There are 4 main methods
 		speaker_id: 55,
 		title: "Angulimala",
 		venue: "Insight Meditation Centre, Redwood, California"
-	} 
+	}
 
 	...(lots more talks here)...
 
@@ -104,7 +104,7 @@ The speaker can be accessed with the speaker_id like so `/speaker/55`
 		name: "Mary Grace Orr",
 		picture: "http://media.dharmaseed.org/uploads/photos/thumb_13589%20C%20Mary.jpg"
 	}
-	
+
 	...(lots more speakers here)...
 
 Note that this method doesn't list all the talks for a given speaker. You will need the `/speaker` methd for that.
@@ -167,7 +167,7 @@ The `/talks` and `/speakers` methods each take the following useful params;
 
 Searches all the text fields including permalinks for the given string.
 
-**`order=`**  
+**`order=`**
 
 Attempts to order the results by the given field. To use reverse order, place a `-` at the beginning of the field, eg;
 
@@ -181,10 +181,31 @@ When there are more than 25 (or the value specified by rpp) results per page you
 
 The number of results to show per page.
 
+# Hacking
+
+The Dharma API is built on [Sinatra](http://www.sinatrarb.com/intro.html), and you can help us develop it!
+
+## Installation
+
+Fork and clone the repository and then run `bundle install` from within it.
+
+To start the server run `bundle exec guard`, and then view the awesome at `localhost:9292`
+
+To run the tests: `bundle exec rspec`
+
+## Fetch some talks
+
+To test out the API, you will need to populate your database by running the spiders: `bundle exec rake crawl` will iterate through all of them.
+
+To run a single spider, you need to pass the `--spider` option:
+
+`bundle exec rake crawl -- --spider=sfzc`
+
+To extra hypens are there to stop `rake` interpretting the options as it's own.
 
 ## Adding more talks to the API ##
 
-We're always looking for more sources of dharma talks, if you would like to see a new source then please do open a [feature 
+We're always looking for more sources of dharma talks, if you would like to see a new source then please do open a [feature
 request](https://github.com/tombh/dharma-api/issues). Or even better fork the code and write your own spider and submit a pull request.
 It would add to the stability of the API if you can provide concise tests for your spider, tests that both cover the code and the
 applicability to the ever changing HTML of the live site from which the talks are scraped.
