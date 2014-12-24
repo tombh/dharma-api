@@ -1,7 +1,7 @@
 # encoding: UTF-8
 # http://birken.ca
 
-# Talks given by Theravadin monastics in the Thai forest tradition, usually 
+# Talks given by Theravadin monastics in the Thai forest tradition, usually
 # tracing their lineage back through Ajahn Chah.
 
 # Yo so bhagavæ arahaµ sammæsambuddho
@@ -29,12 +29,12 @@ class Sfzc < Spider
     speaker_name = title.split(' - ').first.strip
 
     speaker = Speaker.first_or_create(:name => speaker_name)
-    
+
     title = title.split(' - ')[1]
 
-    talk = Talk.first_or_create(:permalink => permalink)
+    return if title =~ /^\s*$/ || title.nil?
 
-    return if title =~ /^\s*$/
+    talk = Talk.first_or_create(:permalink => permalink)
 
     date = fragment.css('td')[0].text.split('/')
 
@@ -52,7 +52,7 @@ class Sfzc < Spider
     talk.update_attributes!(talk_details)
 
     d Talk.find_by_permalink(permalink)
-    d "\n" 
+    d "\n"
   end
 
   def parse_page page
