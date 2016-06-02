@@ -8,13 +8,11 @@
 # To the Blessed One, the Lord, who fully attained perfect enlightenment
 
 class Sfzc < Spider
-
-  BASE_DOMAIN = 'http://www.sfzc.org'
+  BASE_DOMAIN = 'http://www.sfzc.org'.freeze
   BASE_URL = BASE_DOMAIN + '/zc/display.asp?catid=1,10&pageid=440'
-  LICENSE = 'http://creativecommons.org/licenses/by-nc-nd/3.0/deed.en_US'
+  LICENSE = 'http://creativecommons.org/licenses/by-nc-nd/3.0/deed.en_US'.freeze
 
-  def parse_talk fragment
-
+  def parse_talk(fragment)
     fragment.css('td')[0]
 
     permalink = fragment.css('td')[2].css('a')[1].attr('href')
@@ -28,25 +26,25 @@ class Sfzc < Spider
 
     speaker_name = title.split(' - ').first.strip
 
-    speaker = Speaker.first_or_create(:name => speaker_name)
+    speaker = Speaker.first_or_create(name: speaker_name)
 
     title = title.split(' - ')[1]
 
     return if title =~ /^\s*$/ || title.nil?
 
-    talk = Talk.first_or_create(:permalink => permalink)
+    talk = Talk.first_or_create(permalink: permalink)
 
     date = fragment.css('td')[0].text.split('/')
 
     date = "#{date[1]}/#{date[0]}/#{date[2]}"
 
     talk_details = {
-      :title => title,
-      :speaker_id => speaker._id,
-      :permalink => permalink,
-      :date => date,
-      :source => BASE_DOMAIN,
-      :license => LICENSE
+      title: title,
+      speaker_id: speaker._id,
+      permalink: permalink,
+      date: date,
+      source: BASE_DOMAIN,
+      license: LICENSE
     }
 
     talk.update_attributes!(talk_details)
@@ -55,15 +53,15 @@ class Sfzc < Spider
     d "\n"
   end
 
-  def parse_page page
+  def parse_page(page)
     Nokogiri::HTML(page).css('table.datasm1 tr').each do |row|
       parse_talk row
     end
   end
 
   def run
-    d "Crawling SFZC"
-    log.info "Crawl initiated on " + Time.now.inspect
+    d 'Crawling SFZC'
+    log.info 'Crawl initiated on ' + Time.now.inspect
     d "Opening #{BASE_URL}"
     # First collect all the talk pages
     talk_pages = [BASE_URL]
@@ -75,5 +73,4 @@ class Sfzc < Spider
       parse_page open(page).read
     end
   end
-
 end

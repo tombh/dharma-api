@@ -1,22 +1,22 @@
 require 'log_buddy'
 
-Dir.mkdir(PROJECT_ROOT + '/logs') if !File.exists?(PROJECT_ROOT + '/logs')
+Dir.mkdir(PROJECT_ROOT + '/logs') unless File.exist?(PROJECT_ROOT + '/logs')
 
 MONGO_LOGGER = Logger.new(PROJECT_ROOT + '/logs/mongomapper.log')
 
 LogBuddy.init(
-  :disabled => ENV['RACK_ENV'] == 'test', 
-  :log_to_stdout => false, # strange, but without this d() logs everything twice
-  :use_awesome_print => true
+  disabled: ENV['RACK_ENV'] == 'test',
+  log_to_stdout: false, # strange, but without this d() logs everything twice
+  use_awesome_print: true
 )
 
 class MultiIO
   def initialize(*targets)
-     @targets = targets
+    @targets = targets
   end
 
   def write(*args)
-    @targets.each {|t| t.write(*args)}
+    @targets.each { |t| t.write(*args) }
   end
 
   def close
@@ -39,7 +39,7 @@ module SpiderLogging
     end
 
     def configure_logger_for(classname)
-      file = File.open(PROJECT_ROOT + "/logs/#{classname}.log", "a")
+      file = File.open(PROJECT_ROOT + "/logs/#{classname}.log", 'a')
       Logger.new MultiIO.new(STDOUT, file)
     end
   end

@@ -1,0 +1,20 @@
+default_hosts: &default_host
+  hosts:
+    - localhost:27017
+
+production:
+  clients:
+    default:
+      uri: <%= ENV['MONGODB_URI'] %>
+
+development:
+  clients:
+    default:
+      database: dharma_api_dev
+      <<: *default_host
+
+test:
+  clients:
+    default:
+      database: dharma_api_test
+      <<: *default_host

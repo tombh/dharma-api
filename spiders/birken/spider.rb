@@ -1,22 +1,19 @@
 # http://birken.ca
 
-# Talks given by Theravadin monastics in the Thai forest tradition, usually 
+# Talks given by Theravadin monastics in the Thai forest tradition, usually
 # tracing their lineage back through Ajahn Chah.
 
 # Yo so bhagavæ arahaµ sammæsambuddho
 # To the Blessed One, the Lord, who fully attained perfect enlightenment
-
 class Birken < Spider
-
-  BASE_DOMAIN = 'http://mirror1.birken.ca'
+  BASE_DOMAIN = 'http://mirror1.birken.ca'.freeze
   BASE_URL = BASE_DOMAIN + '/dhamma_talks/indiv/Birken_Dhamma_Talk_Master_List.html'
-  LICENSE = 'http://creativecommons.org/licenses/by-nc-nd/2.5/'
+  LICENSE = 'http://creativecommons.org/licenses/by-nc-nd/2.5/'.freeze
 
-  def parse_talk fragment
-
+  def parse_talk(fragment)
     permalink = fragment.tolerant_css('li > strong > a', 'href')
     # There has to be a permalink to a talk
-    if !permalink.downcase.end_with? 'mp3'
+    unless permalink.downcase.end_with? 'mp3'
       log.warn "Couldn't get talk's permalink"
       return false
     end
@@ -28,42 +25,40 @@ class Birken < Spider
 
     speaker_name = fragment.css('li > strong').first.text
 
-    if speaker_name =~ /^\s*$/
-      speaker_name = 'Unknown'
-    end
+    speaker_name = 'Unknown' if speaker_name =~ /^\s*$/
 
     duration = colon_time_to_seconds fragment.css('li + li > strong').first.text
 
-    speaker = Speaker.first_or_create(:name => speaker_name)
+    speaker = Speaker.first_or_create(name: speaker_name)
 
     # Add a profile pic if there isn't one already
     if speaker.picture.nil?
-      speaker.update_attributes!(:picture => @pics[speaker_name])
+      speaker.update_attributes!(picture: @pics[speaker_name])
     end
 
-    talk = Talk.first_or_create(:permalink => permalink)
-    
-    title = fragment.previous.previous.text.gsub('"', '')
+    talk = Talk.first_or_create(permalink: permalink)
+
+    title = fragment.previous.previous.text.delete('"')
 
     return if title =~ /^\s*$/
 
     talk_details = {
-      :title => title,
-      :speaker_id => speaker._id,
-      :permalink => permalink,
-      :duration => duration,
-      :source => 'http://birken.ca',
-      :license => LICENSE
+      title: title,
+      speaker_id: speaker._id,
+      permalink: permalink,
+      duration: duration,
+      source: 'http://birken.ca',
+      license: LICENSE
     }
 
     talk.update_attributes!(talk_details)
 
-    d Talk.find_by_permalink(permalink)
-    d "\n" 
+    d Talk.find_by(permalink: permalink)
+    d "\n"
   end
 
-  def parse_talk_detail detail
-    @talk_fragment.tolerant_css('div').scan(/#{detail}: (.*)/).first.first.strip  
+  def parse_talk_detail(detail)
+    @talk_fragment.tolerant_css('div').scan(/#{detail}: (.*)/).first.first.strip
   end
 
   # There's a page that has all the monastics pictures on it.
@@ -81,13 +76,12 @@ class Birken < Spider
   end
 
   def run
-    d "Crawling Birken Master List"
-    log.info "Crawl initiated on " + Time.now.inspect
-    d "Parsing speaker pictures"
+    d 'Crawling Birken Master List'
+    log.info 'Crawl initiated on ' + Time.now.inspect
+    d 'Parsing speaker pictures'
     d "Opening #{BASE_URL}"
     Nokogiri::HTML(open(BASE_URL)).css('ul').each do |ul|
       parse_talk ul
     end
   end
-
 end

@@ -1,0 +1,6 @@
+AllCops:
+  Exclude:
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+Metrics/LineLength:
+  Max: 120

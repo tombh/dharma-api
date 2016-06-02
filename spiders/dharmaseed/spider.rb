@@ -11,25 +11,24 @@
 # May all beings be from suffering
 
 class Dharmaseed < Spider
-
-  BASE_DOMAIN = 'http://dharmaseed.org'
+  BASE_DOMAIN = 'http://dharmaseed.org'.freeze
   BASE_URL = BASE_DOMAIN + '/talks/?page='
-  LICENSE = 'http://creativecommons.org/licenses/by-nc-nd/3.0/'
+  LICENSE = 'http://creativecommons.org/licenses/by-nc-nd/3.0/'.freeze
 
   # Parse a speaker's page for relevant info
   def scrape_speaker(doc, speaker_name)
     table = doc.at_css('.bodyhead ~ table')
 
-    if not table
-      log.warn "DOM elements for speaker not found"
+    unless table
+      log.warn 'DOM elements for speaker not found'
       return false
     end
 
     {
-      :name => speaker_name, # Use the name from the original talk page in case there's nothing else
-      :bio => clean_long_text(table.tolerant_css('tr + tr td > i')),
-      :website => table.tolerant_css('tr td table tr td.talkbutton a', 'href'),
-      :picture => table.tolerant_css('tr td table tr td a.talkteacher img', 'src')
+      name: speaker_name, # Use the name from the original talk page in case there's nothing else
+      bio: clean_long_text(table.tolerant_css('tr + tr td > i')),
+      website: table.tolerant_css('tr td table tr td.talkbutton a', 'href'),
+      picture: table.tolerant_css('tr td table tr td a.talkteacher img', 'src')
     }
   end
 
@@ -60,11 +59,10 @@ class Dharmaseed < Spider
   # But we keep a track of which speakers we've already fetched on this crawl so we only
   # scrape them once.
   def parse_speaker
-
-    @multiple_talk and return true
+    @multiple_talk && (return true)
 
     # No need to continue if we can't even find a speaker name
-    if not speaker_name = @two.tolerant_css('i a')
+    unless speaker_name = @two.tolerant_css('i a')
       log.warn "Couldn't find the speaker in :: " + @two
       return false
     end
@@ -72,20 +70,20 @@ class Dharmaseed < Spider
     # Only parse this speaker if we haven't done so on this crawl already
     if @parsed_speakers.include? speaker_name
       d "Speaker already parsed (#{speaker_name})"
-      @speaker = Speaker.find_by_name(speaker_name)
+      @speaker = Speaker.find_or_initialize_by(name: speaker_name)
       return @speaker
     end
 
-    d "Unparsed speaker :: " + speaker_name
+    d 'Unparsed speaker :: ' + speaker_name
     href = @two.tolerant_css('i a', 'href')
     doc = Nokogiri::HTML(open_speaker_doc(BASE_DOMAIN + href))
-    if not speaker_scraped = scrape_speaker(doc, speaker_name)
+    unless speaker_scraped = scrape_speaker(doc, speaker_name)
       log.warn "Couldn't parse the speaker target page :: " + href
       return false
     end
 
     # See if there's a record of the speaker in the db and create one if there isn't
-    @speaker = Speaker.find_by_name(speaker_name) || Speaker.new
+    @speaker = Speaker.find_or_initialize_by(name: speaker_name)
     @speaker.update_attributes!(speaker_scraped)
     @parsed_speakers << speaker_name # Make a note of this so we don't do it again on this crawl
 
@@ -95,62 +93,56 @@ class Dharmaseed < Spider
   # Given the 3 <tr> rows (@one, @two, @three) of a talk fragment enter it in the db
   def parse_talk
     # There has to be a permalink to a talk
-    if not permalink = @talk_fragment.tolerant_css('.talkbutton a', 'href')
+    unless permalink = @talk_fragment.tolerant_css('.talkbutton a', 'href')
       log.warn "Couldn't get talk's permalink"
       return false
     end
 
     # Some talks are full links to Vimeo videos.
     # But most of them are relative links to dharmaseed.org
-    unless permalink.include? 'http://'
-      permalink = BASE_DOMAIN + permalink
-    end
+    permalink = BASE_DOMAIN + permalink unless permalink.include? 'http://'
 
-    talk = Talk.find_by_permalink(permalink) 
-    
+    talk = Talk.find_or_initialize_by(permalink: permalink)
+
     # If the talk exists and we're not doing a recrawl then we end it here.
-    if talk and !@recrawl
+    if talk.persisted? && !@recrawl
       @finished = true
-      d "Found existing talk, ending crawl."
+      d 'Found existing talk, ending crawl.'
       return false
     end
 
-    talk = Talk.new if !talk
-
     if @multiple_talk
       # use talk object from prevous loop as base and merge in new values
-      @talk_scraped = @talk_scraped.merge({
-        :title => @one.tolerant_css('a'),
-        :permalink => permalink,
-        :duration => @one.tolerant_css('i')
-      })
+      @talk_scraped = @talk_scraped.merge(title: @one.tolerant_css('a').try(:strip),
+                                          permalink: permalink,
+                                          duration: @one.tolerant_css('i'))
     else
       @talk_scraped = {
-        :title => @one.tolerant_css('a'),
-        :speaker_id => @speaker._id,
-        :permalink => permalink,
-        :duration => colon_time_to_seconds(@one.tolerant_css('i')),
-        :date => @one ? @one.text.split[0] : nil,
-        :description => clean_long_text(@three.text), # assigns venue & event when there's no description
-        :venue => @three.tolerant_css('a'),
-        :event => @three.tolerant_css('a + a'),
-        :source => BASE_DOMAIN,
-        :license => LICENSE
+        title: @one.tolerant_css('a').try(:strip),
+        speaker_id: @speaker._id,
+        permalink: permalink,
+        duration: colon_time_to_seconds(@one.tolerant_css('i')),
+        date: @one ? @one.text.split[0] : nil,
+        description: clean_long_text(@three.text), # assigns venue & event when there's no description
+        venue: @three.tolerant_css('a').try(:strip),
+        event: @three.tolerant_css('a + a').try(:strip),
+        source: BASE_DOMAIN,
+        license: LICENSE
       }
     end
 
     # The parent of a set of multiple talks contains all the information for the child talks,
     # but it does not itself have a link to an mp3. Therefore we do everything but persist this
     # talk as talk_scraped will be merged with successive child talks.
-    if not @parent_of_multiple_talks
+    unless @parent_of_multiple_talks
       talk.update_attributes!(@talk_scraped)
-      d "Talk :: " + talk.title
+      d 'Talk :: ' + talk.title
     end
 
     talk
   end
 
-  def isolate_table_rows()
+  def isolate_table_rows
     @one = @talk_fragment.at_css('tr td')
     @two = @talk_fragment.at_css('tr + tr td')
     @three = @talk_fragment.at_css('tr + tr + tr td')
@@ -164,17 +156,16 @@ class Dharmaseed < Spider
   def scrape_page(doc)
     # A page typically contains 10 or so talks
     talklist_tables(doc).each do |talk_fragment|
-
-      d "---------------------------------------"
+      d '---------------------------------------'
 
       @talk_fragment = talk_fragment
-      isolate_table_rows()
+      isolate_table_rows
 
       # First check for edge case where multiple talks are included in one
       # eg; http://www.dharmaseed.org/teacher/175/talk/15391/
-      check_multitalk_edge_case()
+      check_multitalk_edge_case
 
-      parse_talk() if parse_speaker()
+      parse_talk if parse_speaker
       break if @finished
     end
   end
@@ -182,17 +173,16 @@ class Dharmaseed < Spider
   # Loop over all of dharmaseed's pages
   def run
     d "Crawling DHARMASEED, starting on page #{@page}"
-    log.info "Crawl initiated on " + Time.now.inspect    
+    log.info 'Crawl initiated on ' + Time.now.inspect
     while
       @page += 1
       full_link = BASE_URL + @page.to_s
       d "\n#######################################"
-      d "Link to current page :: " + full_link
+      d 'Link to current page :: ' + full_link
       doc = open(full_link).read
-      doc =~ /No matching talks are available/ and break
+      doc =~ /No matching talks are available/ && break
       scrape_page(doc)
       break if @finished
     end
   end
-
 end

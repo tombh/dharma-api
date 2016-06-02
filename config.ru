@@ -5,7 +5,7 @@ require './app/routes'
 use Rack::Cors do
   allow do
     origins '*'
-    resource '*', :headers => :any, :methods => :any
+    resource '*', headers: :any, methods: :any
   end
 end
 

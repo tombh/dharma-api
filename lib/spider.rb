@@ -4,7 +4,7 @@ class Spider
   include SpiderLogging
 
   attr_accessor :talk_fragment, :speaker, :doc, :recrawl
-  
+
   def initialize(options = {})
     @page = options[:start_page].to_i || 1
     @recrawl = options[:recrawl] || false
@@ -23,7 +23,7 @@ class Spider
   def colon_time_to_seconds(duration)
     pieces = duration.split(':').reverse
     for i in 0..2
-      pieces[i] = 0 if pieces[i] == nil
+      pieces[i] = 0 if pieces[i].nil?
       pieces[i] = pieces[i].to_i
     end
     pieces[0] + (pieces[1] * 60) + (pieces[2] * 60 * 60)
@@ -31,7 +31,6 @@ class Spider
 
   # Tidy up large bits of texts like descriptions and bios
   def clean_long_text(text)
-    text.gsub(/\s+/, ' ') if text
+    text.gsub(/\s+/, ' ').try(:strip) if text
   end
-
 end
