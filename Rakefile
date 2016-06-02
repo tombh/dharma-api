@@ -45,7 +45,11 @@ task :crawl do
       # Capitalize first letter of spider, eg; dharmaseed to Dharmaseed
       # Then turn that string into a true language constant representing a class name
       # Then call the .run() method on the object
-      spider.capitalize.constantize.new(recrawl: recrawl).run
+      begin
+        spider.capitalize.constantize.new(recrawl: recrawl).run
+      rescue OpenURI::HTTPError
+        puts "Skipping #{spider}"
+      end
     end
 
   else
