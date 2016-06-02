@@ -1,5 +1,5 @@
 language: ruby
 rvm:
-  - 2.1.5
+  - 2.3.0
 services: mongodb
 script: bundle exec rspec spec spiders
