@@ -5,7 +5,7 @@ default_hosts: &default_host
 production:
   clients:
     default:
-      uri: <%= ENV['MONGODB_URI'] %>
+      uri: <%= ENV['MONGOLAB_URI'] %>
 
 development:
   clients:
