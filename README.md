@@ -193,6 +193,11 @@ To start the server run `bundle exec guard`, and then view the awesome at `local
 
 To run the tests: `bundle exec rspec`
 
+*(Optional)* To quickly launch the dev server without having to install the dependencies:
+```
+docker-compose up --build
+```
+
 ## Fetch some talks
 
 To test out the API, you will need to populate your database by running the spiders: `bundle exec rake crawl` will iterate through all of them.
